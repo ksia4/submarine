@@ -1,0 +1,32 @@
+[GENERATED OBJECT FILE]
+b__main.o
+[PROJECT FILES]
+C:\Users\DELL\Desktop\GUJA\snake\snake.gpr
+20190102142454
+C:\GtkAda\lib\gnat\gtkada.gpr
+20190102103712
+[BOUND OBJECT FILES]
+C:\Users\DELL\Desktop\GUJA\snake\obj\main_quit.o
+C:\Users\DELL\Desktop\GUJA\snake\obj\snake_generic.o
+C:\Users\DELL\Desktop\GUJA\snake\obj\game_spark.o
+C:\Users\DELL\Desktop\GUJA\snake\obj\game.o
+C:\Users\DELL\Desktop\GUJA\snake\obj\main.o
+[GENERATED SOURCE FILES]
+b__main.ads
+b__main.adb
+b__main.ali
+[RESULTING OPTIONS]
+-LC:\Users\DELL\Desktop\GUJA\snake\obj\
+-LC:\Users\DELL\Desktop\GUJA\snake\obj\
+-LC:\GtkAda\lib\gtkada\gtkada.static\gtkada\
+-LC:/gnat/2018/lib/gcc/x86_64-pc-mingw32/7.3.1/adalib/
+-static
+-static-libgcc
+-shared-libgcc
+-shared-libgcc
+-shared-libgcc
+C:/gnat/2018/lib/gcc/x86_64-pc-mingw32/7.3.1/adalib/libgnarl.a
+C:/gnat/2018/lib/gcc/x86_64-pc-mingw32/7.3.1/adalib/libgnat.a
+-Xlinker
+--stack=0x200000,0x1000
+-mthreads

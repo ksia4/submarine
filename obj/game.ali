@@ -1,0 +1,373 @@
+V "GNAT Lib v2018"
+A -gnatA
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RV NO_DELAY
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_DISPATCH
+RV NO_DISPATCHING_CALLS
+RV NO_EXCEPTIONS
+RV NO_FLOATING_POINT
+RV NO_IO
+RV NO_PROTECTED_TYPES
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_TASKING
+RV NO_UNCHECKED_ACCESS
+RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_ELABORATION_CODE
+RV SPARK_05
+RV MAX_TASKS=1
+RV MAX_ENTRY_QUEUE_LENGTH=1+
+
+U game%b		game.adb		1a4692ef OO PK IL
+W ada%s			ada.ads			ada.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+W ada.numerics.discrete_random%s
+W ada.real_time%s	a-reatim.adb		a-reatim.ali
+Z ada.real_time.delays%s  a-retide.adb		a-retide.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W gdk%s			gdk.ads			gdk.ali
+W gdk.types%s		gdk-types.ads		gdk-types.ali
+W gdk.types.keysyms%s	gdk-types-keysyms.ads	gdk-types-keysyms.ali
+W glib%s		glib.adb		glib.ali
+W gtk%s			gtk.ads			gtk.ali
+W gtk.main%s		gtk-main.adb		gtk-main.ali
+W system%s		system.ads		system.ali
+Z system.img_int%s	s-imgint.adb		s-imgint.ali
+Z system.random_numbers%s  s-rannum.adb		s-rannum.ali
+Z system.soft_links%s	s-soflin.adb		s-soflin.ali
+Z system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
+Z system.tasking.stages%s  s-tassta.adb		s-tassta.ali
+
+U game%s		game.ads		e81dc117 EE OO PF PK IL
+Z ada.real_time%s	a-reatim.adb		a-reatim.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+W cairo%s		cairo.adb		cairo.ali
+W game_spark%s		game_spark.ads		game_spark.ali
+W gdk%s			gdk.ads			gdk.ali
+W gdk.event%s		gdk-event.adb		gdk-event.ali
+W glib%s		glib.adb		glib.ali
+W glib.object%s		glib-object.adb		glib-object.ali
+W gtk%s			gtk.ads			gtk.ali
+W gtk.drawing_area%s	gtk-drawing_area.adb	gtk-drawing_area.ali
+W gtk.widget%s		gtk-widget.adb		gtk-widget.ali
+Z system%s		system.ads		system.ali
+Z system.parameters%s	s-parame.adb		s-parame.ali
+Z system.soft_links%s	s-soflin.adb		s-soflin.ali
+Z system.task_info%s	s-tasinf.adb		s-tasinf.ali
+Z system.tasking%s	s-taskin.adb		s-taskin.ali
+Z system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
+Z system.tasking.stages%s  s-tassta.adb		s-tassta.ali
+
+D ada.ads		20180524051736 76789da1 ada%s
+D a-except.ads		20180524051736 291912d5 ada.exceptions%s
+D a-finali.ads		20180524051738 bf4f806b ada.finalization%s
+D a-ioexce.ads		20180524051736 e4a01f64 ada.io_exceptions%s
+D a-numeri.ads		20180524051736 bb51c45a ada.numerics%s
+D a-nudira.ads		20180524051736 71e55def ada.numerics.discrete_random%s
+D a-nudira.adb		20180524051736 72908cdb ada.numerics.discrete_random%b
+D a-reatim.ads		20180524051738 0240fc73 ada.real_time%s
+D a-retide.ads		20180524051738 081cdaa4 ada.real_time.delays%s
+D a-stream.ads		20180524051736 119b8fb3 ada.streams%s
+D a-tags.ads		20180524051738 491b781d ada.tags%s
+D a-textio.ads		20180524051738 881db35a ada.text_io%s
+D a-unccon.ads		20180524051738 0e9b276f ada.unchecked_conversion%s
+D a-uncdea.ads		20180524051736 eff36322 ada.unchecked_deallocation%s
+D cairo.ads		20180524063416 925d4aaa cairo%s
+D cairo-region.ads	20180524063416 b7133728 cairo.region%s
+D game.ads		20190102142616 791ebe85 game%s
+D game.adb		20190104070346 7e2bd613 game%b
+D game_spark.ads	20190104080814 538b783e game_spark%s
+D gdk.ads		20180524063416 96d821f3 gdk%s
+D gdk-color.ads		20180524063418 ef57bc34 gdk.color%s
+D gdk-device.ads	20180524063422 04c1ecbd gdk.device%s
+D gdk-display.ads	20180524063422 d91ec37e gdk.display%s
+D gdk-drag_contexts.ads	20180524063422 11b1346e gdk.drag_contexts%s
+D gdk-event.ads		20180524063420 1bda38e2 gdk.event%s
+D gdk-frame_clock.ads	20180524063420 dadfbe52 gdk.frame_clock%s
+D gdk-frame_timings.ads	20180524063422 98b5e7d1 gdk.frame_timings%s
+D gdk-pixbuf.ads	20180524063420 499fe1c7 gdk.pixbuf%s
+D gdk-rectangle.ads	20180524063418 7b900608 gdk.rectangle%s
+D gdk-rgba.ads		20180524063422 2609514a gdk.rgba%s
+D gdk-screen.ads	20180524063422 9fe578a4 gdk.screen%s
+D gdk-types.ads		20180524063418 921dc8b2 gdk.types%s
+D gdk-types-keysyms.ads	20180524063418 7298eafe gdk.types.keysyms%s
+D gdk-visual.ads	20180524063420 615e934c gdk.visual%s
+D glib.ads		20180524063416 cd438a72 glib%s
+D glib-error.ads	20180524063418 e055fabe glib.error%s
+D glib-generic_properties.ads  20180524063418 f3dc70df glib.generic_properties%s
+D glib-glist.ads	20180524063420 65a6e1be glib.glist%s
+D glib-gslist.ads	20180524063420 953541be glib.gslist%s
+D glib-object.ads	20180524063416 236e9d03 glib.object%s
+D glib-properties.ads	20180524063420 4118b916 glib.properties%s
+D glib-types.ads	20180524063418 86ac71ae glib.types%s
+D glib-values.ads	20180524063418 5ef3ad24 glib.values%s
+D gnat.ads		20180524051738 fd2ad2f1 gnat%s
+D g-string.ads		20180524051738 c6abc540 gnat.strings%s
+D gtk.ads		20180524063420 cfdeaf1c gtk%s
+D gtk-accel_group.ads	20180524063420 a14a159a gtk.accel_group%s
+D gtk-buildable.ads	20180524063422 e8198b57 gtk.buildable%s
+D gtk-builder.ads	20180524063422 35d802c2 gtk.builder%s
+D gtk-drawing_area.ads	20180524063422 6fdc9064 gtk.drawing_area%s
+D gtk-enums.ads		20180524063420 e3f2f3ba gtk.enums%s
+D gtk-main.ads		20180524063422 e684a528 gtk.main%s
+D gtk-selection_data.ads  20180524063420 061b2148 gtk.selection_data%s
+D gtk-style.ads		20180524063422 3c4cbc07 gtk.style%s
+D gtk-target_entry.ads	20180524063420 02690213 gtk.target_entry%s
+D gtk-target_list.ads	20180524063420 a9d79eb7 gtk.target_list%s
+D gtk-widget.ads	20180524063422 07bd7883 gtk.widget%s
+D gtkada.ads		20180524063420 57aea1c7 gtkada%s
+D gtkada-types.ads	20180524063420 471f54b5 gtkada.types%s
+D interfac.ads		20180524051736 5ab55268 interfaces%s
+D i-c.ads		20180524051736 5421119b interfaces.c%s
+D i-cstrin.ads		20180524051736 341d0ddf interfaces.c.strings%s
+D i-cstrea.ads		20180524051736 e53d8b8e interfaces.c_streams%s
+D pango.ads		20180524063418 e51ea573 pango%s
+D pango-attributes.ads	20180524063422 b2832a43 pango.attributes%s
+D pango-context.ads	20180524063420 5a6f0fe6 pango.context%s
+D pango-enums.ads	20180524063422 eff085ce pango.enums%s
+D pango-font.ads	20180524063422 35d36c4b pango.font%s
+D pango-font_face.ads	20180524063422 c62e6ce5 pango.font_face%s
+D pango-font_family.ads	20180524063420 1fdea8b4 pango.font_family%s
+D pango-font_metrics.ads  20180524063422 25e6f301 pango.font_metrics%s
+D pango-fontset.ads	20180524063422 af4fe708 pango.fontset%s
+D pango-language.ads	20180524063420 e96cb8f4 pango.language%s
+D pango-layout.ads	20180524063422 d240b716 pango.layout%s
+D pango-matrix.ads	20180524063420 309f74b5 pango.matrix%s
+D pango-tabs.ads	20180524063420 0c575925 pango.tabs%s
+D snake_generic.ads	20190102143028 24fae62b snake_generic%s
+D system.ads		20180524051738 32a08138 system%s
+D s-atacco.ads		20180524051738 4c36d12f system.address_to_access_conversions%s
+D s-crtl.ads		20180524051736 0ebbdb71 system.crtl%s
+D s-exctab.ads		20180524051738 54135002 system.exception_table%s
+D s-ficobl.ads		20180524051738 078245e4 system.file_control_block%s
+D s-finmas.ads		20180524051738 7811a767 system.finalization_masters%s
+D s-finroo.ads		20180524051738 4ff27390 system.finalization_root%s
+D s-imgint.ads		20180524051736 02dbe0c2 system.img_int%s
+D s-imguns.ads		20180524051736 9ff43cf7 system.img_uns%s
+D s-multip.ads		20180524051736 38ac9f73 system.multiprocessors%s
+D s-osinte.ads		20180524051738 2e5b26a9 system.os_interface%s
+D s-parame.ads		20180524051738 48ec542b system.parameters%s
+D s-pooglo.ads		20180524051736 ede33ef8 system.pool_global%s
+D s-rannum.ads		20180524051736 99ade2f2 system.random_numbers%s
+D s-rannum.adb		20180524051738 20ba1217 system.random_numbers%b
+D s-ransee.ads		20180524051738 01a57b33 system.random_seed%s
+D s-secsta.ads		20180524051738 20bbe636 system.secondary_stack%s
+D s-soflin.ads		20180524051736 a7318a92 system.soft_links%s
+D s-stache.ads		20180524051738 a37c21ec system.stack_checking%s
+D s-stausa.ads		20180524051736 017a0a05 system.stack_usage%s
+D s-stalib.ads		20180524051738 09bd3940 system.standard_library%s
+D s-stoele.ads		20180524051738 2dc34a04 system.storage_elements%s
+D s-stopoo.ads		20180524051736 b16154c2 system.storage_pools%s
+D s-stposu.ads		20180524051736 97a6219c system.storage_pools.subpools%s
+D s-stratt.ads		20180524051736 aedef97e system.stream_attributes%s
+D s-string.ads		20180524051738 8fe54fb7 system.strings%s
+D s-tasinf.ads		20180524051738 601f6b72 system.task_info%s
+D s-taspri.ads		20180524051738 6c1d93d4 system.task_primitives%s
+D s-taprop.ads		20180524051738 1dd2e1b6 system.task_primitives.operations%s
+D s-taskin.ads		20180524051738 1d8c1ccb system.tasking%s
+D s-taprob.ads		20180524051738 acd6094d system.tasking.protected_objects%s
+D s-tassta.ads		20180524051738 cca55c94 system.tasking.stages%s
+D s-traent.ads		20180524051736 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20180524051736 34867c83 system.unsigned_types%s
+D s-valuns.ads		20180524051738 10a8ed3b system.val_uns%s
+D s-wchcon.ads		20180524051738 1b7d22d2 system.wch_con%s
+D s-win32.ads		20180524051736 b7f96285 system.win32%s
+D unchconv.ads		20180524051736 ca2f9e18 unchecked_conversion%s
+X 1 ada.ads
+16K9*Ada 20e8 18|3r6 3r25 7r6 8r6 10r6 10r23 15r24
+X 5 a-numeri.ads
+16K13*Numerics 32e17 18|7w10 8r10 15r28
+X 6 a-nudira.ads
+44k22*Discrete_Random 75e33 18|8w19 15r37
+50R9*Generator<91|63R9> 18|16r16[15]
+52V13*Random{77|11I9[19|8]} 18|45s35[15] 180s19[15] 185s26[15]
+X 7 a-nudira.adb
+53V16 Random[91|83]{77|11I9[19|8]} 92|392b13[18|15]
+X 8 a-reatim.ads
+39K13*Real_Time 185e18 18|3w10 3r29
+49O9*Time<duration> 18|178r14
+54O9*Time_Span<duration>
+61V13*Clock{49O9} 18|178s22
+65V14*"+"{49O9} 18|182s23
+119V13*Milliseconds{54O9} 18|182s25
+X 12 a-textio.ads
+49K13*Text_IO 471e16 18|10w10 10r27
+X 15 cairo.ads
+75K9*Cairo 2893e10 17|7w6 7r17 13r29 18|55r29 62r7 68r10 70r10 72r10 75r10
+. 77r10 80r10 84r10 86r10 88r10 91r10 95r7 97r7 98r7 99r7 103r10 104r10 106r13
+. 108r13 111r10 112r10 113r10 114r10 115r10 116r10 128r16 131r16
+77M9*Cairo_Context<78|67M9> 17|13r35 18|55r35
+686U14*Set_Source_Rgb 18|61s7 65s7
+1108U14*Move_To 18|98s13 104s16 112s16 115s16
+1304U14*Rectangle 18|68s16 72s16 77s16 84s16 88s16 128s22
+1305m7 Cr{77M9} 18|68r27 72r27 77r27 84r27 88r27 128r33
+1306f7 X{35|59F9} 18|68r37 72r37 77r37 84r37 88r37 128r43
+1307f7 Y{35|59F9} 18|68r60 73r27 78r27 84r55 89r27 129r33
+1308f7 Width{35|59F9} 18|69r27 73r51 78r51 85r27 89r50 129r56
+1309f7 Height{35|59F9} 18|69r50 74r27 79r27 85r50 90r27 130r33
+1390U14*Paint 18|62s13
+1477U14*Fill_Preserve 18|70s16 75s16 80s16 86s16 91s16 131s22
+1938n30*Cairo_Font_Slant_Normal{1937E9} 18|95r44
+1946n31*Cairo_Font_Weight_Bold{1944E9} 18|96r31
+2038U14*Select_Font_Face 18|95s13
+2073U14*Set_Font_Size 18|97s13 103s16 111s16 114s16
+2191U14*Show_Text 18|99s13 106s19 108s19 113s16 116s16
+X 17 game.ads
+9K9*game 39E4 41l5 41e9 18|12b14 200l5 200t9
+10V13*On_Key_Press{boolean} 10^27 11>27 18|18b13 52l8 52t20
+10p27 Ent(40|40R9) 18|19b7 22r28
+11r27 Event{25|428R9} 18|20b7 24r10 25r17 26r17 29r13 30r17 31r17 34r13 35r17
+. 36r17 39r13 40r17 41r17 44r13 46r13 47r17
+12V13*On_Draw{boolean} 12^22 13>22 18|54b13 136l8 136t15
+12p22 Self(57|343R9) 18|54b22 56r28
+13m22 Cr{15|77M9} 18|55b22 61r23 62r20 65r23 68r33 70r31 72r33 75r31 77r33
+. 80r31 84r33 86r31 88r33 91r31 95r31 97r28 98r22 99r24 103r31 104r25 106r30
+. 108r30 111r31 112r25 113r27 114r31 115r25 116r27 128r39 131r37
+14T14*GameTask 15l8 15e16 39r16 18|177b14 188l8 188t16
+17W19*game_control_t 29E7 30l8 30e22 32r38 40r27 18|138b19 175l8 175t22
+18U17 start 18|139b17 142l11 142t16
+19V16 is_started{boolean} 18|143b16 146l11 146t21 184s26
+21U17 DoTick 21>25 18|147b17 150l11 150t17
+21i25 rand{77|11I9[19|8]} 18|147b25 149r35
+22U17 Reset 22>24 18|45s23 151b17 154l11 154t16
+22i24 rand{77|11I9[19|8]} 18|151b24 153r34
+23V16 GetState{77|8E9[19|8]} 23>26 18|124s35 155b16 158l11 158t19
+23r26 position{77|15R9[19|8]} 18|155b26 157r44
+24V16 IsWon{boolean} 18|102s46 159b16 162l11 162t16
+25V16 IsLost{boolean} 18|102s23 105s26 163b16 166l11 166t17
+26V16 GetNrEaten{natural} 18|113s44 167b16 170l11 170t21
+27U17 SetNextDirection 27>35 18|28s23 33s23 38s23 43s23 171b17 174l11 174t27
+27e35 new_direction{77|6E9[19|8]} 18|171b35 173r45
+29b7 started{boolean} 18|141r10 145r17
+32P9*game_control_a(17W19) 33r35 18|196r35
+33V13*GetGameControl{32P9} 18|196b13 199l8 199t22
+35V13*TriggerRedraw{boolean} 18|190b13 194l8 194t21
+37p4*Draw{50|104P9} 18|192r7
+39t4 game_task{14T14}
+40w4 game_control{17W19} 18|28r10 33r10 38r10 43r10 45r10 102r10 102r33 105r13
+. 113r31 124r22 184r13 198m14 198r14
+X 18 game.adb
+15K12 rand[6|44] 16r11 45r30 180r14 185r21
+16r4 seed{6|50R9[15]} 45r43 180r27 185r34
+57r7 position{77|15R9[19|8]} 123m13 124r45
+58e7 state{77|8E9[19|8]} 124m13 125r16 126r18
+66i11 x{integer} 68r51 72r51 77r51
+82i11 y{integer} 84r69 89r41
+121i11 x{integer} 123r47 128r57
+122i14 y{integer} 123r33 129r47
+178o7 next{8|49O9} 182m10 182r18 183r22
+X 19 game_spark.ads
+6K9*game_spark 17|6w6 6r22 18|125r24 126r26 149r10 153r10 157r17 161r17 165r17
+. 169r17 173r10 19|9e15
+8K12*snake[77|5] 17|21r32 22r31 23r37 23r62 27r51 18|13r8 125r35 126r37 149r21
+. 153r21 157r28 161r28 165r28 169r28 173r21
+X 20 gdk.ads
+38K9*Gdk 17|3r6 3r21 18|1r6 1r38 2r6 2r38 5w6 5r15 20|48e8
+46P9*Gdk_Visual<35|152P9>
+X 22 gdk-device.ads
+49P9*Gdk_Device(48R9)
+59V13*Convert{78|67M9} 38|58i21
+60V13*Convert{49P9} 38|59i21
+X 25 gdk-event.ads
+58K13*Event 17|3w10 3r25 25|1110e14
+428R9*Gdk_Event_Key 17|11r35 18|20r15 25|440e14
+434m7*Keyval{32|164M9} 18|24r16 25r23 26r23 29r19 30r23 31r23 34r19 35r23
+. 36r23 39r19 40r23 41r23 44r19 46r19 47r23
+X 32 gdk-types.ads
+31K13*Types 18|1w10 1r42 2r10 2r42 32|297e14
+164M9*Gdk_Key_Type<35|55M9>
+X 33 gdk-types-keysyms.ads
+26K19*Keysyms 18|2w16 2r48 33|1326e22
+37m4*GDK_Escape{32|164M9} 18|47r32
+58m4*GDK_Left{32|164M9} 18|35r32
+59m4*GDK_Up{32|164M9} 18|30r32
+60m4*GDK_Right{32|164M9} 18|40r32
+61m4*GDK_Down{32|164M9} 18|25r32
+90m4*GDK_KP_Left{32|164M9} 18|34r28
+91m4*GDK_KP_Up{32|164M9} 18|29r28
+92m4*GDK_KP_Right{32|164M9} 18|39r28
+93m4*GDK_KP_Down{32|164M9} 18|24r25
+377m4*GDK_LC_a{32|164M9} 18|36r32
+380m4*GDK_LC_d{32|164M9} 18|41r32
+393m4*GDK_LC_q{32|164M9} 18|46r28
+394m4*GDK_LC_r{32|164M9} 18|44r28
+395m4*GDK_LC_s{32|164M9} 18|26r32
+399m4*GDK_LC_w{32|164M9} 18|31r32
+X 34 gdk-visual.ads
+78V13*Convert[115|20]{78|67M9} 38|58i21
+79V13*Convert[115|20]{20|46P9} 38|59i21
+X 35 glib.ads
+38K9*Glib 17|2r6 2r23 18|6w6 6r16 35|428e9
+55M9*Guint<61|43M9>
+59F9*Gdouble<61|65F9> 18|68r42 68r65 69r36 69r60 72r42 73r32 73r60 74r37
+. 77r42 78r32 78r60 79r37 84r42 84r60 85r36 85r60 88r42 89r32 89r59 90r37
+. 97r32 98r26 98r40 103r35 104r29 104r43 111r35 112r29 112r48 114r35 115r29
+. 115r48 128r48 129r38 129r65 130r43
+152P9*C_Proxy(149R9)
+X 40 glib-object.ads
+38K14*Object 17|2w11 2r28 40|762e16
+40R9*GObject_Record 17|10r42 18|19r22 40|720e14
+41P9*GObject(40R9)
+673V13*Convert{78|67M9} 38|58i21 39|49i21
+674V13*Convert{41P9} 38|59i21 39|50i21
+X 46 gtk.ads
+41K9*Gtk 17|4r6 4r22 5r6 5r28 18|4r6 49r10 46|79e8
+X 50 gtk-drawing_area.ads
+101K13*Drawing_Area 17|5w10 5r32 50|141e21
+104P9*Gtk_Drawing_Area(103R9) 17|37r11
+X 51 gtk-enums.ads
+865V13*Convert{78|67M9} 38|58i21 39|49i21
+866V13*Convert{string} 38|59i21 39|50i21
+X 52 gtk-main.ads
+33K13*Main 18|4w10 49r14 52|327e13
+205U14*Main_Quit 18|49s19
+X 57 gtk-widget.ads
+341K13*Widget 17|4w10 4r26 57|5431e15
+343R9*Gtk_Widget_Record<40|40R9> 17|12r36 18|54r36 57|343e65
+344P9*Gtk_Widget(343R9)
+431V13*Convert{78|67M9} 38|58i21 39|49i21
+432V13*Convert{344P9} 38|59i21 39|50i21
+2681U14*Queue_Draw 18|192R12
+X 60 interfac.ads
+74M9*Unsigned_32
+77M9*Unsigned_64
+X 61 i-c.ads
+43M9*unsigned
+65F9*double<long_float>
+X 77 snake_generic.ads
+6E9*Direction_t 17|27r57[19|8] 18|171r51[19|8]
+6n25*UP{6E9[19|8]} 18|33r41[19|8]
+6n29*DOWN{6E9[19|8]} 18|28r41[19|8]
+6n35*LEFT{6E9[19|8]} 18|38r41[19|8]
+6n41*RIGHT{6E9[19|8]} 18|43r41[19|8]
+8E9*State_t 17|23r68[19|8] 18|58r15[19|8] 155r56[19|8]
+8n27*SNAKE{8E9[19|8]} 18|126r43[19|8]
+8n34*FOOD{8E9[19|8]} 18|125r41[19|8]
+11I9*Lin_t<integer> 17|21r38[19|8] 22r37[19|8] 18|15r54[19|8] 147r32[19|8]
+. 151r31[19|8]
+12I12*Column_t{11I9[19|8]} 18|123r37[19|8]
+13I12*Row_t{11I9[19|8]} 18|123r26[19|8]
+15R9*Position_t 17|23r43[19|8] 18|57r18[19|8] 155r37[19|8]
+30U14*DoTick 18|149s27[19|8] 185s13[19|8]
+38U14*Reset 18|153s27[19|8] 180s7[19|8]
+42V13*IsWon{boolean} 18|161s34[19|8]
+45V13*IsLost{boolean} 18|165s34[19|8]
+48V13*GetNrEaten{natural} 18|169s34[19|8]
+51U14*SetNextDirection 18|173s27[19|8]
+56V13*GetState{8E9[19|8]} 18|157s34[19|8]
+X 78 system.ads
+67M9*Address
+X 91 s-rannum.ads
+75V13*Random{60|74M9} 92|221i21
+76V13*Random{60|77M9} 92|221i21
+X 97 s-stausa.ads
+203U14*Initialize 204i<c,__gnat_stack_usage_initialize>22
+268U14*Output_Results 272i<c,__gnat_stack_usage_output_results>22
+

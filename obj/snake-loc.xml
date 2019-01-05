@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<Locations >
+  <Project>
+    <vfs_file>C:\Users\DELL\Desktop\GUJA\snake\snake.gpr</vfs_file>
+    <file_marker column=" 28" line=" 123" >
+      <vfs_project>C:\Users\DELL\Desktop\GUJA\snake\snake.gpr</vfs_project>
+      <vfs_file>C:\Users\DELL\Desktop\GUJA\snake\src\game.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 10" line=" 41" >
+      <vfs_project>C:\Users\DELL\Desktop\GUJA\snake\snake.gpr</vfs_project>
+      <vfs_file>C:\Users\DELL\Desktop\GUJA\snake\src\game.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 16" line=" 9" >
+      <vfs_project>C:\Users\DELL\Desktop\GUJA\snake\snake.gpr</vfs_project>
+      <vfs_file>C:\Users\DELL\Desktop\GUJA\snake\src\game_spark.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 24" line=" 37" >
+      <vfs_project>C:\Users\DELL\Desktop\GUJA\snake\snake.gpr</vfs_project>
+      <vfs_file>C:\Users\DELL\Desktop\GUJA\snake\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 19" line=" 176" >
+      <vfs_project>C:\Users\DELL\Desktop\GUJA\snake\snake.gpr</vfs_project>
+      <vfs_file>C:\Users\DELL\Desktop\GUJA\snake\src\snake_generic.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 28" line=" 123" >
+      <vfs_project>C:\Users\DELL\Desktop\GUJA\snake\snake.gpr</vfs_project>
+      <vfs_file>C:\Users\DELL\Desktop\GUJA\snake\src\game.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 48" line=" 137" >
+      <vfs_project />
+      <vfs_file>C:\GtkAda\include\gtkada\gtkada.static\gtkada\gtk-search_bar.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 28" line=" 123" >
+      <vfs_project>C:\Users\DELL\Desktop\GUJA\snake\snake.gpr</vfs_project>
+      <vfs_file>C:\Users\DELL\Desktop\GUJA\snake\src\game.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 9" line=" 142" >
+      <vfs_project />
+      <vfs_file>C:\GtkAda\include\gtkada\gtkada.static\gtkada\gtk-search_bar.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 28" line=" 123" >
+      <vfs_project>C:\Users\DELL\Desktop\GUJA\snake\snake.gpr</vfs_project>
+      <vfs_file>C:\Users\DELL\Desktop\GUJA\snake\src\game.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 21" line=" 142" >
+      <vfs_project>C:\GtkAda\lib\gnat\gtkada.gpr</vfs_project>
+      <vfs_file>C:\GtkAda\include\gtkada\gtkada.static\gtkada\gtk-search_bar.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 7" line=" 10328" >
+      <vfs_project />
+      <vfs_file>C:\GtkAda\include\gtkada\gtkada.static\gtkada\gtk-widget.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 21" line=" 142" >
+      <vfs_project>C:\GtkAda\lib\gnat\gtkada.gpr</vfs_project>
+      <vfs_file>C:\GtkAda\include\gtkada\gtkada.static\gtkada\gtk-search_bar.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 14" line=" 10331" >
+      <vfs_project />
+      <vfs_file>C:\GtkAda\include\gtkada\gtkada.static\gtkada\gtk-widget.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 21" line=" 142" >
+      <vfs_project>C:\GtkAda\lib\gnat\gtkada.gpr</vfs_project>
+      <vfs_file>C:\GtkAda\include\gtkada\gtkada.static\gtkada\gtk-search_bar.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 8" line=" 10338" >
+      <vfs_project />
+      <vfs_file>C:\GtkAda\include\gtkada\gtkada.static\gtkada\gtk-widget.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 7" line=" 10341" >
+      <vfs_project />
+      <vfs_file>C:\GtkAda\include\gtkada\gtkada.static\gtkada\gtk-widget.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 14" line=" 10344" >
+      <vfs_project />
+      <vfs_file>C:\GtkAda\include\gtkada\gtkada.static\gtkada\gtk-widget.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 8" line=" 10352" >
+      <vfs_project />
+      <vfs_file>C:\GtkAda\include\gtkada\gtkada.static\gtkada\gtk-widget.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 14" line=" 4541" >
+      <vfs_project />
+      <vfs_file>C:\GtkAda\include\gtkada\gtkada.static\gtkada\gtk-widget.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 20" line=" 10352" >
+      <vfs_project>C:\GtkAda\lib\gnat\gtkada.gpr</vfs_project>
+      <vfs_file>C:\GtkAda\include\gtkada\gtkada.static\gtkada\gtk-widget.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 14" line=" 4545" >
+      <vfs_project />
+      <vfs_file>C:\GtkAda\include\gtkada\gtkada.static\gtkada\gtk-widget.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 20" line=" 10352" >
+      <vfs_project>C:\GtkAda\lib\gnat\gtkada.gpr</vfs_project>
+      <vfs_file>C:\GtkAda\include\gtkada\gtkada.static\gtkada\gtk-widget.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 26" line=" 4545" >
+      <vfs_project>C:\GtkAda\lib\gnat\gtkada.gpr</vfs_project>
+      <vfs_file>C:\GtkAda\include\gtkada\gtkada.static\gtkada\gtk-widget.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 12" line=" 625" >
+      <vfs_project />
+      <vfs_file>C:\GtkAda\include\gtkada\gtkada.static\gtkada\gtkada-canvas_view.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 26" line=" 4545" >
+      <vfs_project>C:\GtkAda\lib\gnat\gtkada.gpr</vfs_project>
+      <vfs_file>C:\GtkAda\include\gtkada\gtkada.static\gtkada\gtk-widget.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 48" line=" 137" >
+      <vfs_project>C:\GtkAda\lib\gnat\gtkada.gpr</vfs_project>
+      <vfs_file>C:\GtkAda\include\gtkada\gtkada.static\gtkada\gtk-search_bar.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 8" line=" 44" >
+      <vfs_project>C:\Users\DELL\Desktop\GUJA\snake\snake.gpr</vfs_project>
+      <vfs_file>C:\Users\DELL\Desktop\GUJA\snake\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 28" line=" 123" >
+      <vfs_project>C:\Users\DELL\Desktop\GUJA\snake\snake.gpr</vfs_project>
+      <vfs_file>C:\Users\DELL\Desktop\GUJA\snake\src\game.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_project>C:\Users\DELL\Desktop\GUJA\snake\snake.gpr</vfs_project>
+      <vfs_file>C:\Users\DELL\Desktop\GUJA\snake\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 9" line=" 13" >
+      <vfs_project>C:\Users\DELL\Desktop\GUJA\snake\snake.gpr</vfs_project>
+      <vfs_file>C:\Users\DELL\Desktop\GUJA\snake\src\game.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_project>C:\Users\DELL\Desktop\GUJA\snake\snake.gpr</vfs_project>
+      <vfs_file>C:\Users\DELL\Desktop\GUJA\snake\src\game_spark.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 10" >
+      <vfs_project>C:\Users\DELL\Desktop\GUJA\snake\snake.gpr</vfs_project>
+      <vfs_file>C:\Users\DELL\Desktop\GUJA\snake\src\game_spark.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_project>C:\Users\DELL\Desktop\GUJA\snake\snake.gpr</vfs_project>
+      <vfs_file>C:\Users\DELL\Desktop\GUJA\snake\src\snake_generic.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 68" >
+      <vfs_project>C:\Users\DELL\Desktop\GUJA\snake\snake.gpr</vfs_project>
+      <vfs_file>C:\Users\DELL\Desktop\GUJA\snake\src\snake_generic.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_project>C:\Users\DELL\Desktop\GUJA\snake\snake.gpr</vfs_project>
+      <vfs_file>C:\Users\DELL\Desktop\GUJA\snake\src\snake_generic.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 28" line=" 156" >
+      <vfs_project>C:\Users\DELL\Desktop\GUJA\snake\snake.gpr</vfs_project>
+      <vfs_file>C:\Users\DELL\Desktop\GUJA\snake\src\snake_generic.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 40" line=" 153" >
+      <vfs_project />
+      <vfs_file>C:\Users\DELL\Desktop\GUJA\snake\src\snake_generic.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 32" line=" 156" >
+      <vfs_project>C:\Users\DELL\Desktop\GUJA\snake\snake.gpr</vfs_project>
+      <vfs_file>C:\Users\DELL\Desktop\GUJA\snake\src\snake_generic.adb</vfs_file>
+    </file_marker>
+    <file_marker current="true" column=" 40" line=" 153" >
+      <vfs_project>C:\Users\DELL\Desktop\GUJA\snake\snake.gpr</vfs_project>
+      <vfs_file>C:\Users\DELL\Desktop\GUJA\snake\src\snake_generic.adb</vfs_file>
+    </file_marker>
+  </Project>
+</Locations>
