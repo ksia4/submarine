@@ -55,12 +55,26 @@ package body submarine_generic with SPARK_Mode is
            Board(i).p_Position.column = Column_t'Last then
             Board(i).p_state := COAST;
          end if;
-      end loop;
+     end loop;
 
    end SetRandomCoast;
 
    procedure SetObstacle is
    begin
+      --for i in 1..5
+      --loop
+      --   for j in 1..5
+      --   loop
+      --      Board(PositionToLinear((50 + i, 57 + j))).p_state := OBSTACLE;
+      --      Board(PositionToLinear((198 + i, 367 + j))).p_state := OBSTACLE;
+      --      Board(PositionToLinear((469 + i, 126 + j))).p_state := OBSTACLE;
+      --      Board(PositionToLinear((559 + i, 444 + j))).p_state := OBSTACLE;
+      --      Board(PositionToLinear((701 + i, 1009 + j))).p_state := OBSTACLE;
+      --      Board(PositionToLinear((750 + i, 84 + j))).p_state := OBSTACLE;
+
+      --      Board(PositionToLinear((666 + i, 69 + j))).p_state := OBSTACLE;
+      --   end loop;
+      --end loop;
       null;
    end SetObstacle;
 
@@ -85,14 +99,12 @@ package body submarine_generic with SPARK_Mode is
       if real_new_row >= Float(Row_t'Last) then
          real_new_row := Float(Row_t'Last);
          new_row := Row_t'Last;
-         Put_Line("Ostatni wiersz");
          warunek_row := True;
       end if;
 
       if real_new_row < 1.0 then
          real_new_row := 1.0;
          new_row := 1;
-         Put_Line("Pierwszy wiersz");
          warunek_row := True;
 
       end if;
@@ -100,26 +112,22 @@ package body submarine_generic with SPARK_Mode is
       if real_new_column >= Float(Column_t'Last) then
          real_new_column := Float(Column_t'Last);
          new_column := Column_t'Last;
-         Put_Line("Ostatnia kolumna");
          warunek_col := True;
       end if;
 
       if real_new_column < 1.0 then
          real_new_column := 1.0;
          new_column := 1;
-         Put_Line("Pierwsza kolumna");
          warunek_col := True;
       end if;
 
       if real_new_column >= 1.0 and real_new_column < Float(Column_t'Last) then
          new_column := Column_t(Float'Rounding(real_new_column));
-         Put_Line("Kolumna w srodku");
          warunek_col := True;
       end if;
 
       if real_new_row >= 1.0 and real_new_row < Float(Row_t'Last) then
          new_row := Row_t(Float'Rounding(real_new_row));
-         Put_Line("Wiersz w srodku");
            warunek_row := True;
       end if;
       if not warunek_col then
@@ -140,21 +148,12 @@ package body submarine_generic with SPARK_Mode is
       linear_submarine_position : Table_Range_1D_t;
       max_parking_speed : Float := 100.0;
    begin
-      Put_Line("Jestem w DOTICK");
       --jesli wygral albo gra nie dziala albo przegral to nie robimy tick
       if not is_running or is_won or is_lost then
          Put_Line("Nie tickam");
          return;
       end if;
-
-      --Put_Line("Przeszedlem ifa!")
-      Put_Line("Submarine position row = " & Submarine_Position.row'Img);
-      Put_Line("Submarine_Position column = " & Submarine_Position.column'Img);
       linear_submarine_position := PositionToLinear((Submarine_Position.row, Submarine_Position.column));
-      --Put_Line("Wyszedlem z funkcji")
-      --Put_Line("kolumna: " & Submarine_Position.column'Img)
-      --Put_Line("Wiersz : " & Submarine_Position.row'Img)
-      Put_Line("Powierzchnia : " & Board(linear_submarine_position).p_state'Img);
       --jesli statek wplynal na przeszkode => umarto
       if Board(linear_submarine_position).p_state = OBSTACLE then
          is_lost := True;
@@ -179,7 +178,6 @@ package body submarine_generic with SPARK_Mode is
       end if;
 
       --jesli przezylismy to wszystko to przesuwamy lodz
-      Put_Line("Przesuwam lodz");
       MoveSubmarine;
    end DoTick;
 

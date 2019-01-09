@@ -90,6 +90,7 @@ package body game is
       end Draw_compas;
 
    procedure Draw_speed(Cr : Cairo.Cairo_Context) is
+      real_speed : Float := CalculateRealSpeedFromVelocity;
    begin
       Cairo.Set_Font_Size (Cr, Gdouble(20));
       Cairo.Move_To (Cr, Gdouble (Column_t'Range_Length + 15), Gdouble (0.28*Row_t'Range_Length));
@@ -144,8 +145,37 @@ package body game is
       Cairo.Show_Text (Cr, "R");
 
       case Submarine_Speed is
-         when GOBACK => Cairo.Rectangle(Cr => Cr, X=> Gdouble(Column_t'Range_Length + 50), Y => Gdouble (0.3*Row_t'Range_Length) + 2.0 * 40.0, width => Gdouble (40), Height => Gdouble (CalculateRealSpeedFromVelocity/(Submarine_k * 2.0) * 80.0));
-         when others => Cairo.Rectangle(Cr => Cr, X=> Gdouble(Column_t'Range_Length + 50), Y => Gdouble (0.3*Row_t'Range_Length) + 2.0 * 40.0, width => Gdouble (40), Height => Gdouble (-CalculateRealSpeedFromVelocity/(Submarine_k * 2.0) * 80.0));
+         when GOBACK =>
+            Submarine_goback_zero := True;
+            if Submarine_straight_zero and real_speed > 0.0 then
+               Cairo.Rectangle(Cr => Cr, X=> Gdouble(Column_t'Range_Length + 50), Y => Gdouble (0.3*Row_t'Range_Length) + 2.0 * 40.0, width => Gdouble (40), Height => Gdouble (-abs(real_speed/(Submarine_k * 2.0) * 80.0)));
+               Put_Line("Kuku");
+            elsif real_speed < 0.0 then
+               Submarine_straight_zero := False;
+               Put_Line("Wyzerowalem!");
+            else
+
+               Cairo.Rectangle(Cr => Cr, X=> Gdouble(Column_t'Range_Length + 50), Y => Gdouble (0.3*Row_t'Range_Length) + 2.0 * 40.0, width => Gdouble (40), Height => Gdouble (abs(real_speed/(Submarine_k * 2.0) * 80.0)));
+
+            end if;
+
+         when others =>
+            if Submarine_Speed = HALF then
+               Submarine_straight_zero := True;
+            end if;
+
+            if Submarine_goback_zero and real_speed > 0.0 then
+               Cairo.Rectangle(Cr => Cr, X=> Gdouble(Column_t'Range_Length + 50), Y => Gdouble (0.3*Row_t'Range_Length) + 2.0 * 40.0, width => Gdouble (40), Height => Gdouble (abs(real_speed/(Submarine_k * 2.0) * 80.0)));
+
+            elsif real_speed = 0.0 then
+               Submarine_goback_zero := False;
+               Submarine_straight_zero := False;
+            else
+               Cairo.Rectangle(Cr => Cr, X=> Gdouble(Column_t'Range_Length + 50), Y => Gdouble (0.3*Row_t'Range_Length) + 2.0 * 40.0, width => Gdouble (40), Height => Gdouble (-abs(real_speed/(Submarine_k * 2.0) * 80.0)));
+
+            end if;
+
+
       end case;
 
    end Draw_speed;
@@ -173,6 +203,10 @@ package body game is
                Cairo.Rectangle (Cr => Cr, X => Gdouble(x-1), Y => Gdouble(y-1),
                                 Width => Gdouble(1), Height => Gdouble (1));
                Cairo.Fill (Cr);
+            --elsif Board(PositionToLinear((y,x))).p_state = OBSTACLE then
+            --   Cairo.Rectangle (Cr => Cr, X => Gdouble(x-1), Y => Gdouble(y-1),
+            --                    Width => Gdouble(1), Height => Gdouble (1));
+            --   Cairo.Fill (Cr);
             end if;
 
          end loop;
@@ -283,11 +317,11 @@ package body game is
       next : Time := Clock;
    begin
       Reset;
+
       loop
          next := next + Milliseconds (100);
          delay until next;
          if Game_Control.IsStarted then
-            Put_Line("Wywoluje dotick");
             DoTick;
          --elsif Game_Control.IsMenu then
          --   DoMenu;

@@ -1,4 +1,5 @@
 with Gdk.Pixbuf;       use Gdk.Pixbuf;
+with Ada.Numerics.Discrete_Random;
 
 generic
    -- pozwala sprecyzowac wielkosc mapy / rozne rozdzielczosci?
@@ -7,6 +8,7 @@ generic
    PIXEL_WIDTH : Positive;
 
 package submarine_generic with SPARK_Mode is
+
    -- typ do okreslania kursu lodzi
    type Course_t is mod 360;
 
@@ -36,6 +38,9 @@ package submarine_generic with SPARK_Mode is
    --Spark nieogarnia tablic 2D wiec linearyzujemy do 1D
    -- typ reprezentujacy zakres zlinearyzowanej tablicy
    subtype Table_Range_1D_t is Positive range 1 .. NR_COLUMNS*NR_ROWS;
+
+   package rand is new Ada.Numerics.Discrete_Random (Table_Range_1D_t);
+   use rand;
 
    --typ do indeksowania kolumn
    subtype Column_t is Table_Range_1D_t range Table_Range_1D_t'First .. NR_COLUMNS;
@@ -140,6 +145,8 @@ package submarine_generic with SPARK_Mode is
    --plansza
    Board : Board_t;
    Submarine_k : Float := 10.0;
+   Submarine_goback_zero : Boolean := False;
+   Submarine_straight_zero : Boolean := False;
    --obrazek
    --Image_Names : constant String_Array :=
      --(1 => new String'("Course-plansza.png"),
@@ -155,7 +162,7 @@ package submarine_generic with SPARK_Mode is
      --(Bg_Draw : access Gtk_Widget_Record'Class;
       --Canvas  : Image_Canvas;
       --Surface : Cairo_Surface);
-
+     game_seed : rand.Generator;
 
 
    procedure DecreaseSubmarineSpeed;

@@ -1055,13 +1055,13 @@ package body ada_main is
    end;
 
 --  BEGIN Object file/option list
-   --   C:\Users\DELL\Desktop\GUJA\PWiR_Projekt\obj\main_quit.o
-   --   C:\Users\DELL\Desktop\GUJA\PWiR_Projekt\obj\submarine_generic.o
-   --   C:\Users\DELL\Desktop\GUJA\PWiR_Projekt\obj\game_spark.o
-   --   C:\Users\DELL\Desktop\GUJA\PWiR_Projekt\obj\game.o
-   --   C:\Users\DELL\Desktop\GUJA\PWiR_Projekt\obj\main.o
-   --   -LC:\Users\DELL\Desktop\GUJA\PWiR_Projekt\obj\
-   --   -LC:\Users\DELL\Desktop\GUJA\PWiR_Projekt\obj\
+   --   C:\Users\DELL\Desktop\GUJA\submarine\obj\main_quit.o
+   --   C:\Users\DELL\Desktop\GUJA\submarine\obj\submarine_generic.o
+   --   C:\Users\DELL\Desktop\GUJA\submarine\obj\game_spark.o
+   --   C:\Users\DELL\Desktop\GUJA\submarine\obj\game.o
+   --   C:\Users\DELL\Desktop\GUJA\submarine\obj\main.o
+   --   -LC:\Users\DELL\Desktop\GUJA\submarine\obj\
+   --   -LC:\Users\DELL\Desktop\GUJA\submarine\obj\
    --   -LC:\GtkAda\lib\gtkada\gtkada.static\gtkada\
    --   -LC:/gnat/2018/lib/gcc/x86_64-pc-mingw32/7.3.1/adalib/
    --   -static
