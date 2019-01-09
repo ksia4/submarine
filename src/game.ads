@@ -7,35 +7,53 @@ with game_spark; use game_spark;
 with Cairo; use Cairo;
 
 package game is
-   function On_Key_Press (Ent   : access GObject_Record'Class;
-                          Event : Gdk_Event_Key) return Boolean;
-   function On_Draw (Self : access Gtk_Widget_Record'Class;
-                     Cr   : Cairo.Cairo_Context) return Boolean;
-   task type GameTask is
-   end GameTask;
 
-   protected type game_control_t is
-      procedure start;
-      function is_started return Boolean;
+   --funkcja do obslugi klawiszy
+   function OnKeyPress (Ent   : access GObject_Record'Class;
+                          Event : Gdk_Event_Key) return Boolean;
+
+   --funkcja do rysowania gry
+   function OnDraw (Self : access Gtk_Widget_Record'Class;
+                     Cr   : Cairo.Cairo_Context) return Boolean;
+
+   --typ zadaniowy
+   task type Game_Task is
+   end Game_Task;
+
+   --typ do kontroli gry
+   protected type Game_Control_t is
+      procedure Start;
+      function IsStarted return Boolean;
+      --function IsMenu return Boolean;
+
       --- serialize access to out SPARK implementation
-      procedure DoTick (rand : snake.Lin_t);
-      procedure Reset (rand : snake.Lin_t);
-      function GetState (position : snake.Position_t) return snake.State_t;
+      procedure DoTick;
+      procedure Reset;
+
       function IsWon return Boolean;
       function IsLost return Boolean;
-      function GetNrEaten return Natural;
-      procedure SetNextDirection (new_direction : snake.Direction_t);
+
+      procedure SetSubmarineCourse (new_course : submarine.Course_t);
+
+      procedure DecreaseSubmarineSpeed;
+      procedure IncreaseSubmarineSpeed;
+      procedure IncreaseSubmarineCourseValue;
+      procedure DecreaceSubmarineCourseValue;
    private
       started : Boolean := False;
-   end game_control_t;
+      --menu : Boolean := False;
+   end Game_Control_t;
 
-   type game_control_a is access all game_control_t;
-   function GetGameControl return game_control_a;
+   type Game_Control_a is access all Game_Control_t;
+
+   function GameControl return Game_Control_a;
 
    function TriggerRedraw return Boolean;
 
    Draw : Gtk_Drawing_Area;
+
 private
-   game_task : GameTask;
-   game_control : aliased game_control_t;
+   Game_tasks : Game_Task;
+   Game_Control : aliased Game_Control_t;
+
 end game;

@@ -8,13 +8,15 @@ P ZX
 RN
 RV NO_DISPATCHING_CALLS
 RV NO_DEFAULT_INITIALIZATION
+RV NO_IMPLEMENTATION_ATTRIBUTES
 RV NO_IMPLEMENTATION_PRAGMAS
 RV SPARK_05
 RV MAX_ENTRY_QUEUE_LENGTH=1+
 
-U main%b		main.adb		4f3ffd04 NE OO SU
+U main%b		main.adb		b81f72fa NE OO SU
 Z ada.tags%s		a-tags.adb		a-tags.ali
 W game%s		game.adb		game.ali
+W game_spark%s		game_spark.ads		game_spark.ali
 W gdk%s			gdk.ads			gdk.ali
 W gdk.color%s		gdk-color.adb		gdk-color.ali
 W glib%s		glib.adb		glib.ali
@@ -39,8 +41,8 @@ D a-unccon.ads		20180524051738 0e9b276f ada.unchecked_conversion%s
 D a-uncdea.ads		20180524051736 eff36322 ada.unchecked_deallocation%s
 D cairo.ads		20180524063416 925d4aaa cairo%s
 D cairo-region.ads	20180524063416 b7133728 cairo.region%s
-D game.ads		20190102142616 791ebe85 game%s
-D game_spark.ads	20190104080814 538b783e game_spark%s
+D game.ads		20190107140044 65d6f709 game%s
+D game_spark.ads	20190109084306 50c6ff5f game_spark%s
 D gdk.ads		20180524063416 96d821f3 gdk%s
 D gdk-color.ads		20180524063418 ef57bc34 gdk.color%s
 D gdk-device.ads	20180524063422 04c1ecbd gdk.device%s
@@ -90,8 +92,8 @@ D gtkada-types.ads	20180524063420 471f54b5 gtkada.types%s
 D interfac.ads		20180524051736 5ab55268 interfaces%s
 D i-c.ads		20180524051736 5421119b interfaces.c%s
 D i-cstrin.ads		20180524051736 341d0ddf interfaces.c.strings%s
-D main.adb		20190104063518 aac8551b main%b
-D main_quit.adb		20190104063446 51932ece main_quit%b
+D main.adb		20190108132534 11e66c36 main%b
+D main_quit.adb		20190106123304 51932ece main_quit%b
 D pango.ads		20180524063418 e51ea573 pango%s
 D pango-attributes.ads	20180524063422 b2832a43 pango.attributes%s
 D pango-context.ads	20180524063420 5a6f0fe6 pango.context%s
@@ -105,7 +107,7 @@ D pango-language.ads	20180524063420 e96cb8f4 pango.language%s
 D pango-layout.ads	20180524063422 d240b716 pango.layout%s
 D pango-matrix.ads	20180524063420 309f74b5 pango.matrix%s
 D pango-tabs.ads	20180524063420 0c575925 pango.tabs%s
-D snake_generic.ads	20190102143028 24fae62b snake_generic%s
+D submarine_generic.ads	20190109122210 37ba0f01 submarine_generic%s
 D system.ads		20180524051738 32a08138 system%s
 D s-atacco.ads		20180524051738 4c36d12f system.address_to_access_conversions%s
 D s-exctab.ads		20180524051738 54135002 system.exception_table%s
@@ -137,22 +139,25 @@ D s-unstyp.ads		20180524051736 34867c83 system.unsigned_types%s
 D s-win32.ads		20180524051736 b7f96285 system.win32%s
 D unchconv.ads		20180524051736 ca2f9e18 unchecked_conversion%s
 X 11 game.ads
-9K9*game 41e9 62|6w6 6r16 33r30 36r4 37r13
-10V13*On_Key_Press{boolean} 62|44r28
-12V13*On_Draw{boolean} 62|36r23
-18U17 start 62|50s16
-32P9*game_control_a(17W19) 62|18r27
-33V13*GetGameControl{32P9} 62|18s45
-35V13*TriggerRedraw{boolean} 62|47r42
-37p4*Draw{48|104P9} 62|33m35 33r35 36r9 37r18
+9K9*game 59e9 62|6w6 6r16 41r30 44r4 45r13
+12V13*OnKeyPress{boolean} 62|53r28
+16V13*OnDraw{boolean} 62|44r23
+25U17 Start 62|61s16
+47P9*Game_Control_a(24W19)
+49V13*GameControl{47P9} 62|61s4
+51V13*TriggerRedraw{boolean} 62|58r42
+53p4*Draw{48|104P9} 62|41m35 41r35 44r9 45r18
+X 12 game_spark.ads
+3K9*game_spark 5e15 62|13w6 43r32 43r76
+4K12*submarine[77|9] 62|43r43 43r87
 X 13 gdk.ads
 38K9*Gdk 48e8 62|7r6 7r21
 43P9*Gdk_Window<28|152P9>
 46P9*Gdk_Visual<28|152P9>
 X 14 gdk-color.ads
 44K13*Color 196e14 62|7w10 7r25
-46R9*Gdk_Color 176e14 62|17r12
-82U14*Set_Rgb 62|28s4
+46R9*Gdk_Color 176e14 62|20r12
+82U14*Set_Rgb 62|34s4
 X 15 gdk-device.ads
 49P9*Gdk_Device(48R9)
 59V13*Convert{78|67M9} 31|58i21
@@ -164,72 +169,73 @@ X 27 gdk-window.ads
 280V13*Convert{78|67M9} 31|58i21
 281V13*Convert{13|43P9} 31|59i21
 X 28 glib.ads
-38K9*Glib 428e9 62|11r6 11r21 47r15
+38K9*Glib 428e9 62|11r6 11r21 15r5 58r15
 55M9*Guint<60|43M9>
 152P9*C_Proxy(149R9)
 X 33 glib-main.ads
-83K14*Main 477e14 62|11w11 11r26 47r20
-150M9*G_Source_Id<28|55M9> 62|19r14
-270U14*Remove 62|56s4
-336V13*Timeout_Add{150M9} 62|47s25
+83K14*Main 477e14 62|11w11 11r26 58r20
+150M9*G_Source_Id<28|55M9> 62|22r14
+270U14*Remove 62|67s4
+336V13*Timeout_Add{150M9} 62|58s25
 X 34 glib-object.ads
 41P9*GObject(40R9)
 673V13*Convert{78|67M9} 31|58i21 32|49i21
 674V13*Convert{41P9} 31|59i21 32|50i21
 X 38 gnat.ads
-34K9*GNAT 37e9 62|9w6 9r16 10r6 59r4
+34K9*GNAT 37e9 62|9w6 9r16 10r6 70r4
 X 39 g-os_lib.ads
-51K14*OS_Lib=51:36 62|10w11 59r9
+51K14*OS_Lib=51:36 62|10w11 70r9
 X 41 gtk.ads
-41K9*Gtk 79e8 62|2r6 2r27 3r6 4r6 4r27 5r6 5r28 8r6 8r21 22r4 33r4 53r4
+41K9*Gtk 79e8 62|2r6 2r27 3r6 4r6 4r27 5r6 5r28 8r6 8r21 26r4 41r4 64r4
 X 47 gtk-container.ads
-216U14*Add 62|37R8
-355U14*Set_Border_Width 62|27R8
+216U14*Add 62|45R8
 X 48 gtk-drawing_area.ads
-101K13*Drawing_Area 141e21 62|5w10 5r32 33r8
+101K13*Drawing_Area 141e21 62|5w10 5r32 41r8
 104P9*Gtk_Drawing_Area(103R9)
-110U14*Gtk_New 62|33s21
+110U14*Gtk_New 62|41s21
 X 49 gtk-enums.ads
 30K13*Enums 878e14 62|8w10 8r25
-520n7*State_Normal{519E9} 62|29r19
+520n7*State_Normal{519E9} 62|36r19
 865V13*Convert{78|67M9} 31|58i21 32|49i21
 866V13*Convert{string} 31|59i21 32|50i21
 X 50 gtk-main.ads
-33K13*Main 327e13 62|3w10 22r8 53r8
-62U14*Init 62|22s13
-197U14*Main 62|53s13
+33K13*Main 327e13 62|3w10 26r8 64r8
+62U14*Init 62|26s13
+197U14*Main 62|64s13
 X 55 gtk-widget.ads
 341K13*Widget 5431e15 62|2w10 2r31
 344P9*Gtk_Widget(343R9)
 431V13*Convert{78|67M9} 31|58i21 32|49i21
 432V13*Convert{344P9} 31|59i21 32|50i21
-2513U14*Modify_Bg 62|29R8
-2970U14*Show_All 62|43R8
-3838U14*On_Destroy 62|40R8
-4250U14*On_Draw 62|36R14
-4545U14*On_Key_Press_Event 62|44R8
+2513U14*Modify_Bg 62|36R8
+2970U14*Show_All 62|51R8
+3838U14*On_Destroy 62|48R8
+4250U14*On_Draw 62|44R14
+4545U14*On_Key_Press_Event 62|53R8
 X 56 gtk-window.ads
 71K13*Window 1676e15 62|4w10 4r31
-74P9*Gtk_Window(73R9) 62|16r12
-83U14*Gtk_New 62|25s4
-322U14*Set_Default_Size 62|35R8
-660U14*Set_Resizable 62|30R8
-787U14*Set_Title 62|26R8
+74P9*Gtk_Window(73R9) 62|19r12
+83U14*Gtk_New 62|28s4
+322U14*Set_Default_Size 62|43R8
+660U14*Set_Resizable 62|38R8
+787U14*Set_Title 62|30R8
 X 60 i-c.ads
 43M9*unsigned
 X 62 main.adb
-15U11*Main 15b11 60l5 60t9
-16p4 Win{56|74P9} 25m13 25r13 26r4 27r4 29r4 30r4 35r4 37r4 40r4 43r4 44r4
-. 44r49
-17r4 color{14|46R9} 28m13 29r33
-18p4 GameControl{11|32P9} 50r4
-19m4 Timeout{33|150M9} 47m4 56r12
+17U11*Main 17b11 71l5 71t9
+19p4 Win{56|74P9} 28m13 28r13 30r4 36r4 38r4 43r4 45r4 48r4 51r4 53r4 53r47
+20r4 color{14|46R9} 34m13 36r33
+22m4 Timeout{33|150M9} 58m4 67r12
 X 63 main_quit.adb
-4U11*main_quit 62|13w6 40r20
+4U11*main_quit 62|14w6 48r20
+X 77 submarine_generic.ads
+38I12*Table_Range_1D_t{positive}
+41I12*Column_t{38I12[12|4]} 62|43r53[12|4]
+44I12*Row_t{38I12[12|4]} 62|43r97[12|4]
 X 78 system.ads
 67M9*Address
 X 85 s-os_lib.ads
-1045U14*OS_Exit 62|59s16
+1045U14*OS_Exit 62|70s16
 X 91 s-stausa.ads
 203U14*Initialize 204i<c,__gnat_stack_usage_initialize>22
 268U14*Output_Results 272i<c,__gnat_stack_usage_output_results>22

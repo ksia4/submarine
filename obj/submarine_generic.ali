@@ -1,0 +1,239 @@
+V "GNAT Lib v2018"
+A -gnatA
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTIONS
+RV NO_FLOATING_POINT
+RV NO_IO
+RV NO_IMPLEMENTATION_ATTRIBUTES
+RV NO_IMPLEMENTATION_PRAGMAS
+RV SPARK_05
+
+U submarine_generic%b	submarine_generic.adb	d1c236f9 NE OO PK GE IL
+W ada%s			ada.ads			ada.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+Z ada.numerics.aux%s	a-numaux.adb		a-numaux.ali
+W ada.numerics.generic_elementary_functions%s
+W ada.text_io%s		a-textio.adb		a-textio.ali
+
+U submarine_generic%s	submarine_generic.ads	7e25eec6 BN EE NE OO PK GE IL
+W gdk%s			gdk.ads			gdk.ali
+W gdk.pixbuf%s		gdk-pixbuf.adb		gdk-pixbuf.ali
+
+D ada.ads		20180524051736 76789da1 ada%s
+D a-except.ads		20180524051736 291912d5 ada.exceptions%s
+D a-finali.ads		20180524051738 bf4f806b ada.finalization%s
+D a-ioexce.ads		20180524051736 e4a01f64 ada.io_exceptions%s
+D a-numeri.ads		20180524051736 bb51c45a ada.numerics%s
+D a-numaux.ads		20180524051736 243fe0b7 ada.numerics.aux%s
+D a-ngelfu.ads		20180524051738 55716239 ada.numerics.generic_elementary_functions%s
+D a-ngelfu.adb		20180524051736 a9022048 ada.numerics.generic_elementary_functions%b
+D a-stream.ads		20180524051736 119b8fb3 ada.streams%s
+D a-tags.ads		20180524051738 491b781d ada.tags%s
+D a-textio.ads		20180524051738 881db35a ada.text_io%s
+D a-unccon.ads		20180524051738 0e9b276f ada.unchecked_conversion%s
+D a-uncdea.ads		20180524051736 eff36322 ada.unchecked_deallocation%s
+D cairo.ads		20180524063416 925d4aaa cairo%s
+D cairo-region.ads	20180524063416 b7133728 cairo.region%s
+D gdk.ads		20180524063416 96d821f3 gdk%s
+D gdk-display.ads	20180524063422 d91ec37e gdk.display%s
+D gdk-event.ads		20180524063420 1bda38e2 gdk.event%s
+D gdk-pixbuf.ads	20180524063420 499fe1c7 gdk.pixbuf%s
+D gdk-rectangle.ads	20180524063418 7b900608 gdk.rectangle%s
+D gdk-types.ads		20180524063418 921dc8b2 gdk.types%s
+D glib.ads		20180524063416 cd438a72 glib%s
+D glib-error.ads	20180524063418 e055fabe glib.error%s
+D glib-generic_properties.ads  20180524063418 f3dc70df glib.generic_properties%s
+D glib-glist.ads	20180524063420 65a6e1be glib.glist%s
+D glib-gslist.ads	20180524063420 953541be glib.gslist%s
+D glib-object.ads	20180524063416 236e9d03 glib.object%s
+D glib-values.ads	20180524063418 5ef3ad24 glib.values%s
+D gtkada.ads		20180524063420 57aea1c7 gtkada%s
+D gtkada-types.ads	20180524063420 471f54b5 gtkada.types%s
+D interfac.ads		20180524051736 5ab55268 interfaces%s
+D i-c.ads		20180524051736 5421119b interfaces.c%s
+D i-cstrin.ads		20180524051736 341d0ddf interfaces.c.strings%s
+D i-cstrea.ads		20180524051736 e53d8b8e interfaces.c_streams%s
+D submarine_generic.ads	20190109122210 37ba0f01 submarine_generic%s
+D submarine_generic.adb	20190109122110 3b14e89b submarine_generic%b
+D system.ads		20180524051738 32a08138 system%s
+D s-crtl.ads		20180524051736 0ebbdb71 system.crtl%s
+D s-exctab.ads		20180524051738 54135002 system.exception_table%s
+D s-ficobl.ads		20180524051738 078245e4 system.file_control_block%s
+D s-finmas.ads		20180524051738 7811a767 system.finalization_masters%s
+D s-finroo.ads		20180524051738 4ff27390 system.finalization_root%s
+D s-parame.ads		20180524051738 48ec542b system.parameters%s
+D s-pooglo.ads		20180524051736 ede33ef8 system.pool_global%s
+D s-secsta.ads		20180524051738 20bbe636 system.secondary_stack%s
+D s-soflin.ads		20180524051736 a7318a92 system.soft_links%s
+D s-stache.ads		20180524051738 a37c21ec system.stack_checking%s
+D s-stalib.ads		20180524051738 09bd3940 system.standard_library%s
+D s-stoele.ads		20180524051738 2dc34a04 system.storage_elements%s
+D s-stopoo.ads		20180524051736 b16154c2 system.storage_pools%s
+D s-stposu.ads		20180524051736 97a6219c system.storage_pools.subpools%s
+D s-stratt.ads		20180524051736 aedef97e system.stream_attributes%s
+D s-traent.ads		20180524051736 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20180524051736 34867c83 system.unsigned_types%s
+D s-wchcon.ads		20180524051738 1b7d22d2 system.wch_con%s
+X 1 ada.ads
+16K9*Ada 20e8 36|1r6 2r6 2r23 5r35
+X 5 a-numeri.ads
+16K13*Numerics 32e17 36|1r10 5r39
+X 7 a-ngelfu.ads
+39k22*Generic_Elementary_Functions 205e46 36|1w19 5r48
+52V13 Sqrt{float} 36|70s14[5]
+98V13 Sin{float} 36|300s62[5] 306s55[5] 310s62[5] 316s62[5]
+98f18 X{float} 36|300r66[5] 306r59[5] 310r66[5] 316r66[5]
+98f21 Cycle{float} 36|300r96[5] 306r94[5] 310r102[5] 316r102[5]
+107V13 Cos{float} 36|301s62[5] 305s55[5] 311s62[5] 315s62[5]
+107f18 X{float} 36|301r66[5] 305r59[5] 311r66[5] 315r66[5]
+107f21 Cycle{float} 36|301r96[5] 305r94[5] 311r102[5] 315r102[5]
+133V13 Arcsin{float} 36|266s25[5] 269s32[5] 275s33[5]
+133f21 X{float} 36|266r32[5] 269r40[5] 275r40[5]
+133f24 Cycle{float} 36|266r92[5] 269r98[5] 275r107[5]
+141V13 Arccos{float} 36|272s33[5]
+141f21 X{float} 36|272r40[5]
+141f24 Cycle{float} 36|272r98[5]
+X 11 a-textio.ads
+49K13*Text_IO 471e16 36|2w10 2r27
+263U14*Put_Line 36|88s10 95s10 103s10 110s10 116s10 122s10 126s10 130s10
+. 131s10 132s10 143s7 146s10 151s7 152s7 157s7 162s10 166s10 182s7 193s7
+. 319s10 379s7 387s7 393s7 399s7
+X 16 gdk.ads
+38K9*Gdk 48e8 35|1r6 1r28
+X 19 gdk-pixbuf.ads
+51K13*Pixbuf 624e15 35|1w10 1r32
+X 27 glib-object.ads
+41P9*GObject(40R9)
+673V13*Convert{37|67M9} 25|58i21 26|49i21
+674V13*Convert{41P9} 25|59i21 26|50i21
+X 35 submarine_generic.ads
+5i4 NR_ROWS{positive} 38r63 44r70
+6i4 NR_COLUMNS{positive} 38r52 41r73
+7i4 PIXEL_WIDTH{positive}
+9k9*submarine_generic 5z4 6z4 7z4 169l5 169e22 36|3b14 422l5 422t22
+11M9*Course_t 121r46 126r23 36|235r52 240r26 278r27 331r35 369r46
+16R9*Velocity_t 23e17 130r25 36|284r44 287r25 330r35
+19f10 vertical_velocity{float} 36|70r38 82r72 244r29 252r32 254r35 264r29
+. 267r32 269r65 270r32 272r65 273r32 291m30 293m30 295m30 297m30 302m30 307m30
+. 312m30 317m30 344r55 344r96 360m32 360r69 362m32 362r72
+22f10 horizontal_velocity{float} 36|70r81 83r78 245r32 247r35 251r32 264r76
+. 266r57 267r79 270r79 273r79 275r72 291m72 293m56 295m65 297m56 302m77 307m77
+. 312m77 317m77 343r55 343r96 352m32 352r71 355m32 355r74
+30E9*Speed_t 30e46 115r44 132r22 36|228r44 377r28 385r28
+30n21*GOBACK{30E9} 36|219r15 376r29
+30n29*STOP{30E9} 132r33 36|210r26 220r15
+30n35*HALF{30E9} 36|221r15
+30n41*FULL{30E9} 36|222r15 384r29
+34E9*State_t 34e44 72r20
+34n21*WATER{34E9} 72r31 36|201r23
+34n28*COAST{34E9} 36|56r33 165r53
+34n35*OBSTACLE{34E9} 36|159r53
+38I12*Table_Range_1D_t{positive} 41r24 41r47 44r21 44r44 79r27 88r76 36|18r76
+. 30r16 50r16 140r35
+41I12*Column_t{38I12} 50r19 60r19 75r51 128r62 128r103 36|20r49 26r13 26r25
+. 29r14 34r19 35r20 54r41 55r41 75r25 100r35 101r35 102r24 114r61 115r24
+. 201r44 208r44 208r88
+44I12*Row_t{38I12} 49r16 59r16 75r38 128r50 128r84 36|25r13 25r22 28r14 36r22
+. 52r39 53r38 74r25 85r32 86r32 87r21 120r55 121r21 132r37 201r31 208r30
+. 208r67
+47R9*Position_t 55e17 75r23 88r57 36|18r57
+49i10 row{44I12} 36|20r39 32m34 52r33 53r32
+50i10 column{41I12} 36|20r89 32m46 54r32 55r32
+57R9*Submarine_Position_t 63e17 128r25
+59i10 row{44I12} 36|135m30 151r65 153r73
+60i10 column{41I12} 36|135m46 152r68 153r97
+61f10 real_row{float} 36|82r42 135m68
+62f10 real_column{float} 36|83r45 135m94
+68R9*Pixel_t 76e17 79r48
+72e10 p_state{34E9} 36|56m22 157r69 159r43 165r43
+75r10 p_Position{47R9} 36|32m19 52r22 53r21 54r21 55r21
+79A9*Board_t(68R9)<integer> 141r12
+82V13*IsWon{boolean} 36|8b13 11l8 11t13
+84V13*IsLost{boolean} 36|13b13 16l8 16t14
+88V13*PositionToLinear{38I12} 88>31 36|18b13 21l8 21t24 153s36
+88r31 row_and_column_position{47R9} 36|18b31 20r15 20r65
+96U14*SetPixelsOnBoard 36|24b14 45l8 45t24 203s7
+100U14*SetRandomCoast 36|48b14 60l8 60t22 204s7
+103U14*SetObstacle 36|62b14 65l8 65t19 205s7
+106U14*DoTick 36|139b14 184l8 184t14
+112U14*Reset 36|191b14 212l8 212t13
+115U14*SetSubmarineSpeed 115>32 36|228b14 231l8 231t25 377s10 385s10
+115e32 new_speed{30E9} 36|228b32 230r26
+118U14*SetSubmarineVelocity 36|81s7 326b14 367l8 367t28
+121U14*SetSubmarineCourse 121>33 36|369b14 372l8 372t26 392s7 398s7
+121m33 new_course{11M9} 36|369b33 371r27
+123V13*CalculateRealSpeedFromVelocity{float} 36|68b13 71l8 71t38 167s13 262s21
+. 339s22
+126m4*Submarine_Course{11M9} 36|207m7 249r22 256r22 290r10 292r13 294r13
+. 296r13 298r13 298r38 300r77 301r77 303r13 303r39 305r70 306r70 308r13 308r40
+. 310r77 311r77 313r13 315r77 316r77 319r96 341r25 371m7 392r26 393r16 398r26
+. 399r16
+128r4*Submarine_Position{57R9} 36|82r23 83r26 135m7 151r46 152r49 153r54
+. 153r78 208m7
+130r4*Submarine_Velocity{16R9} 36|70r19 70r62 82r53 83r59 209m7 244r10 245r13
+. 247r16 251r13 252r13 254r16 264r10 264r57 266r38 267r13 267r60 269r46 270r13
+. 270r60 272r46 273r13 273r60 275r53 343r77 344r77 352m13 355m13 355r55 360m13
+. 362m13 362r53
+132e4*Submarine_Speed{30E9} 36|210m7 218r12 230m7 376r10 377r41 379r16 384r10
+. 385r41 387r16
+135b4*is_running{boolean} 36|145r14 161m10 169m13 177r29 194m7
+136b4*is_lost{boolean} 36|15r14 145r38 160m10 168m13 176r10 196m7
+137b4*is_won{boolean} 36|10r14 145r28 195m7
+141a4*Board{79A9} 36|32m10 52r13 53r12 54r12 55r12 56m13 157r36 159r10 165r10
+. 199r16 201m10
+142f4*Submarine_k{float} 36|216r20
+161U14*DecreaseSubmarineSpeed 36|374b14 380l8 380t30
+163U14*IncreaseSubmarineSpeed 36|382b14 388l8 388t30
+165U14*IncreaseSubmarineCourseValue 36|390b14 394l8 394t36
+167U14*DecreaceSubmarineCourseValue 36|396b14 400l8 400t36
+X 36 submarine_generic.adb
+5K13 Elem_Fun_Float[7|39] 6r8
+25i7 row{35|44I12} 28m7 32r41 36r16 37m16 37r23
+26i7 col{35|41I12} 29m7 32r56 34r13 35m13 40m13 40r20
+30i11 i{35|38I12} 32r16
+50i11 i{35|38I12} 52r19 53r18 54r18 55r18 56r19
+73U14 MoveSubmarine 73b14 136l8 136t21 183s7
+74i7 new_row{35|44I12} 87m10 94m10 121m10 135r37
+75i7 new_column{35|41I12} 102m10 109m10 115m10 135r56
+76f7 real_new_row{float} 82m7 85r10 86m10 92r10 93m10 120r10 120r34 121r42
+. 131r39 135r80
+77f7 real_new_column{float} 83m7 100r10 101m10 107r10 108m10 114r10 114r37
+. 115r48 135r109
+78b7 warunek_col{boolean} 104m10 111m10 117m10 125r14
+79b7 warunek_row{boolean} 89m10 96m10 123m12 129r14
+140i7 linear_submarine_position{35|38I12} 153m7 157r42 159r16 165r16
+141f7 max_parking_speed{float} 167r46
+199i11 i{integer} 201r16
+215V13 SpeedToValue{float} 215b13 225l8 225t20 291s58 293s79 295s51 297s86
+. 300s47 301s47 305s40 306s40 310s47 311s47 315s47 316s47 341s59
+216f7 k{float} 219r32 221r30 222r30
+235V13 CalculateRealCourseFromVelocity{35|11M9} 235b13 280l8 280t39 338s22
+236f7 real_speed{float} 262m7 266r79 269r85 272r85 275r94
+238f7 real_course{float} 266m10 269m10 272m10 275m10 278r51
+239f7 Cycle{float} 266r101 269r107 272r107 275r116
+240m7 calculate_course{35|11M9} 278m7 279r15
+284V13 CalculateTargetVelocity{35|16R9} 284b13 323l8 323t31 342s29
+285f7 target_horizontal_velocity{float} 300m10 302r100 305m10 307r100 310m10
+. 312r100 315m10 317r100
+286f7 target_vertical_velocity{float} 301m10 302r51 306m10 307r51 311m10
+. 312r51 316m10 317r51
+287r7 target_velocity{35|16R9} 291m10 293m10 295m10 297m10 302m10 307m10
+. 312m10 317m10 322r14
+288f7 Cycle{float} 300r105 301r105 305r103 306r103 310r111 311r111 315r111
+. 316r111
+329f7 a{float} 351r13 355r159 359r13 362r150
+330r7 target_velocity{35|16R9} 342m10 343r39 344r39 352r55 360r53
+331m7 real_course{35|11M9} 338m7 341r10
+332f7 real_speed{float} 339m7 341r45
+333f7 horizontal_delta_velocity{float} 343m10 351r34 355r97 355r128
+334f7 vertical_delta_velocity{float} 344m10 359r34 362r93 362r122
+335f7 delta_tick{float} 351r17 355r163 359r17 362r154
+X 37 system.ads
+67M9*Address
+

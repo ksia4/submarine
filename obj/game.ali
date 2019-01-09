@@ -9,6 +9,7 @@ RV NO_DELAY
 RV NO_DIRECT_BOOLEAN_OPERATORS
 RV NO_DISPATCH
 RV NO_DISPATCHING_CALLS
+RV NO_EXCEPTION_HANDLERS
 RV NO_EXCEPTIONS
 RV NO_FLOATING_POINT
 RV NO_IO
@@ -18,16 +19,20 @@ RV NO_TASKING
 RV NO_UNCHECKED_ACCESS
 RV NO_DEFAULT_INITIALIZATION
 RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_ATTRIBUTES
 RV NO_IMPLEMENTATION_PRAGMAS
 RV NO_ELABORATION_CODE
 RV SPARK_05
 RV MAX_TASKS=1
 RV MAX_ENTRY_QUEUE_LENGTH=1+
 
-U game%b		game.adb		1a4692ef OO PK IL
+U game%b		game.adb		1843f3a4 OO PK IL
 W ada%s			ada.ads			ada.ali
+Z ada.exceptions%s	a-except.adb		a-except.ali
 W ada.numerics%s	a-numeri.ads		a-numeri.ali
+Z ada.numerics.aux%s	a-numaux.adb		a-numaux.ali
 W ada.numerics.discrete_random%s
+W ada.numerics.generic_elementary_functions%s
 W ada.real_time%s	a-reatim.adb		a-reatim.ali
 Z ada.real_time.delays%s  a-retide.adb		a-retide.ali
 Z ada.tags%s		a-tags.adb		a-tags.ali
@@ -39,13 +44,14 @@ W glib%s		glib.adb		glib.ali
 W gtk%s			gtk.ads			gtk.ali
 W gtk.main%s		gtk-main.adb		gtk-main.ali
 W system%s		system.ads		system.ali
-Z system.img_int%s	s-imgint.adb		s-imgint.ali
+Z system.exn_llf%s	s-exnllf.adb		s-exnllf.ali
+Z system.fat_flt%s	s-fatflt.ads		s-fatflt.ali
 Z system.random_numbers%s  s-rannum.adb		s-rannum.ali
 Z system.soft_links%s	s-soflin.adb		s-soflin.ali
 Z system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
 Z system.tasking.stages%s  s-tassta.adb		s-tassta.ali
 
-U game%s		game.ads		e81dc117 EE OO PF PK IL
+U game%s		game.ads		f7980ffa EE OO PF PK IL
 Z ada.real_time%s	a-reatim.adb		a-reatim.ali
 Z ada.tags%s		a-tags.adb		a-tags.ali
 W cairo%s		cairo.adb		cairo.ali
@@ -70,8 +76,11 @@ D a-except.ads		20180524051736 291912d5 ada.exceptions%s
 D a-finali.ads		20180524051738 bf4f806b ada.finalization%s
 D a-ioexce.ads		20180524051736 e4a01f64 ada.io_exceptions%s
 D a-numeri.ads		20180524051736 bb51c45a ada.numerics%s
+D a-numaux.ads		20180524051736 243fe0b7 ada.numerics.aux%s
 D a-nudira.ads		20180524051736 71e55def ada.numerics.discrete_random%s
 D a-nudira.adb		20180524051736 72908cdb ada.numerics.discrete_random%b
+D a-ngelfu.ads		20180524051738 55716239 ada.numerics.generic_elementary_functions%s
+D a-ngelfu.adb		20180524051736 a9022048 ada.numerics.generic_elementary_functions%b
 D a-reatim.ads		20180524051738 0240fc73 ada.real_time%s
 D a-retide.ads		20180524051738 081cdaa4 ada.real_time.delays%s
 D a-stream.ads		20180524051736 119b8fb3 ada.streams%s
@@ -81,9 +90,9 @@ D a-unccon.ads		20180524051738 0e9b276f ada.unchecked_conversion%s
 D a-uncdea.ads		20180524051736 eff36322 ada.unchecked_deallocation%s
 D cairo.ads		20180524063416 925d4aaa cairo%s
 D cairo-region.ads	20180524063416 b7133728 cairo.region%s
-D game.ads		20190102142616 791ebe85 game%s
-D game.adb		20190104070346 7e2bd613 game%b
-D game_spark.ads	20190104080814 538b783e game_spark%s
+D game.ads		20190107140044 65d6f709 game%s
+D game.adb		20190109122706 35979ced game%b
+D game_spark.ads	20190109084306 50c6ff5f game_spark%s
 D gdk.ads		20180524063416 96d821f3 gdk%s
 D gdk-color.ads		20180524063418 ef57bc34 gdk.color%s
 D gdk-device.ads	20180524063422 04c1ecbd gdk.device%s
@@ -141,15 +150,17 @@ D pango-language.ads	20180524063420 e96cb8f4 pango.language%s
 D pango-layout.ads	20180524063422 d240b716 pango.layout%s
 D pango-matrix.ads	20180524063420 309f74b5 pango.matrix%s
 D pango-tabs.ads	20180524063420 0c575925 pango.tabs%s
-D snake_generic.ads	20190102143028 24fae62b snake_generic%s
+D submarine_generic.ads	20190109122210 37ba0f01 submarine_generic%s
 D system.ads		20180524051738 32a08138 system%s
 D s-atacco.ads		20180524051738 4c36d12f system.address_to_access_conversions%s
 D s-crtl.ads		20180524051736 0ebbdb71 system.crtl%s
 D s-exctab.ads		20180524051738 54135002 system.exception_table%s
+D s-exnllf.ads		20180524051738 bc7ebbdc system.exn_llf%s
+D s-fatflt.ads		20180524051736 11beb392 system.fat_flt%s
+D s-fatgen.ads		20180524051738 49cbaf86 system.fat_gen%s
 D s-ficobl.ads		20180524051738 078245e4 system.file_control_block%s
 D s-finmas.ads		20180524051738 7811a767 system.finalization_masters%s
 D s-finroo.ads		20180524051738 4ff27390 system.finalization_root%s
-D s-imgint.ads		20180524051736 02dbe0c2 system.img_int%s
 D s-imguns.ads		20180524051736 9ff43cf7 system.img_uns%s
 D s-multip.ads		20180524051736 38ac9f73 system.multiprocessors%s
 D s-osinte.ads		20180524051738 2e5b26a9 system.os_interface%s
@@ -181,193 +192,250 @@ D s-wchcon.ads		20180524051738 1b7d22d2 system.wch_con%s
 D s-win32.ads		20180524051736 b7f96285 system.win32%s
 D unchconv.ads		20180524051736 ca2f9e18 unchecked_conversion%s
 X 1 ada.ads
-16K9*Ada 20e8 18|3r6 3r25 7r6 8r6 10r6 10r23 15r24
+16K9*Ada 20e8 21|3r6 3r25 7r6 8r6 9r6 10r6 10r23 14r34 17r24
 X 5 a-numeri.ads
-16K13*Numerics 32e17 18|7w10 8r10 15r28
-X 6 a-nudira.ads
-44k22*Discrete_Random 75e33 18|8w19 15r37
-50R9*Generator<91|63R9> 18|16r16[15]
-52V13*Random{77|11I9[19|8]} 18|45s35[15] 180s19[15] 185s26[15]
-X 7 a-nudira.adb
-53V16 Random[91|83]{77|11I9[19|8]} 92|392b13[18|15]
-X 8 a-reatim.ads
-39K13*Real_Time 185e18 18|3w10 3r29
-49O9*Time<duration> 18|178r14
+16K13*Numerics 32e17 21|7w10 8r10 9r10 14r38 17r28
+X 7 a-nudira.ads
+44k22*Discrete_Random 75e33 21|8w19 17r37
+50R9*Generator<96|63R9> 21|18r16[17]
+X 8 a-nudira.adb
+53V16 Random[96|83]{integer} 97|392b13[21|17]
+X 9 a-ngelfu.ads
+39k22*Generic_Elementary_Functions 205e46 21|9w19 14r47
+98V13*Sin{float} 21|54s106[14] 58s120[14] 62s120[14] 66s120[14] 70s120[14]
+. 74s120[14] 78s120[14] 82s120[14] 86s120[14]
+98f21 Cycle{float} 21|54r135[14] 58r129[14] 62r130[14] 66r130[14] 70r131[14]
+. 74r131[14] 78r131[14] 82r131[14] 86r131[14]
+107V13*Cos{float} 21|54s220[14] 58s223[14] 62s224[14] 66s224[14] 70s225[14]
+. 74s225[14] 78s225[14] 82s225[14] 86s225[14]
+107f21 Cycle{float} 21|54r249[14] 58r237[14] 62r239[14] 66r239[14] 70r241[14]
+. 74r241[14] 78r241[14] 82r241[14] 86r241[14]
+X 11 a-reatim.ads
+39K13*Real_Time 185e18 21|3w10 3r29
+49O9*Time<duration> 21|283r14
 54O9*Time_Span<duration>
-61V13*Clock{49O9} 18|178s22
-65V14*"+"{49O9} 18|182s23
-119V13*Milliseconds{54O9} 18|182s25
-X 12 a-textio.ads
-49K13*Text_IO 471e16 18|10w10 10r27
-X 15 cairo.ads
-75K9*Cairo 2893e10 17|7w6 7r17 13r29 18|55r29 62r7 68r10 70r10 72r10 75r10
-. 77r10 80r10 84r10 86r10 88r10 91r10 95r7 97r7 98r7 99r7 103r10 104r10 106r13
-. 108r13 111r10 112r10 113r10 114r10 115r10 116r10 128r16 131r16
-77M9*Cairo_Context<78|67M9> 17|13r35 18|55r35
-686U14*Set_Source_Rgb 18|61s7 65s7
-1108U14*Move_To 18|98s13 104s16 112s16 115s16
-1304U14*Rectangle 18|68s16 72s16 77s16 84s16 88s16 128s22
-1305m7 Cr{77M9} 18|68r27 72r27 77r27 84r27 88r27 128r33
-1306f7 X{35|59F9} 18|68r37 72r37 77r37 84r37 88r37 128r43
-1307f7 Y{35|59F9} 18|68r60 73r27 78r27 84r55 89r27 129r33
-1308f7 Width{35|59F9} 18|69r27 73r51 78r51 85r27 89r50 129r56
-1309f7 Height{35|59F9} 18|69r50 74r27 79r27 85r50 90r27 130r33
-1390U14*Paint 18|62s13
-1477U14*Fill_Preserve 18|70s16 75s16 80s16 86s16 91s16 131s22
-1938n30*Cairo_Font_Slant_Normal{1937E9} 18|95r44
-1946n31*Cairo_Font_Weight_Bold{1944E9} 18|96r31
-2038U14*Select_Font_Face 18|95s13
-2073U14*Set_Font_Size 18|97s13 103s16 111s16 114s16
-2191U14*Show_Text 18|99s13 106s19 108s19 113s16 116s16
-X 17 game.ads
-9K9*game 39E4 41l5 41e9 18|12b14 200l5 200t9
-10V13*On_Key_Press{boolean} 10^27 11>27 18|18b13 52l8 52t20
-10p27 Ent(40|40R9) 18|19b7 22r28
-11r27 Event{25|428R9} 18|20b7 24r10 25r17 26r17 29r13 30r17 31r17 34r13 35r17
-. 36r17 39r13 40r17 41r17 44r13 46r13 47r17
-12V13*On_Draw{boolean} 12^22 13>22 18|54b13 136l8 136t15
-12p22 Self(57|343R9) 18|54b22 56r28
-13m22 Cr{15|77M9} 18|55b22 61r23 62r20 65r23 68r33 70r31 72r33 75r31 77r33
-. 80r31 84r33 86r31 88r33 91r31 95r31 97r28 98r22 99r24 103r31 104r25 106r30
-. 108r30 111r31 112r25 113r27 114r31 115r25 116r27 128r39 131r37
-14T14*GameTask 15l8 15e16 39r16 18|177b14 188l8 188t16
-17W19*game_control_t 29E7 30l8 30e22 32r38 40r27 18|138b19 175l8 175t22
-18U17 start 18|139b17 142l11 142t16
-19V16 is_started{boolean} 18|143b16 146l11 146t21 184s26
-21U17 DoTick 21>25 18|147b17 150l11 150t17
-21i25 rand{77|11I9[19|8]} 18|147b25 149r35
-22U17 Reset 22>24 18|45s23 151b17 154l11 154t16
-22i24 rand{77|11I9[19|8]} 18|151b24 153r34
-23V16 GetState{77|8E9[19|8]} 23>26 18|124s35 155b16 158l11 158t19
-23r26 position{77|15R9[19|8]} 18|155b26 157r44
-24V16 IsWon{boolean} 18|102s46 159b16 162l11 162t16
-25V16 IsLost{boolean} 18|102s23 105s26 163b16 166l11 166t17
-26V16 GetNrEaten{natural} 18|113s44 167b16 170l11 170t21
-27U17 SetNextDirection 27>35 18|28s23 33s23 38s23 43s23 171b17 174l11 174t27
-27e35 new_direction{77|6E9[19|8]} 18|171b35 173r45
-29b7 started{boolean} 18|141r10 145r17
-32P9*game_control_a(17W19) 33r35 18|196r35
-33V13*GetGameControl{32P9} 18|196b13 199l8 199t22
-35V13*TriggerRedraw{boolean} 18|190b13 194l8 194t21
-37p4*Draw{50|104P9} 18|192r7
-39t4 game_task{14T14}
-40w4 game_control{17W19} 18|28r10 33r10 38r10 43r10 45r10 102r10 102r33 105r13
-. 113r31 124r22 184r13 198m14 198r14
-X 18 game.adb
-15K12 rand[6|44] 16r11 45r30 180r14 185r21
-16r4 seed{6|50R9[15]} 45r43 180r27 185r34
-57r7 position{77|15R9[19|8]} 123m13 124r45
-58e7 state{77|8E9[19|8]} 124m13 125r16 126r18
-66i11 x{integer} 68r51 72r51 77r51
-82i11 y{integer} 84r69 89r41
-121i11 x{integer} 123r47 128r57
-122i14 y{integer} 123r33 129r47
-178o7 next{8|49O9} 182m10 182r18 183r22
-X 19 game_spark.ads
-6K9*game_spark 17|6w6 6r22 18|125r24 126r26 149r10 153r10 157r17 161r17 165r17
-. 169r17 173r10 19|9e15
-8K12*snake[77|5] 17|21r32 22r31 23r37 23r62 27r51 18|13r8 125r35 126r37 149r21
-. 153r21 157r28 161r28 165r28 169r28 173r21
-X 20 gdk.ads
-38K9*Gdk 17|3r6 3r21 18|1r6 1r38 2r6 2r38 5w6 5r15 20|48e8
-46P9*Gdk_Visual<35|152P9>
-X 22 gdk-device.ads
+61V13*Clock{49O9} 21|283s22
+65V14*"+"{49O9} 21|287s23
+119V13*Milliseconds{54O9} 21|287s25
+X 15 a-textio.ads
+49K13*Text_IO 471e16 21|10w10 10r27
+263U14*Put_Line 21|290s13 294s15
+X 18 cairo.ads
+75K9*Cairo 2893e10 20|7w6 7r17 17r29 21|52r32 54r7 55r7 56r7 58r7 59r7 60r7
+. 62r7 63r7 64r7 66r7 67r7 68r7 70r7 71r7 72r7 74r7 75r7 76r7 78r7 79r7 80r7
+. 82r7 83r7 84r7 86r7 87r7 88r7 92r30 94r7 95r7 96r7 98r7 99r7 100r7 103r10
+. 104r10 105r10 106r10 110r7 111r7 114r10 115r10 116r10 117r10 121r7 122r7
+. 125r10 126r10 127r10 128r10 132r7 133r7 136r10 137r10 138r10 139r10 143r7
+. 144r7 147r25 148r25 154r28 162r7 173r16 175r16 182r7 183r7 184r7 187r7
+. 188r7 197r10 198r10 200r13 202r13 209r7 213r7
+77M9*Cairo_Context<81|67M9> 20|17r35 21|52r38 92r36 154r34
+686U14*Set_Source_Rgb 21|99s13 103s16 106s16 114s16 117s16 125s16 128s16
+. 136s16 139s16 161s7 165s7 212s7
+1108U14*Move_To 21|54s13 58s13 62s13 66s13 70s13 74s13 78s13 82s13 86s13
+. 95s13 110s13 121s13 132s13 143s13 183s13 187s13 198s16
+1132U14*Line_To 21|55s13
+1304U14*Rectangle 21|98s13 104s16 115s16 126s16 137s16 147s31 148s31 173s22
+. 209s13
+1305m7 Cr{77M9} 21|98r24 104r26 115r26 126r26 137r26 147r41 148r41 173r33
+. 209r24
+1306f7 X{38|59F9} 21|98r34 104r36 115r36 126r36 137r36 147r51 148r51 173r43
+. 209r34
+1307f7 Y{38|59F9} 21|98r75 104r81 115r81 126r81 137r81 147r92 148r92 173r62
+. 210r24
+1308f7 Width{38|59F9} 21|98r114 104r125 115r132 126r138 137r138 147r144 148r144
+. 174r33 210r66
+1309f7 Height{38|59F9} 21|98r137 104r148 115r155 126r161 137r161 147r167
+. 148r167 174r54 211r24
+1390U14*Paint 21|162s13
+1428U14*Stroke 21|56s13
+1428m22 Cr{77M9} 21|56r20
+1469U14*Fill 21|100s13 105s16 116s16 127s16 138s16 175s22 213s13
+2073U14*Set_Font_Size 21|59s13 63s13 67s13 71s13 75s13 79s13 83s13 87s13
+. 94s13 182s13 197s16
+2191U14*Show_Text 21|60s13 64s13 68s13 72s13 76s13 80s13 84s13 88s13 96s13
+. 111s13 122s13 133s13 144s13 184s13 188s13 200s19 202s19
+X 20 game.ads
+9K9*game 56E4 59l5 59e9 21|12b14 311l5 311t9
+12V13*OnKeyPress{boolean} 12^25 13>27 21|21b13 50l8 50t18
+12p25 Ent(43|40R9) 21|21b25 23r28
+13r27 Event{28|428R9} 21|22b25 25r10 26r17 27r17 30r13 31r17 32r17 35r13
+. 36r17 37r17 40r13 41r17 42r17 45r13
+16V13*OnDraw{boolean} 16^21 17>22 21|153b13 216l8 216t14
+16p21 Self(60|343R9) 21|153b21 155r28
+17m22 Cr{18|77M9} 21|154b21 161r22 162r19 165r22 173r39 175r28 182r28 183r22
+. 184r24 187r22 188r24 190r19 192r18 197r31 198r25 200r30 202r30 209r30 212r22
+. 213r18
+20T14*Game_Task 21l8 21e17 56r17 21|282b14 298l8 298t17
+24W19*Game_Control_t 43E7 45l8 45e22 47r38 57r27 21|218b19 280l8 280t22
+25U17 Start 21|219b17 222l11 222t16
+26V16 IsStarted{boolean} 21|224b16 227l11 227t20 289s26
+30U17 DoTick 21|235b17 238l11 238t17
+31U17 Reset 21|46s23 240b17 243l11 243t16
+33V16 IsWon{boolean} 21|196s46 245b16 248l11 248t16
+34V16 IsLost{boolean} 21|196s23 199s26 250b16 253l11 253t17
+36U17 SetSubmarineCourse 36>37 21|255b17 258l11 258t29
+36m37 new_course{80|11M9[22|4]} 21|255b37 257r50
+38U17 DecreaseSubmarineSpeed 21|29s23 260b17 263l11 263t33
+39U17 IncreaseSubmarineSpeed 21|34s23 265b17 268l11 268t33
+40U17 IncreaseSubmarineCourseValue 21|39s23 270b17 273l11 273t39
+41U17 DecreaceSubmarineCourseValue 21|44s23 275b17 278l11 278t39
+43b7 started{boolean} 21|221r10 226r17
+47P9*Game_Control_a(24W19) 49r32 21|306r32
+49V13*GameControl{47P9} 21|306b13 309l8 309t19
+51V13*TriggerRedraw{boolean} 21|300b13 304l8 304t21
+53p4*Draw{53|104P9} 21|302r7
+56t4 Game_tasks{20T14}
+57w4 Game_Control{24W19} 21|29r10 34r10 39r10 44r10 46r10 196r10 196r33 199r13
+. 289r13 308m14 308r14
+X 21 game.adb
+14K12 Elem_Fun_Float[9|39] 15r8
+17K12 rand[7|44] 18r11
+18r4 seed{7|50R9[17]}
+52U14 Draw_compas 52b14 52>27 52>53 90l11 90t22 190s7
+52m27 Cr{18|77M9} 54r22 55r21 56r26 58r22 59r28 60r24 62r22 63r28 64r24 66r22
+. 67r28 68r24 70r22 71r28 72r24 74r22 75r28 76r24 78r22 79r28 80r24 82r22
+. 83r28 84r24 86r22 87r28 88r24
+52f53 dlugosc_strzalki{float} 54r87 54r201 58r93 58r196 62r93 62r197 66r93
+. 66r197 70r93 70r198 74r93 74r198 78r93 78r198 82r93 82r198 86r93 86r198
+92U14 Draw_speed 92b14 92>25 151l8 151t18 192s7
+92m25 Cr{18|77M9} 94r28 95r22 96r24 98r30 99r29 100r18 103r32 104r32 105r21
+. 106r32 110r21 111r24 114r32 115r32 116r21 117r32 121r21 122r24 125r32 126r32
+. 127r21 128r32 132r21 133r24 136r32 137r32 138r21 139r32 143r21 144r24 147r47
+. 148r47
+156i7 x{integer} 170m13 172r43 173r56
+157i7 y{integer} 171m13 172r40 173r75
+158f7 dlugosc_strzalki{float} 190r23
+166i11 r{80|44I12[22|4]} 171r26
+168i14 c{80|41I12[22|4]} 170r26
+283o7 next{11|49O9} 287m10 287r18 288r22
+X 22 game_spark.ads
+3K9*game_spark 20|6w6 6r22 21|237r10 242r10 247r17 252r17 257r10 262r10 267r10
+. 272r10 277r10 22|5e15
+4K12*submarine[80|9] 20|36r50 21|13r8 237r21 242r21 247r28 252r28 255r50
+. 257r21 262r21 267r21 272r21 277r21
+X 23 gdk.ads
+38K9*Gdk 20|3r6 3r21 21|1r6 1r38 2r6 2r38 5w6 5r15 23|48e8
+46P9*Gdk_Visual<38|152P9>
+X 25 gdk-device.ads
 49P9*Gdk_Device(48R9)
-59V13*Convert{78|67M9} 38|58i21
-60V13*Convert{49P9} 38|59i21
-X 25 gdk-event.ads
-58K13*Event 17|3w10 3r25 25|1110e14
-428R9*Gdk_Event_Key 17|11r35 18|20r15 25|440e14
-434m7*Keyval{32|164M9} 18|24r16 25r23 26r23 29r19 30r23 31r23 34r19 35r23
-. 36r23 39r19 40r23 41r23 44r19 46r19 47r23
-X 32 gdk-types.ads
-31K13*Types 18|1w10 1r42 2r10 2r42 32|297e14
-164M9*Gdk_Key_Type<35|55M9>
-X 33 gdk-types-keysyms.ads
-26K19*Keysyms 18|2w16 2r48 33|1326e22
-37m4*GDK_Escape{32|164M9} 18|47r32
-58m4*GDK_Left{32|164M9} 18|35r32
-59m4*GDK_Up{32|164M9} 18|30r32
-60m4*GDK_Right{32|164M9} 18|40r32
-61m4*GDK_Down{32|164M9} 18|25r32
-90m4*GDK_KP_Left{32|164M9} 18|34r28
-91m4*GDK_KP_Up{32|164M9} 18|29r28
-92m4*GDK_KP_Right{32|164M9} 18|39r28
-93m4*GDK_KP_Down{32|164M9} 18|24r25
-377m4*GDK_LC_a{32|164M9} 18|36r32
-380m4*GDK_LC_d{32|164M9} 18|41r32
-393m4*GDK_LC_q{32|164M9} 18|46r28
-394m4*GDK_LC_r{32|164M9} 18|44r28
-395m4*GDK_LC_s{32|164M9} 18|26r32
-399m4*GDK_LC_w{32|164M9} 18|31r32
-X 34 gdk-visual.ads
-78V13*Convert[115|20]{78|67M9} 38|58i21
-79V13*Convert[115|20]{20|46P9} 38|59i21
-X 35 glib.ads
-38K9*Glib 17|2r6 2r23 18|6w6 6r16 35|428e9
-55M9*Guint<61|43M9>
-59F9*Gdouble<61|65F9> 18|68r42 68r65 69r36 69r60 72r42 73r32 73r60 74r37
-. 77r42 78r32 78r60 79r37 84r42 84r60 85r36 85r60 88r42 89r32 89r59 90r37
-. 97r32 98r26 98r40 103r35 104r29 104r43 111r35 112r29 112r48 114r35 115r29
-. 115r48 128r48 129r38 129r65 130r43
+59V13*Convert{81|67M9} 41|58i21
+60V13*Convert{49P9} 41|59i21
+X 28 gdk-event.ads
+58K13*Event 20|3w10 3r25 28|1110e14
+428R9*Gdk_Event_Key 20|13r35 21|22r33 28|440e14
+434m7*Keyval{35|164M9} 21|25r16 26r23 27r23 30r19 31r23 32r23 35r19 36r23
+. 37r23 40r19 41r23 42r23 45r19
+X 35 gdk-types.ads
+31K13*Types 21|1w10 1r42 2r10 2r42 35|297e14
+164M9*Gdk_Key_Type<38|55M9>
+X 36 gdk-types-keysyms.ads
+26K19*Keysyms 21|2w16 2r48 36|1326e22
+58m4*GDK_Left{35|164M9} 21|41r32
+59m4*GDK_Up{35|164M9} 21|31r32
+60m4*GDK_Right{35|164M9} 21|36r32
+61m4*GDK_Down{35|164M9} 21|26r32
+90m4*GDK_KP_Left{35|164M9} 21|40r28
+91m4*GDK_KP_Up{35|164M9} 21|30r28
+92m4*GDK_KP_Right{35|164M9} 21|35r28
+93m4*GDK_KP_Down{35|164M9} 21|25r25
+377m4*GDK_LC_a{35|164M9} 21|42r32
+380m4*GDK_LC_d{35|164M9} 21|37r32
+394m4*GDK_LC_r{35|164M9} 21|45r28
+395m4*GDK_LC_s{35|164M9} 21|27r32
+399m4*GDK_LC_w{35|164M9} 21|32r32
+X 37 gdk-visual.ads
+78V13*Convert[120|20]{81|67M9} 41|58i21
+79V13*Convert[120|20]{23|46P9} 41|59i21
+X 38 glib.ads
+38K9*Glib 20|2r6 2r23 21|6w6 6r16 38|428e9
+55M9*Guint<64|43M9>
+59F9*Gdouble<64|65F9> 21|54r26 54r153 55r25 55r73 58r26 58r147 59r32 62r26
+. 62r148 63r32 66r26 66r148 67r32 70r26 70r149 71r32 74r26 74r149 75r32 78r26
+. 78r149 79r32 82r26 82r149 83r32 86r26 86r149 87r32 94r32 95r26 95r64 98r38
+. 98r80 98r123 98r147 104r40 104r86 104r134 104r158 110r25 110r62 115r40
+. 115r86 115r141 115r165 121r25 121r62 126r40 126r86 126r147 126r171 132r25
+. 132r62 137r40 137r86 137r147 137r171 143r25 143r62 147r55 147r97 147r153
+. 147r177 148r55 148r97 148r153 148r177 173r48 173r67 174r42 174r64 182r32
+. 183r26 183r64 187r26 187r69 197r35 198r29 198r64 209r39 210r29 210r75 211r34
 152P9*C_Proxy(149R9)
-X 40 glib-object.ads
-38K14*Object 17|2w11 2r28 40|762e16
-40R9*GObject_Record 17|10r42 18|19r22 40|720e14
+X 43 glib-object.ads
+38K14*Object 20|2w11 2r28 43|762e16
+40R9*GObject_Record 20|12r40 21|21r40 43|720e14
 41P9*GObject(40R9)
-673V13*Convert{78|67M9} 38|58i21 39|49i21
-674V13*Convert{41P9} 38|59i21 39|50i21
-X 46 gtk.ads
-41K9*Gtk 17|4r6 4r22 5r6 5r28 18|4r6 49r10 46|79e8
-X 50 gtk-drawing_area.ads
-101K13*Drawing_Area 17|5w10 5r32 50|141e21
-104P9*Gtk_Drawing_Area(103R9) 17|37r11
-X 51 gtk-enums.ads
-865V13*Convert{78|67M9} 38|58i21 39|49i21
-866V13*Convert{string} 38|59i21 39|50i21
-X 52 gtk-main.ads
-33K13*Main 18|4w10 49r14 52|327e13
-205U14*Main_Quit 18|49s19
-X 57 gtk-widget.ads
-341K13*Widget 17|4w10 4r26 57|5431e15
-343R9*Gtk_Widget_Record<40|40R9> 17|12r36 18|54r36 57|343e65
+673V13*Convert{81|67M9} 41|58i21 42|49i21
+674V13*Convert{41P9} 41|59i21 42|50i21
+X 49 gtk.ads
+41K9*Gtk 20|4r6 4r22 5r6 5r28 21|4r6 49|79e8
+X 53 gtk-drawing_area.ads
+101K13*Drawing_Area 20|5w10 5r32 53|141e21
+104P9*Gtk_Drawing_Area(103R9) 20|53r11
+X 54 gtk-enums.ads
+865V13*Convert{81|67M9} 41|58i21 42|49i21
+866V13*Convert{string} 41|59i21 42|50i21
+X 55 gtk-main.ads
+33K13*Main 21|4w10 55|327e13
+X 60 gtk-widget.ads
+341K13*Widget 20|4w10 4r26 60|5431e15
+343R9*Gtk_Widget_Record<43|40R9> 20|16r35 21|153r35 60|343e65
 344P9*Gtk_Widget(343R9)
-431V13*Convert{78|67M9} 38|58i21 39|49i21
-432V13*Convert{344P9} 38|59i21 39|50i21
-2681U14*Queue_Draw 18|192R12
-X 60 interfac.ads
+431V13*Convert{81|67M9} 41|58i21 42|49i21
+432V13*Convert{344P9} 41|59i21 42|50i21
+2681U14*Queue_Draw 21|302R12
+X 63 interfac.ads
 74M9*Unsigned_32
 77M9*Unsigned_64
-X 61 i-c.ads
+X 64 i-c.ads
 43M9*unsigned
 65F9*double<long_float>
-X 77 snake_generic.ads
-6E9*Direction_t 17|27r57[19|8] 18|171r51[19|8]
-6n25*UP{6E9[19|8]} 18|33r41[19|8]
-6n29*DOWN{6E9[19|8]} 18|28r41[19|8]
-6n35*LEFT{6E9[19|8]} 18|38r41[19|8]
-6n41*RIGHT{6E9[19|8]} 18|43r41[19|8]
-8E9*State_t 17|23r68[19|8] 18|58r15[19|8] 155r56[19|8]
-8n27*SNAKE{8E9[19|8]} 18|126r43[19|8]
-8n34*FOOD{8E9[19|8]} 18|125r41[19|8]
-11I9*Lin_t<integer> 17|21r38[19|8] 22r37[19|8] 18|15r54[19|8] 147r32[19|8]
-. 151r31[19|8]
-12I12*Column_t{11I9[19|8]} 18|123r37[19|8]
-13I12*Row_t{11I9[19|8]} 18|123r26[19|8]
-15R9*Position_t 17|23r43[19|8] 18|57r18[19|8] 155r37[19|8]
-30U14*DoTick 18|149s27[19|8] 185s13[19|8]
-38U14*Reset 18|153s27[19|8] 180s7[19|8]
-42V13*IsWon{boolean} 18|161s34[19|8]
-45V13*IsLost{boolean} 18|165s34[19|8]
-48V13*GetNrEaten{natural} 18|169s34[19|8]
-51U14*SetNextDirection 18|173s27[19|8]
-56V13*GetState{8E9[19|8]} 18|157s34[19|8]
-X 78 system.ads
+X 80 submarine_generic.ads
+11M9*Course_t 20|36r60[22|4] 21|255r60[22|4]
+30E9*Speed_t
+30n21*GOBACK{30E9[22|4]} 21|135r28[22|4] 147r15[22|4]
+30n29*STOP{30E9[22|4]} 21|124r28[22|4]
+30n35*HALF{30E9[22|4]} 21|113r28[22|4]
+30n41*FULL{30E9[22|4]} 21|102r28[22|4]
+34E9*State_t
+34n28*COAST{34E9[22|4]} 21|172r58[22|4]
+38I12*Table_Range_1D_t{positive} 21|17r54[22|4]
+41I12*Column_t{38I12[22|4]} 21|54r41[22|4] 55r34[22|4] 58r40[22|4] 62r40[22|4]
+. 66r40[22|4] 70r40[22|4] 74r40[22|4] 78r40[22|4] 82r40[22|4] 86r40[22|4]
+. 95r35[22|4] 98r46[22|4] 104r48[22|4] 110r33[22|4] 115r48[22|4] 121r33[22|4]
+. 126r48[22|4] 132r33[22|4] 137r48[22|4] 143r33[22|4] 147r63[22|4] 148r63[22|4]
+. 168r19[22|4] 183r35[22|4] 187r35[22|4] 198r38[22|4]
+44I12*Row_t{38I12[22|4]} 21|54r172[22|4] 55r86[22|4] 58r166[22|4] 62r167[22|4]
+. 66r167[22|4] 70r168[22|4] 74r168[22|4] 78r168[22|4] 82r168[22|4] 86r168[22|4]
+. 95r78[22|4] 98r93[22|4] 104r99[22|4] 110r75[22|4] 115r99[22|4] 121r75[22|4]
+. 126r99[22|4] 132r75[22|4] 137r99[22|4] 143r75[22|4] 147r110[22|4] 148r110[22|4]
+. 166r16[22|4] 183r73[22|4] 187r82[22|4] 198r73[22|4]
+57R9*Submarine_Position_t
+59i10*row{44I12[22|4]} 21|210r56[22|4]
+60i10*column{41I12[22|4]} 21|209r66[22|4]
+68R9*Pixel_t
+72e10*p_state{34E9[22|4]} 21|172r48[22|4]
+79A9*Board_t(68R9[22|4])<integer>
+82V13*IsWon{boolean} 21|247s38[22|4]
+84V13*IsLost{boolean} 21|252s38[22|4]
+88V13*PositionToLinear{38I12[22|4]} 21|172s22[22|4]
+106U14*DoTick 21|237s31[22|4] 291s13[22|4]
+112U14*Reset 21|242s31[22|4] 285s7[22|4]
+121U14*SetSubmarineCourse 21|257s31[22|4]
+123V13*CalculateRealSpeedFromVelocity{float} 21|147s186[22|4] 148s187[22|4]
+126m4*Submarine_Course{11M9[22|4]} 21|54r116[22|4] 54r230[22|4]
+128r4*Submarine_Position{57R9[22|4]} 21|209r47[22|4] 210r37[22|4]
+132e4*Submarine_Speed{30E9[22|4]} 21|102r10[22|4] 113r10[22|4] 124r10[22|4]
+. 135r10[22|4] 146r12[22|4]
+141a4*Board{79A9[22|4]} 21|172r16[22|4]
+142f4*Submarine_k{float} 21|147r218[22|4] 148r219[22|4]
+161U14*DecreaseSubmarineSpeed 21|262s31[22|4]
+163U14*IncreaseSubmarineSpeed 21|267s31[22|4]
+165U14*IncreaseSubmarineCourseValue 21|272s31[22|4]
+167U14*DecreaceSubmarineCourseValue 21|277s31[22|4]
+X 81 system.ads
 67M9*Address
-X 91 s-rannum.ads
-75V13*Random{60|74M9} 92|221i21
-76V13*Random{60|77M9} 92|221i21
-X 97 s-stausa.ads
+X 96 s-rannum.ads
+75V13*Random{63|74M9} 97|221i21
+76V13*Random{63|77M9} 97|221i21
+X 102 s-stausa.ads
 203U14*Initialize 204i<c,__gnat_stack_usage_initialize>22
 268U14*Output_Results 272i<c,__gnat_stack_usage_output_results>22
 

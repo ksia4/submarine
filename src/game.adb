@@ -6,186 +6,296 @@ with Gdk; use Gdk;
 with Glib; use Glib;
 with Ada.Numerics;
 with Ada.Numerics.Discrete_Random;
-
+with Ada.Numerics.Generic_Elementary_Functions;
 with Ada.Text_IO; use Ada.Text_IO;
 
 package body game is
-   use snake;
+   use submarine;
+   package Elem_Fun_Float is new Ada.Numerics.Generic_Elementary_Functions (Float);
+   use Elem_Fun_Float;
 
-   package rand is new Ada.Numerics.Discrete_Random (Lin_t);
+   package rand is new Ada.Numerics.Discrete_Random (Table_Range_1D_t);
    seed : rand.Generator;
 
-   function On_Key_Press
-     (Ent   : access GObject_Record'Class;
-      Event : Gdk_Event_Key) return Boolean
-   is
+   -- obsluga klawiatury
+   function OnKeyPress (Ent   : access GObject_Record'Class;
+                        Event : Gdk_Event_Key) return Boolean is
       pragma Unreferenced (Ent);
    begin
       if Event.Keyval = GDK_KP_Down
         or else Event.Keyval = GDK_Down
         or else Event.Keyval = GDK_LC_s
       then
-         game_control.SetNextDirection (DOWN);
+         Game_Control.DecreaseSubmarineSpeed;
       elsif Event.Keyval = GDK_KP_Up
         or else Event.Keyval = GDK_Up
         or else Event.Keyval = GDK_LC_w
       then
-         game_control.SetNextDirection (UP);
-      elsif Event.Keyval = GDK_KP_Left
-        or else Event.Keyval = GDK_Left
-        or else Event.Keyval = GDK_LC_a
-      then
-         game_control.SetNextDirection (LEFT);
+         Game_Control.IncreaseSubmarineSpeed;
       elsif Event.Keyval = GDK_KP_Right
         or else Event.Keyval = GDK_Right
         or else Event.Keyval = GDK_LC_d
       then
-         game_control.SetNextDirection (RIGHT);
-      elsif Event.Keyval = GDK_LC_r then
-         game_control.Reset (rand.Random (seed));
-      elsif Event.Keyval = GDK_LC_q
-        or else Event.Keyval = GDK_Escape
+         Game_Control.IncreaseSubmarineCourseValue;
+      elsif Event.Keyval = GDK_KP_Left
+        or else Event.Keyval = GDK_Left
+        or else Event.Keyval = GDK_LC_a
       then
-         Gtk.Main.Main_Quit;
+         Game_Control.DecreaceSubmarineCourseValue;
+      elsif Event.Keyval = GDK_LC_r then
+         Game_Control.Reset;
       end if;
+
       return False;
-   end On_Key_Press;
+   end OnKeyPress;
 
-   function On_Draw (Self : access Gtk_Widget_Record'Class;
-                     Cr   : Cairo.Cairo_Context) return Boolean is
-      pragma Unreferenced (Self);
-      position : Position_t;
-      state : State_t;
+   procedure Draw_compas (Cr : Cairo.Cairo_Context; dlugosc_strzalki : Float) is
+      begin
+      Cairo.Move_To (Cr, Gdouble (Float(Column_t'Range_Length) + 50.0 + 80.0 + 30.0 + dlugosc_strzalki * Sin(Float(Submarine_Course), Cycle => 360.0)), Gdouble (0.1*Float(Row_t'Range_Length) + 60.0 - dlugosc_strzalki * Cos(Float(Submarine_Course), Cycle => 360.0)));
+      Cairo.Line_To(Cr, Gdouble (Column_t'Range_Length + 50 + 80 + 30), Gdouble (0.1*Row_t'Range_Length + 60.0));
+      Cairo.Stroke(Cr => Cr);
+
+      Cairo.Move_To (Cr, Gdouble(Float(Column_t'Range_Length) + 50.0 + 80.0 + 30.0 - 5.0 + (dlugosc_strzalki + 15.0) * Sin(0.0, Cycle => 360.0)), Gdouble (0.1*Float(Row_t'Range_Length) + 60.0 - (dlugosc_strzalki + 15.0) * Cos(Float(0), Cycle => 360.0)));
+      Cairo.Set_Font_Size (Cr, Gdouble(15));
+      Cairo.Show_Text (Cr, "N");
+
+      Cairo.Move_To (Cr, Gdouble(Float(Column_t'Range_Length) + 50.0 + 80.0 + 30.0 - 5.0 + (dlugosc_strzalki + 15.0) * Sin(45.0, Cycle => 360.0)), Gdouble (0.1*Float(Row_t'Range_Length) + 60.0 - (dlugosc_strzalki + 15.0) * Cos(Float(45), Cycle => 360.0)));
+      Cairo.Set_Font_Size (Cr, Gdouble(10));
+      Cairo.Show_Text (Cr, "NE");
+
+      Cairo.Move_To (Cr, Gdouble(Float(Column_t'Range_Length) + 50.0 + 80.0 + 30.0 - 5.0 + (dlugosc_strzalki + 15.0) * Sin(90.0, Cycle => 360.0)), Gdouble (0.1*Float(Row_t'Range_Length) + 60.0 - (dlugosc_strzalki + 15.0) * Cos(Float(90), Cycle => 360.0)));
+      Cairo.Set_Font_Size (Cr, Gdouble(15));
+      Cairo.Show_Text (Cr, "E");
+
+      Cairo.Move_To (Cr, Gdouble(Float(Column_t'Range_Length) + 50.0 + 80.0 + 30.0 - 5.0 + (dlugosc_strzalki + 15.0) * Sin(135.0, Cycle => 360.0)), Gdouble (0.1*Float(Row_t'Range_Length) + 60.0 - (dlugosc_strzalki + 15.0) * Cos(Float(135), Cycle => 360.0)));
+      Cairo.Set_Font_Size (Cr, Gdouble(10));
+      Cairo.Show_Text (Cr, "SE");
+
+      Cairo.Move_To (Cr, Gdouble(Float(Column_t'Range_Length) + 50.0 + 80.0 + 30.0 - 5.0 + (dlugosc_strzalki + 15.0) * Sin(180.0, Cycle => 360.0)), Gdouble (0.1*Float(Row_t'Range_Length) + 60.0 - (dlugosc_strzalki + 15.0) * Cos(Float(180), Cycle => 360.0)));
+      Cairo.Set_Font_Size (Cr, Gdouble(15));
+      Cairo.Show_Text (Cr, "S");
+
+      Cairo.Move_To (Cr, Gdouble(Float(Column_t'Range_Length) + 50.0 + 80.0 + 30.0 - 5.0 + (dlugosc_strzalki + 15.0) * Sin(225.0, Cycle => 360.0)), Gdouble (0.1*Float(Row_t'Range_Length) + 60.0 - (dlugosc_strzalki + 15.0) * Cos(Float(225), Cycle => 360.0)));
+      Cairo.Set_Font_Size (Cr, Gdouble(10));
+      Cairo.Show_Text (Cr, "SW");
+
+      Cairo.Move_To (Cr, Gdouble(Float(Column_t'Range_Length) + 50.0 + 80.0 + 30.0 - 5.0 + (dlugosc_strzalki + 15.0) * Sin(270.0, Cycle => 360.0)), Gdouble (0.1*Float(Row_t'Range_Length) + 60.0 - (dlugosc_strzalki + 15.0) * Cos(Float(270), Cycle => 360.0)));
+      Cairo.Set_Font_Size (Cr, Gdouble(15));
+      Cairo.Show_Text (Cr, "W");
+
+      Cairo.Move_To (Cr, Gdouble(Float(Column_t'Range_Length) + 50.0 + 80.0 + 30.0 - 5.0 + (dlugosc_strzalki + 15.0) * Sin(315.0, Cycle => 360.0)), Gdouble (0.1*Float(Row_t'Range_Length) + 60.0 - (dlugosc_strzalki + 15.0) * Cos(Float(315), Cycle => 360.0)));
+      Cairo.Set_Font_Size (Cr, Gdouble(10));
+      Cairo.Show_Text (Cr, "NW");
+
+      end Draw_compas;
+
+   procedure Draw_speed(Cr : Cairo.Cairo_Context) is
    begin
-      --  clear the surface first
-      Set_Source_Rgb (Cr, 0.9373, 0.6824, 1.0);
-      Cairo.Paint (Cr);
+      Cairo.Set_Font_Size (Cr, Gdouble(20));
+      Cairo.Move_To (Cr, Gdouble (Column_t'Range_Length + 15), Gdouble (0.28*Row_t'Range_Length));
+      Cairo.Show_Text (Cr, "PREDKOSC");
 
-      --  draw the border
-      Set_Source_Rgb (Cr, 1.0, 1.0, 0.9956);
-      for x in Integer range 0 .. (40 + 1) loop
-         --  top line
-         Cairo.Rectangle (Cr => Cr, X => Gdouble (x * 11), Y => Gdouble (0),
-                          Width => Gdouble (10), Height => Gdouble (10));
-         Cairo.Fill_Preserve (Cr);
-         --  middle line
-         Cairo.Rectangle (Cr => Cr, X => Gdouble (x * 11),
-                          Y => Gdouble (11 * 21), Width => Gdouble (10),
-                          Height => Gdouble (10));
-         Cairo.Fill_Preserve (Cr);
-         --  bottom line
-         Cairo.Rectangle (Cr => Cr, X => Gdouble (x * 11),
-                          Y => Gdouble (11 * 25), Width => Gdouble (10),
-                          Height => Gdouble (10));
-         Cairo.Fill_Preserve (Cr);
+      Cairo.Rectangle (Cr => Cr, X=> Gdouble(Column_t'Range_Length + 50), Y => Gdouble (0.3*Row_t'Range_Length), width => Gdouble (40), Height => Gdouble(3*40));
+      Cairo.Set_Source_Rgb (Cr, 0.0, 0.0, 115.0/255.0);
+      Cairo.Fill(Cr);
+
+      if Submarine_Speed = FULL then
+         Cairo.Set_Source_Rgb (Cr, 1.0, 1.0, 224.0/255.0);
+         Cairo.Rectangle(Cr => Cr, X=> Gdouble(Column_t'Range_Length + 20 - 6), Y => Gdouble (0.3*Row_t'Range_Length)-12.0, width => Gdouble (24), Height => Gdouble(24));
+         Cairo.Fill(Cr);
+         Cairo.Set_Source_Rgb (Cr, 0.0, 0.0, 115.0/255.0);
+
+      end if;
+
+      Cairo.Move_To(Cr, Gdouble(Column_t'Range_Length + 20), Gdouble (0.3*Row_t'Range_Length) + 8.0);
+      Cairo.Show_Text (Cr, "2");
+
+      if Submarine_Speed = HALF then
+         Cairo.Set_Source_Rgb (Cr, 1.0, 1.0, 224.0/255.0);
+         Cairo.Rectangle(Cr => Cr, X=> Gdouble(Column_t'Range_Length + 20 - 6), Y => Gdouble (0.3*Row_t'Range_Length)-12.0 + 40.0, width => Gdouble (24), Height => Gdouble(24));
+         Cairo.Fill(Cr);
+         Cairo.Set_Source_Rgb (Cr, 0.0, 0.0, 115.0/255.0);
+
+      end if;
+
+      Cairo.Move_To(Cr, Gdouble(Column_t'Range_Length + 20), Gdouble (0.3*Row_t'Range_Length) + 8.0 + 40.0);
+      Cairo.Show_Text (Cr, "1");
+
+      if Submarine_Speed = STOP then
+         Cairo.Set_Source_Rgb (Cr, 1.0, 1.0, 224.0/255.0);
+         Cairo.Rectangle(Cr => Cr, X=> Gdouble(Column_t'Range_Length + 20 - 6), Y => Gdouble (0.3*Row_t'Range_Length)-12.0 + 2.0 * 40.0, width => Gdouble (24), Height => Gdouble(24));
+         Cairo.Fill(Cr);
+         Cairo.Set_Source_Rgb (Cr, 0.0, 0.0, 115.0/255.0);
+
+      end if;
+
+      Cairo.Move_To(Cr, Gdouble(Column_t'Range_Length + 20), Gdouble (0.3*Row_t'Range_Length) + 8.0 + 2.0 * 40.0);
+      Cairo.Show_Text (Cr, "0");
+
+      if Submarine_Speed = GOBACK then
+         Cairo.Set_Source_Rgb (Cr, 1.0, 1.0, 224.0/255.0);
+         Cairo.Rectangle(Cr => Cr, X=> Gdouble(Column_t'Range_Length + 20 - 6), Y => Gdouble (0.3*Row_t'Range_Length)-12.0 + 3.0 * 40.0, width => Gdouble (24), Height => Gdouble(24));
+         Cairo.Fill(Cr);
+         Cairo.Set_Source_Rgb (Cr, 0.0, 0.0, 115.0/255.0);
+
+      end if;
+
+      Cairo.Move_To(Cr, Gdouble(Column_t'Range_Length + 20), Gdouble (0.3*Row_t'Range_Length) + 8.0 + 3.0 * 40.0);
+      Cairo.Show_Text (Cr, "R");
+
+      case Submarine_Speed is
+         when GOBACK => Cairo.Rectangle(Cr => Cr, X=> Gdouble(Column_t'Range_Length + 50), Y => Gdouble (0.3*Row_t'Range_Length) + 2.0 * 40.0, width => Gdouble (40), Height => Gdouble (CalculateRealSpeedFromVelocity/(Submarine_k * 2.0) * 80.0));
+         when others => Cairo.Rectangle(Cr => Cr, X=> Gdouble(Column_t'Range_Length + 50), Y => Gdouble (0.3*Row_t'Range_Length) + 2.0 * 40.0, width => Gdouble (40), Height => Gdouble (-CalculateRealSpeedFromVelocity/(Submarine_k * 2.0) * 80.0));
+      end case;
+
+   end Draw_speed;
+
+   function OnDraw (Self : access Gtk_Widget_Record'Class;
+                    Cr   : Cairo.Cairo_Context) return Boolean is
+      pragma Unreferenced (Self);
+      x : Integer;
+      y : Integer;
+      dlugosc_strzalki : Float := 30.0;
+   begin
+      --czyszczenie powierzchni
+      Set_Source_Rgb(Cr, 0.0, 191.0/255.0, 1.0);
+      Cairo.Paint(Cr);
+
+      --rysowanie wybrzeza (obrzeza)
+      Set_Source_Rgb(Cr, 1.0, 1.0, 224.0/255.0);
+      for r in Row_t'Range
+      loop
+         for c in Column_t'Range
+         loop
+            x := Integer(c);
+            y := Integer(r);
+            if Board(PositionToLinear((y, x))).p_state = COAST then
+               Cairo.Rectangle (Cr => Cr, X => Gdouble(x-1), Y => Gdouble(y-1),
+                                Width => Gdouble(1), Height => Gdouble (1));
+               Cairo.Fill (Cr);
+            end if;
+
+         end loop;
       end loop;
-      for y in Integer range 0 .. (20 + 1 + 4) loop
-         --  left line
-         Cairo.Rectangle (Cr => Cr, X => Gdouble (0), Y => Gdouble (y * 11),
-                          Width => Gdouble (10), Height => Gdouble (10));
-         Cairo.Fill_Preserve (Cr);
-         --  right line
-         Cairo.Rectangle (Cr => Cr, X => Gdouble (11 * 41),
-                          Y => Gdouble (y * 11), Width => Gdouble (10),
-                          Height => Gdouble (10));
-         Cairo.Fill_Preserve (Cr);
-      end loop;
 
-      --- draw some help text
-      Cairo.Select_Font_Face (Cr, "Times", Cairo_Font_Slant_Normal,
-                              Cairo_Font_Weight_Bold);
-      Cairo.Set_Font_Size (Cr, Gdouble (14));
-      Cairo.Move_To (Cr, Gdouble (22), Gdouble ((20 + 4) * 11));
-      Cairo.Show_Text (Cr, "Use arrows to control the Snake. " &
-                           "Press r to restart. Press q to quit.");
+      --rysowanie_wskaznika
+      Cairo.Set_Font_Size (Cr, Gdouble(20));
+      Cairo.Move_To (Cr, Gdouble (Column_t'Range_Length + 50), Gdouble (Row_t'Range_Length/20));
+      Cairo.Show_Text (Cr, "PARAMETRY OKRETU");
 
-      if game_control.IsLost or game_control.IsWon then
-         Cairo.Set_Font_Size (Cr, Gdouble (50));
-         Cairo.Move_To (Cr, Gdouble (80), Gdouble (8 * 11));
+      --Cairo.Set_Font_Size (Cr, Gdouble(15));
+      Cairo.Move_To (Cr, Gdouble (Column_t'Range_Length + 50 + 80), Gdouble (0.1*Row_t'Range_Length));
+      Cairo.Show_Text (Cr, "KURS");
+
+      Draw_compas(Cr, dlugosc_strzalki);
+
+      Draw_speed(Cr);
+
+
+
+      if Game_Control.IsLost or Game_Control.IsWon then
+         Cairo.Set_Font_Size (Cr, Gdouble(50));
+         Cairo.Move_To (Cr, Gdouble (Column_t'Range_Length/2), Gdouble (Row_t'Range_Length/2));
          if game_control.IsLost then
             Cairo.Show_Text (Cr, "GAME OVER");
          else
             Cairo.Show_Text (Cr, "! YOU WON !");
          end if;
-
-         Cairo.Set_Font_Size (Cr, Gdouble (40));
-         Cairo.Move_To (Cr, Gdouble (20 * 11), Gdouble (14 * 11));
-         Cairo.Show_Text (Cr, game_control.GetNrEaten'Image);
-         Cairo.Set_Font_Size (Cr, Gdouble (30));
-         Cairo.Move_To (Cr, Gdouble (15 * 11), Gdouble (18 * 11));
-         Cairo.Show_Text (Cr, "Pieces eaten!");
          return False;
       end if;
 
-      --- draw the snake and the food
-      for x in Integer range 1 .. 40 loop
-         for y in Integer range 1 .. 20 loop
-            position := (Row_t (y), Column_t (x));
-            state := game_control.GetState (position);
-            if state = game_spark.snake.FOOD
-              or state = game_spark.snake.SNAKE
-            then
-               Cairo.Rectangle (Cr => Cr, X => Gdouble (x * 11),
-                                Y => Gdouble (y * 11), Width => Gdouble (10),
-                                Height => Gdouble (10));
-               Cairo.Fill_Preserve (Cr);
-            end if;
-         end loop;
-      end loop;
-      return False;
-   end On_Draw;
+      --draw submarine (and obstacles)
 
-   protected body game_control_t is
-      procedure start is
+      Cairo.Rectangle (Cr => Cr, X => Gdouble(Submarine_Position.column - 1),
+                       Y => Gdouble(Submarine_Position.row - 1), Width => Gdouble(10),
+                       Height => Gdouble(10));
+      Set_Source_Rgb(Cr, 1.0, 0.0, 0.0);
+      Cairo.Fill(Cr);
+
+      return False;
+   end OnDraw;
+
+   protected body Game_Control_t is
+      procedure Start is
       begin
          started := True;
-      end start;
-      function is_started return Boolean is
+      end Start;
+
+      function IsStarted return Boolean is
       begin
          return started;
-      end is_started;
-      procedure DoTick (rand : Lin_t) is
+      end IsStarted;
+
+      --function IsMenu return Boolean is
+      --begin
+      --   return menu;
+      --end IsMenu;
+
+      --- serialize access to out SPARK implementation
+      procedure DoTick is
       begin
-         game_spark.snake.DoTick (rand);
+         game_spark.submarine.DoTick;
       end DoTick;
-      procedure Reset (rand : Lin_t) is
+
+      procedure Reset is
       begin
-         game_spark.snake.Reset (rand);
+         game_spark.submarine.Reset;
       end Reset;
-      function GetState (position : Position_t) return State_t is
-      begin
-         return game_spark.snake.GetState (position);
-      end GetState;
+
       function IsWon return Boolean is
       begin
-         return game_spark.snake.IsWon;
+         return game_spark.submarine.IsWon;
       end IsWon;
+
       function IsLost return Boolean is
       begin
-         return game_spark.snake.IsLost;
+         return game_spark.submarine.IsLost;
       end IsLost;
-      function GetNrEaten return Natural is
-      begin
-         return game_spark.snake.GetNrEaten;
-      end GetNrEaten;
-      procedure SetNextDirection (new_direction : Direction_t) is
-      begin
-         game_spark.snake.SetNextDirection (new_direction);
-      end SetNextDirection;
-   end game_control_t;
 
-   task body GameTask is
+      procedure SetSubmarineCourse (new_course : submarine.Course_t) is
+      begin
+         game_spark.submarine.SetSubmarineCourse(new_course);
+      end SetSubmarineCourse;
+
+      procedure DecreaseSubmarineSpeed is
+      begin
+         game_spark.submarine.DecreaseSubmarineSpeed;
+      end DecreaseSubmarineSpeed;
+
+      procedure IncreaseSubmarineSpeed is
+      begin
+         game_spark.submarine.IncreaseSubmarineSpeed;
+      end IncreaseSubmarineSpeed;
+
+      procedure IncreaseSubmarineCourseValue is
+      begin
+         game_spark.submarine.IncreaseSubmarineCourseValue;
+      end IncreaseSubmarineCourseValue;
+
+      procedure DecreaceSubmarineCourseValue is
+      begin
+         game_spark.submarine.DecreaceSubmarineCourseValue;
+      end DecreaceSubmarineCourseValue;
+
+   end Game_Control_t;
+
+   task body Game_Task is
       next : Time := Clock;
    begin
-      Reset (rand.Random (seed));
+      Reset;
       loop
          next := next + Milliseconds (100);
          delay until next;
-         if game_control.is_started then
-            DoTick (rand.Random (seed));
+         if Game_Control.IsStarted then
+            Put_Line("Wywoluje dotick");
+            DoTick;
+         --elsif Game_Control.IsMenu then
+         --   DoMenu;
+         else Put_Line("IsStarted sie wylaczylo");
          end if;
+
       end loop;
-   end GameTask;
+   end Game_Task;
 
    function TriggerRedraw return Boolean is
    begin
@@ -193,8 +303,9 @@ package body game is
       return True;
    end TriggerRedraw;
 
-   function GetGameControl return game_control_a is
+   function GameControl return game_control_a is
    begin
-      return game_control'Unchecked_Access;
-   end GetGameControl;
+      return Game_Control'Unchecked_Access;
+   end GameControl;
+
 end game;
