@@ -156,6 +156,8 @@ package submarine_generic with SPARK_Mode is
    All_targets_list : All_targets_collection := (others => 0);
    first_reset : Boolean := True;
 
+   Obstacle_number : Integer := 15;
+
    procedure DecreaseSubmarineSpeed;
 
    procedure IncreaseSubmarineSpeed;

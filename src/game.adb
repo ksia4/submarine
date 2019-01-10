@@ -205,8 +205,8 @@ package body game is
             y := Integer(r);
             Linear_position := PositionToLinear((y,x));
             board_cell := Board(Linear_position);
-            if board_cell.p_state = COAST  or (board_cell.p_state = OBSTACLE and abs(board_cell.p_Position.row - Submarine_Position.row) < sonar_range and abs(board_cell.p_Position.column - Submarine_Position.column) < sonar_range) then
-
+            if board_cell.p_state = COAST  or (board_cell.p_state = OBSTACLE) and abs(board_cell.p_Position.row - Submarine_Position.row) < sonar_range and abs(board_cell.p_Position.column - Submarine_Position.column) < sonar_range)
+            then
                Cairo.Rectangle (Cr => Cr, X => Gdouble(x-1), Y => Gdouble(y-1),
                                 Width => Gdouble(1), Height => Gdouble (1));
                Cairo.Fill (Cr);

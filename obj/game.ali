@@ -26,7 +26,7 @@ RV SPARK_05
 RV MAX_TASKS=1
 RV MAX_ENTRY_QUEUE_LENGTH=1+
 
-U game%b		game.adb		724d281c OO PK IL
+U game%b		game.adb		dc899810 OO PK IL
 W ada%s			ada.ads			ada.ali
 Z ada.exceptions%s	a-except.adb		a-except.ali
 W ada.numerics%s	a-numeri.ads		a-numeri.ali
@@ -91,7 +91,7 @@ D a-uncdea.ads		20180524051736 eff36322 ada.unchecked_deallocation%s
 D cairo.ads		20180524063416 925d4aaa cairo%s
 D cairo-region.ads	20180524063416 b7133728 cairo.region%s
 D game.ads		20190109182118 65d6f709 game%s
-D game.adb		20190110103112 5f994755 game%b
+D game.adb		20190110114326 f15df759 game%b
 D game_spark.ads	20190109084306 50c6ff5f game_spark%s
 D gdk.ads		20180524063416 96d821f3 gdk%s
 D gdk-color.ads		20180524063418 ef57bc34 gdk.color%s
@@ -150,7 +150,7 @@ D pango-language.ads	20180524063420 e96cb8f4 pango.language%s
 D pango-layout.ads	20180524063422 d240b716 pango.layout%s
 D pango-matrix.ads	20180524063420 309f74b5 pango.matrix%s
 D pango-tabs.ads	20180524063420 0c575925 pango.tabs%s
-D submarine_generic.ads	20190110103126 98856f2e submarine_generic%s
+D submarine_generic.ads	20190110112942 68e7fdf9 submarine_generic%s
 D system.ads		20180524051738 32a08138 system%s
 D s-atacco.ads		20180524051738 4c36d12f system.address_to_access_conversions%s
 D s-crtl.ads		20180524051736 0ebbdb71 system.crtl%s
@@ -308,8 +308,8 @@ X 21 game.adb
 187i7 y{integer} 205m13 206r50 210r75 218r75
 188f7 dlugosc_strzalki{float} 236r23
 189i7 Linear_position{80|40I12[22|4]} 206m13 207r33
-190r7 board_cell{80|73R9[22|4]} 207m13 208r16 208r48 208r86 208r160 215r16
-191i7 sonar_range{integer} 208r140 208r220
+190r7 board_cell{80|73R9[22|4]} 207m13 208r16 208r48 215r16 215r52 215r128
+191i7 sonar_range{integer} 215r106 215r188
 200i11 r{80|49I12[22|4]} 205r26
 202i14 c{80|46I12[22|4]} 204r26
 329o7 next{11|49O9} 335m10 335r18 336r22
@@ -417,14 +417,14 @@ X 80 submarine_generic.ads
 . 127r99[22|4] 133r75[22|4] 138r99[22|4] 144r75[22|4] 151r101[22|4] 158r101[22|4]
 . 168r101[22|4] 174r101[22|4] 200r16[22|4] 229r73[22|4] 233r82[22|4] 244r73[22|4]
 52R9*Position_t
-54i10*row{49I12[22|4]} 21|208r108[22|4]
-55i10*column{46I12[22|4]} 21|208r182[22|4]
+54i10*row{49I12[22|4]} 21|215r74[22|4]
+55i10*column{46I12[22|4]} 21|215r150[22|4]
 62R9*Submarine_Position_t
-64i10*row{49I12[22|4]} 21|208r133[22|4] 256r56[22|4]
-65i10*column{46I12[22|4]} 21|208r210[22|4] 255r66[22|4]
+64i10*row{49I12[22|4]} 21|215r99[22|4] 256r56[22|4]
+65i10*column{46I12[22|4]} 21|215r178[22|4] 255r66[22|4]
 73R9*Pixel_t 21|190r20[22|4]
 77e10*p_state{36E9[22|4]} 21|208r27[22|4] 208r59[22|4] 215r27[22|4]
-80r10*p_Position{52R9[22|4]} 21|208r97[22|4] 208r171[22|4]
+80r10*p_Position{52R9[22|4]} 21|215r63[22|4] 215r139[22|4]
 84A9*Board_t(73R9[22|4])<integer>
 87V13*IsWon{boolean} 21|293s38[22|4]
 89V13*IsLost{boolean} 21|298s38[22|4]
@@ -434,7 +434,7 @@ X 80 submarine_generic.ads
 126U14*SetSubmarineCourse 21|303s31[22|4]
 128V13*CalculateRealSpeedFromVelocity{float} 21|93s29[22|4]
 131m4*Submarine_Course{13M9[22|4]} 21|54r116[22|4] 54r230[22|4]
-133r4*Submarine_Position{62R9[22|4]} 21|208r114[22|4] 208r191[22|4] 255r47[22|4]
+133r4*Submarine_Position{62R9[22|4]} 21|215r80[22|4] 215r159[22|4] 255r47[22|4]
 . 256r37[22|4]
 137e4*Submarine_Speed{32E9[22|4]} 21|103r10[22|4] 114r10[22|4] 125r10[22|4]
 . 136r10[22|4] 147r12[22|4] 163r16[22|4]
@@ -443,10 +443,10 @@ X 80 submarine_generic.ads
 148b4*Submarine_goback_zero{boolean} 21|149m13[22|4] 167r16[22|4] 171m16[22|4]
 149b4*Submarine_straight_zero{boolean} 21|150r16[22|4] 154m16[22|4] 164m16[22|4]
 . 172m16[22|4]
-159U14*DecreaseSubmarineSpeed 21|308s31[22|4]
-161U14*IncreaseSubmarineSpeed 21|313s31[22|4]
-163U14*IncreaseSubmarineCourseValue 21|318s31[22|4]
-165U14*DecreaceSubmarineCourseValue 21|323s31[22|4]
+161U14*DecreaseSubmarineSpeed 21|308s31[22|4]
+163U14*IncreaseSubmarineSpeed 21|313s31[22|4]
+165U14*IncreaseSubmarineCourseValue 21|318s31[22|4]
+167U14*DecreaceSubmarineCourseValue 21|323s31[22|4]
 X 81 system.ads
 67M9*Address
 X 96 s-rannum.ads

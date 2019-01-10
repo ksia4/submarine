@@ -60,25 +60,36 @@ package body submarine_generic with SPARK_Mode is
    end SetRandomCoast;
 
    procedure SetObstacle is
+      random_pos : Table_Range_1D_t;
+      row : Row_t;
+      column : Column_t;
+      ob : Integer := 0;
+      new_random_position : Table_Range_1D_t;
    begin
-      for i in 1..20
+      while ob < Obstacle_number
       loop
-         for j in 1..20
-         loop
-            Board(PositionToLinear((50 + i, 57 + j))).p_state := OBSTACLE;
-            Board(PositionToLinear((198 + i, 367 + j))).p_state := OBSTACLE;
-            Board(PositionToLinear((469 + i, 126 + j))).p_state := OBSTACLE;
-            Board(PositionToLinear((559 + i, 444 + j))).p_state := OBSTACLE;
-            Board(PositionToLinear((701 + i, 1009 + j))).p_state := OBSTACLE;
-            Board(PositionToLinear((750 + i, 84 + j))).p_state := OBSTACLE;
-            Board(PositionToLinear((666 + i, 69 + j))).p_state := OBSTACLE;
-            Board(PositionToLinear((666 + i, 69 + j))).p_state := OBSTACLE;
-            Board(PositionToLinear((39 + i, 1150 + j))).p_state := OBSTACLE;
-            Board(PositionToLinear((70 + i, 1093 + j))).p_state := OBSTACLE;
-            Board(PositionToLinear((115 + i, 506 + j))).p_state := OBSTACLE;
-            Board(PositionToLinear((409 + i, 807 + j))).p_state := OBSTACLE;
-         end loop;
+         random_pos := rand.Random(game_seed);
+         row := Board(random_pos).p_Position.row;
+         column := Board(random_pos).p_Position.column;
+         if Board(random_pos).p_state = WATER then
+
+            for i in 1..20
+            loop
+               for j in 1..20
+               loop
+                  new_random_position := PositionToLinear((row+i, column+j));
+                  if row + i in Row_t'Range and column + j in Column_t'Range and Board(new_random_position).p_state = WATER then
+                     Board(new_random_position).p_state := OBSTACLE;
+
+                  end if;
+               end loop;
+            end loop;
+            ob := ob+1;
+         end if;
+
+
       end loop;
+
       null;
    end SetObstacle;
 

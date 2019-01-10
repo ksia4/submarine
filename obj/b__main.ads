@@ -239,7 +239,7 @@ package ada_main is
    pragma Export (C, u00100, "system__string_hashB");
    u00101 : constant Version_32 := 16#143c59ac#;
    pragma Export (C, u00101, "system__string_hashS");
-   u00102 : constant Version_32 := 16#724d281c#;
+   u00102 : constant Version_32 := 16#dc899810#;
    pragma Export (C, u00102, "gameB");
    u00103 : constant Version_32 := 16#f7980ffa#;
    pragma Export (C, u00103, "gameS");
@@ -841,11 +841,11 @@ package ada_main is
    pragma Export (C, u00401, "system__tasking__utilitiesB");
    u00402 : constant Version_32 := 16#332a5557#;
    pragma Export (C, u00402, "system__tasking__utilitiesS");
-   u00403 : constant Version_32 := 16#c8439071#;
+   u00403 : constant Version_32 := 16#382102a6#;
    pragma Export (C, u00403, "game_sparkS");
-   u00404 : constant Version_32 := 16#008ae2b6#;
+   u00404 : constant Version_32 := 16#382a09d9#;
    pragma Export (C, u00404, "submarine_genericB");
-   u00405 : constant Version_32 := 16#a0ffd306#;
+   u00405 : constant Version_32 := 16#509d41d1#;
    pragma Export (C, u00405, "submarine_genericS");
    u00406 : constant Version_32 := 16#8aa4f090#;
    pragma Export (C, u00406, "system__img_realB");
