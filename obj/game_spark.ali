@@ -18,7 +18,7 @@ RV NO_IMPLICIT_LOOPS
 RV NO_ELABORATION_CODE
 RV SPARK_05
 
-U game_spark%s		game_spark.ads		cadd9b96 EE OO PK IL
+U game_spark%s		game_spark.ads		ffc088a2 EE OO PK IL
 W ada%s			ada.ads			ada.ali
 Z ada.exceptions%s	a-except.adb		a-except.ali
 W ada.numerics%s	a-numeri.ads		a-numeri.ali
@@ -78,8 +78,8 @@ D interfac.ads		20180524051736 5ab55268 interfaces%s
 D i-c.ads		20180524051736 5421119b interfaces.c%s
 D i-cstrin.ads		20180524051736 341d0ddf interfaces.c.strings%s
 D i-cstrea.ads		20180524051736 e53d8b8e interfaces.c_streams%s
-D submarine_generic.ads	20190110144616 9a1b64c9 submarine_generic%s
-D submarine_generic.adb	20190110162030 e80131c5 submarine_generic%b
+D submarine_generic.ads	20190110163124 af0677fd submarine_generic%s
+D submarine_generic.adb	20190110171624 77343605 submarine_generic%b
 D system.ads		20180524051738 32a08138 system%s
 D s-conca2.ads		20180524051736 02a0d7d0 system.concat_2%s
 D s-crtl.ads		20180524051736 0ebbdb71 system.crtl%s
@@ -123,7 +123,7 @@ X 34 interfac.ads
 74M9*Unsigned_32
 77M9*Unsigned_64
 X 38 submarine_generic.ads
-10k9*submarine_generic 18|1w6 4r29 38|181e22
+10k9*submarine_generic 18|1w6 4r29 38|183e22
 X 40 system.ads
 67M9*Address
 X 55 s-rannum.ads

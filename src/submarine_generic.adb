@@ -175,6 +175,19 @@ package body submarine_generic with SPARK_Mode is
       SetRealSubmarineDepth;
       real_new_row := Submarine_Position.real_row + Submarine_Velocity.vertical_velocity;
       real_new_column := Submarine_Position.real_column + Submarine_Velocity.horizontal_velocity;
+      if Submarine_real_depth = 0.0 and Submarine_Oxygeb <= 90.0 then
+         Submarine_Oxygeb := Submarine_Oxygeb + 10.0;
+      elsif Submarine_real_depth = 0.0 and Submarine_Oxygeb < 100.0 then
+         Submarine_Oxygeb := 100.0;
+      elsif Submarine_real_depth > 0.0 and Submarine_Oxygeb >= 1.0 then
+         Submarine_Oxygeb := Submarine_Oxygeb - 0.1;
+      elsif Submarine_real_depth > 0.0 and Submarine_Oxygeb < 1.0 then
+         Submarine_Oxygeb := 0.0;
+         is_lost := True;
+         is_running := False;
+         return;
+      end if;
+
 
       if real_new_row >= Float(Row_t'Last) then
          real_new_row := Float(Row_t'Last);

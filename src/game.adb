@@ -56,8 +56,14 @@ package body game is
 
       elsif Event.Keyval = GDK_LC_w then
          Game_Control.DecreaseSubmarineDepth;
+         if not submarine.is_brum then
+            submarine.is_brum := True;
+         end if;
       elsif Event.Keyval = GDK_LC_s then
          Game_Control.IncreaseSubmarineDepth;
+         if not submarine.is_brum then
+            submarine.is_brum := True;
+         end if;
       end if;
 
       return False;
@@ -221,12 +227,24 @@ package body game is
       --text : String := new String()
    begin
       Set_Source_Rgb(Cr, 1.0, 1.0, 224.0/255.0);
-      Cairo.Set_Font_Size (Cr, Gdouble(30));
+      Cairo.Set_Font_Size (Cr, Gdouble(27));
       Cairo.Move_To (Cr, Gdouble (Column_t'Range_Length + 10), Gdouble (0.5*Row_t'Range_Length));
       Cairo.Show_Text (Cr, "ZNALEZIONE SKARBY");
-      Cairo.Move_To (Cr, Gdouble (Column_t'Range_Length + 100), Gdouble (0.6*Row_t'Range_Length));
+      Cairo.Set_Font_Size (Cr, Gdouble(35));
+      Cairo.Move_To (Cr, Gdouble (Column_t'Range_Length + 100), Gdouble (0.58*Row_t'Range_Length));
       Cairo.Show_Text (Cr, Submarine_achieved_targets'Img & "/" & All_targets_number'Img);
    end Draw_points;
+
+   procedure Draw_Oxygen(Cr : Cairo.Cairo_Context) is
+   begin
+      Set_Source_Rgb(Cr, 1.0, 1.0, 224.0/255.0);
+      Cairo.Set_Font_Size (Cr, Gdouble(30));
+      Cairo.Move_To (Cr, Gdouble (Column_t'Range_Length + 10), Gdouble (0.66*Row_t'Range_Length));
+      Cairo.Show_Text (Cr, "POZIOM TLENU");
+      Cairo.Move_To (Cr, Gdouble (Column_t'Range_Length + 100), Gdouble (0.74*Row_t'Range_Length));
+      Cairo.Show_Text (Cr, Integer'image(Integer(Submarine_Oxygeb)) & "%");
+   end Draw_Oxygen;
+
 
 
    function OnDraw (Self : access Gtk_Widget_Record'Class;
@@ -291,6 +309,8 @@ package body game is
       Draw_depth(Cr);
 
       Draw_points(Cr);
+
+      Draw_Oxygen(Cr);
 
       if Game_Control.IsLost or Game_Control.IsWon then
          Cairo.Set_Font_Size (Cr, Gdouble(50));

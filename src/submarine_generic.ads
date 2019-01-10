@@ -166,6 +166,8 @@ package submarine_generic with SPARK_Mode is
 
    Submarine_real_depth : Float := 0.0;
 
+   Submarine_Oxygeb : Float := 100.0;
+
    procedure DecreaseSubmarineSpeed;
 
    procedure IncreaseSubmarineSpeed;
