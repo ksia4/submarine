@@ -39,6 +39,8 @@ package game is
       procedure IncreaseSubmarineSpeed;
       procedure IncreaseSubmarineCourseValue;
       procedure DecreaceSubmarineCourseValue;
+      procedure IncreaseSubmarineDepth;
+      procedure DecreaseSubmarineDepth;
    private
       started : Boolean := False;
       --menu : Boolean := False;

@@ -13,7 +13,7 @@ RV NO_IMPLEMENTATION_PRAGMAS
 RV SPARK_05
 RV MAX_ENTRY_QUEUE_LENGTH=1+
 
-U main%b		main.adb		b81f72fa NE OO SU
+U main%b		main.adb		f6abc927 NE OO SU
 Z ada.tags%s		a-tags.adb		a-tags.ali
 W game%s		game.adb		game.ali
 W game_spark%s		game_spark.ads		game_spark.ali
@@ -43,7 +43,7 @@ D a-unccon.ads		20180524051738 0e9b276f ada.unchecked_conversion%s
 D a-uncdea.ads		20180524051736 eff36322 ada.unchecked_deallocation%s
 D cairo.ads		20180524063416 925d4aaa cairo%s
 D cairo-region.ads	20180524063416 b7133728 cairo.region%s
-D game.ads		20190109182118 65d6f709 game%s
+D game.ads		20190110143846 2b624cd4 game%s
 D game_spark.ads	20190109084306 50c6ff5f game_spark%s
 D gdk.ads		20180524063416 96d821f3 gdk%s
 D gdk-color.ads		20180524063418 ef57bc34 gdk.color%s
@@ -109,7 +109,7 @@ D pango-language.ads	20180524063420 e96cb8f4 pango.language%s
 D pango-layout.ads	20180524063422 d240b716 pango.layout%s
 D pango-matrix.ads	20180524063420 309f74b5 pango.matrix%s
 D pango-tabs.ads	20180524063420 0c575925 pango.tabs%s
-D submarine_generic.ads	20190110112942 68e7fdf9 submarine_generic%s
+D submarine_generic.ads	20190110144616 9a1b64c9 submarine_generic%s
 D system.ads		20180524051738 32a08138 system%s
 D s-atacco.ads		20180524051738 4c36d12f system.address_to_access_conversions%s
 D s-exctab.ads		20180524051738 54135002 system.exception_table%s
@@ -142,14 +142,14 @@ D s-unstyp.ads		20180524051736 34867c83 system.unsigned_types%s
 D s-win32.ads		20180524051736 b7f96285 system.win32%s
 D unchconv.ads		20180524051736 ca2f9e18 unchecked_conversion%s
 X 13 game.ads
-9K9*game 59e9 64|6w6 6r16 41r30 44r4 45r13
+9K9*game 61e9 64|6w6 6r16 41r30 44r4 45r13
 12V13*OnKeyPress{boolean} 64|53r28
 16V13*OnDraw{boolean} 64|44r23
 25U17 Start 64|61s16
-47P9*Game_Control_a(24W19)
-49V13*GameControl{47P9} 64|61s4
-51V13*TriggerRedraw{boolean} 64|58r42
-53p4*Draw{50|104P9} 64|41m35 41r35 44r9 45r18
+49P9*Game_Control_a(24W19)
+51V13*GameControl{49P9} 64|61s4
+53V13*TriggerRedraw{boolean} 64|58r42
+55p4*Draw{50|104P9} 64|41m35 41r35 44r9 45r18
 X 14 game_spark.ads
 3K9*game_spark 5e15 64|13w6 43r32 43r76
 4K12*submarine[79|10] 64|43r43 43r87
@@ -232,9 +232,9 @@ X 64 main.adb
 X 65 main_quit.adb
 4U11*main_quit 64|14w6 48r20
 X 79 submarine_generic.ads
-40I12*Table_Range_1D_t{positive}
-46I12*Column_t{40I12[14|4]} 64|43r53[14|4]
-49I12*Row_t{40I12[14|4]} 64|43r97[14|4]
+42I12*Table_Range_1D_t{positive}
+48I12*Column_t{42I12[14|4]} 64|43r53[14|4]
+51I12*Row_t{42I12[14|4]} 64|43r97[14|4]
 X 80 system.ads
 67M9*Address
 X 87 s-os_lib.ads

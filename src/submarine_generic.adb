@@ -30,7 +30,6 @@ package body submarine_generic with SPARK_Mode is
       for i in Table_Range_1D_t
       loop
          Board(i).p_Position := (row => row, column => col);
-         --Put_Line("row: " &row'Img &" col := " &col'Img);
          if col = Column_t'Last then
             col := Column_t'First;
             if row < Row_t'Last then
@@ -130,7 +129,6 @@ package body submarine_generic with SPARK_Mode is
          if Board(target_coordinate).p_state = WATER then
             setTarger(target_coordinate, set_targets_number);
             set_targets_number := set_targets_number + 1;
-            Put_Line(set_targets_number'Img);
          end if;
 
       end loop;
@@ -143,6 +141,28 @@ package body submarine_generic with SPARK_Mode is
       return Sqrt(Submarine_Velocity.vertical_velocity **2 + Submarine_Velocity.horizontal_velocity ** 2);
    end CalculateRealSpeedFromVelocity;
 
+   procedure SetRealSubmarineDepth is
+      delta_depth : Float := 0.1;
+      new_submarine_depth : Float;
+   begin
+      if Submarine_real_depth > Float(Submarine_depth) then
+         new_submarine_depth := Submarine_real_depth - delta_depth;
+         if new_submarine_depth < Float(Submarine_depth) then
+            new_submarine_depth := Float(Submarine_depth);
+         end if;
+
+      elsif Submarine_real_depth < Float(Submarine_depth) then
+         new_submarine_depth := Submarine_real_depth + delta_depth;
+         if new_submarine_depth > Float(Submarine_depth) then
+            new_submarine_depth := Float(Submarine_depth);
+         end if;
+      else new_submarine_depth := Submarine_real_depth;
+      end if;
+      Submarine_real_depth := new_submarine_depth;
+
+   end SetRealSubmarineDepth;
+
+
    procedure MoveSubmarine is
       new_row         : Row_t;
       new_column      : Column_t;
@@ -152,6 +172,7 @@ package body submarine_generic with SPARK_Mode is
       warunek_row : Boolean := False;
    begin
       SetSubmarineVelocity;
+      SetRealSubmarineDepth;
       real_new_row := Submarine_Position.real_row + Submarine_Velocity.vertical_velocity;
       real_new_column := Submarine_Position.real_column + Submarine_Velocity.horizontal_velocity;
 
@@ -226,7 +247,6 @@ package body submarine_generic with SPARK_Mode is
    begin
       --jesli wygral albo gra nie dziala albo przegral to nie robimy tick
       if not is_running or is_won or is_lost then
-         Put_Line("Nie tickam");
          return;
       end if;
       linear_submarine_position := PositionToLinear((Submarine_Position.row, Submarine_Position.column));
@@ -234,7 +254,6 @@ package body submarine_generic with SPARK_Mode is
       if Board(linear_submarine_position).p_state = OBSTACLE then
          is_lost := True;
          is_running := False;
-         Put_Line("Przeszkoda");
       end if;
 
       if Board(linear_submarine_position).p_state = TARGET then
@@ -247,7 +266,6 @@ package body submarine_generic with SPARK_Mode is
       end if;
 
       if Board(linear_submarine_position).p_state = COAST then
-         Put_Line("Dobilem do brzegu");
          if CalculateRealSpeedFromVelocity > max_parking_speed then
             is_lost := True;
             is_running := False;
@@ -278,11 +296,13 @@ package body submarine_generic with SPARK_Mode is
          first_reset := False;
       end if;
 
-      Put_Line("Reset");
       is_running := True;
       is_won := False;
       is_lost := False;
       Submarine_achieved_targets := 0;
+      is_brum := False;
+      Submarine_depth := 0;
+      Submarine_real_depth := 0.0;
 
       --czyszczenie planszy
       for i in Board'Range
@@ -466,7 +486,6 @@ package body submarine_generic with SPARK_Mode is
       if Submarine_Speed /= GOBACK then
          SetSubmarineSpeed(Speed_t'Pred(Submarine_Speed));
       end if;
-      Put_Line(Submarine_Speed'Img);
    end DecreaseSubmarineSpeed;
 
    procedure IncreaseSubmarineSpeed is
@@ -474,18 +493,31 @@ package body submarine_generic with SPARK_Mode is
       if Submarine_Speed /= FULL then
          SetSubmarineSpeed(Speed_t'Succ(Submarine_Speed));
       end if;
-      Put_Line(Submarine_Speed'Img);
    end IncreaseSubmarineSpeed;
 
    procedure IncreaseSubmarineCourseValue is
    begin
       SetSubmarineCourse(Submarine_Course + 1);
-      Put_Line(Submarine_Course'Image);
    end IncreaseSubmarineCourseValue;
 
    procedure DecreaceSubmarineCourseValue is
    begin
       SetSubmarineCourse(Submarine_Course - 1);
-      Put_Line(Submarine_Course'Image);
    end DecreaceSubmarineCourseValue;
+
+   procedure DecreaseSubmarineDepth is
+   begin
+      if Submarine_depth > Depth_t'First then
+         Submarine_depth := Submarine_depth - 1;
+      end if;
+   end DecreaseSubmarineDepth;
+
+   procedure IncreaseSubmarineDepth is
+   begin
+      if Submarine_depth < Depth_t'Last then
+         Submarine_depth := Submarine_depth + 1;
+      end if;
+   end IncreaseSubmarineDepth;
+
+
 end submarine_generic;

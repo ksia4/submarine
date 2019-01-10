@@ -24,26 +24,40 @@ package body game is
    begin
       if Event.Keyval = GDK_KP_Down
         or else Event.Keyval = GDK_Down
-        or else Event.Keyval = GDK_LC_s
       then
          Game_Control.DecreaseSubmarineSpeed;
+         if not submarine.is_brum then
+            submarine.is_brum := True;
+         end if;
+
       elsif Event.Keyval = GDK_KP_Up
         or else Event.Keyval = GDK_Up
-        or else Event.Keyval = GDK_LC_w
       then
          Game_Control.IncreaseSubmarineSpeed;
+         if not submarine.is_brum then
+            submarine.is_brum := True;
+         end if;
       elsif Event.Keyval = GDK_KP_Right
         or else Event.Keyval = GDK_Right
-        or else Event.Keyval = GDK_LC_d
       then
          Game_Control.IncreaseSubmarineCourseValue;
+         if not submarine.is_brum then
+            submarine.is_brum := True;
+         end if;
       elsif Event.Keyval = GDK_KP_Left
         or else Event.Keyval = GDK_Left
-        or else Event.Keyval = GDK_LC_a
       then
          Game_Control.DecreaceSubmarineCourseValue;
+         if not submarine.is_brum then
+            submarine.is_brum := True;
+         end if;
       elsif Event.Keyval = GDK_LC_r then
          Game_Control.Reset;
+
+      elsif Event.Keyval = GDK_LC_w then
+         Game_Control.DecreaseSubmarineDepth;
+      elsif Event.Keyval = GDK_LC_s then
+         Game_Control.IncreaseSubmarineDepth;
       end if;
 
       return False;
@@ -149,10 +163,8 @@ package body game is
             Submarine_goback_zero := True;
             if Submarine_straight_zero and real_speed > 0.0 then
                Cairo.Rectangle(Cr => Cr, X=> Gdouble(Column_t'Range_Length + 50), Y => Gdouble (0.3*Row_t'Range_Length) + 2.0 * 40.0, width => Gdouble (40), Height => Gdouble (-abs(real_speed/(Submarine_k * 2.0) * 80.0)));
-               Put_Line("Kuku");
             elsif real_speed < 0.0 then
                Submarine_straight_zero := False;
-               Put_Line("Wyzerowalem!");
             else
 
                Cairo.Rectangle(Cr => Cr, X=> Gdouble(Column_t'Range_Length + 50), Y => Gdouble (0.3*Row_t'Range_Length) + 2.0 * 40.0, width => Gdouble (40), Height => Gdouble (abs(real_speed/(Submarine_k * 2.0) * 80.0)));
@@ -180,6 +192,43 @@ package body game is
 
    end Draw_speed;
 
+   procedure Draw_depth(cr: Cairo.Cairo_Context) is
+      depth_to_show : Integer := Integer(100.0 * Submarine_real_depth);
+   begin
+      Set_Source_Rgb(Cr, 1.0, 1.0, 224.0/255.0);
+      Cairo.Set_Font_Size (Cr, Gdouble(20));
+      Cairo.Move_To (Cr, Gdouble (Column_t'Range_Length + 150), Gdouble (0.28*Row_t'Range_Length));
+      Cairo.Show_Text (Cr, "GLEBOKOSC");
+
+      --pusty pasek
+      --Cairo.Rectangle (Cr => Cr, X=> Gdouble(Column_t'Range_Length + 50 + 150), Y => Gdouble (0.3*Row_t'Range_Length), width => Gdouble (40), Height => Gdouble(Depth_t'Range_Length*11));
+      --Cairo.Set_Source_Rgb (Cr, 0.0, 0.0, 115.0/255.0);
+      --Cairo.Fill(Cr);
+
+      --kwadracik pod aktualna glebokosc
+      Cairo.Set_Source_Rgb (Cr, 1.0, 1.0, 224.0/255.0);
+      Cairo.Rectangle(Cr => Cr, X=> Gdouble(Column_t'Range_Length + 20 - 6 + 150), Y => Gdouble (0.3*Row_t'Range_Length)-12.0, width => Gdouble (80), Height => Gdouble(24));
+      Cairo.Fill(Cr);
+      Cairo.Set_Source_Rgb (Cr, 0.0, 0.0, 115.0/255.0);
+
+      --wartosc glebokosci
+      Cairo.Move_To(Cr, Gdouble(Column_t'Range_Length + 20 + 150), Gdouble (0.3*Row_t'Range_Length) + 8.0);
+      Cairo.Show_Text (Cr, depth_to_show'Img);
+
+   end Draw_depth;
+
+   procedure Draw_points(Cr : Cairo.Cairo_Context) is
+      --text : String := new String()
+   begin
+      Set_Source_Rgb(Cr, 1.0, 1.0, 224.0/255.0);
+      Cairo.Set_Font_Size (Cr, Gdouble(30));
+      Cairo.Move_To (Cr, Gdouble (Column_t'Range_Length + 10), Gdouble (0.5*Row_t'Range_Length));
+      Cairo.Show_Text (Cr, "ZNALEZIONE SKARBY");
+      Cairo.Move_To (Cr, Gdouble (Column_t'Range_Length + 100), Gdouble (0.6*Row_t'Range_Length));
+      Cairo.Show_Text (Cr, Submarine_achieved_targets'Img & "/" & All_targets_number'Img);
+   end Draw_points;
+
+
    function OnDraw (Self : access Gtk_Widget_Record'Class;
                     Cr   : Cairo.Cairo_Context) return Boolean is
       pragma Unreferenced (Self);
@@ -205,14 +254,14 @@ package body game is
             y := Integer(r);
             Linear_position := PositionToLinear((y,x));
             board_cell := Board(Linear_position);
-            if board_cell.p_state = COAST  or (board_cell.p_state = OBSTACLE) and abs(board_cell.p_Position.row - Submarine_Position.row) < sonar_range and abs(board_cell.p_Position.column - Submarine_Position.column) < sonar_range)
+            if board_cell.p_state = COAST  or ((board_cell.p_state = OBSTACLE) and ((abs(board_cell.p_Position.row - Submarine_Position.row) < sonar_range and abs(board_cell.p_Position.column - Submarine_Position.column) < sonar_range) or  not submarine.is_brum))
             then
                Cairo.Rectangle (Cr => Cr, X => Gdouble(x-1), Y => Gdouble(y-1),
                                 Width => Gdouble(1), Height => Gdouble (1));
                Cairo.Fill (Cr);
 
             end if;
-            if board_cell.p_state = TARGET and abs(board_cell.p_Position.row - Submarine_Position.row) < sonar_range/2 and abs(board_cell.p_Position.column - Submarine_Position.column) < sonar_range/2
+            if board_cell.p_state = TARGET and ((abs(board_cell.p_Position.row - Submarine_Position.row) < Integer(0.8 * Float(sonar_range) * Submarine_real_depth/Float(Depth_t'Last)) and abs(board_cell.p_Position.column - Submarine_Position.column) < Integer(0.8 * Float(sonar_range) * Submarine_real_depth/Float(Depth_t'Last))) or not submarine.is_brum)
             then
                Set_Source_Rgb(Cr, 1.0, 0.8, 0.0);
                Cairo.Rectangle (Cr => Cr, X => Gdouble(x-3), Y => Gdouble(y-3),
@@ -222,6 +271,8 @@ package body game is
             end if;
 
          end loop;
+
+
       end loop;
 
       --rysowanie_wskaznika
@@ -237,7 +288,9 @@ package body game is
 
       Draw_speed(Cr);
 
+      Draw_depth(Cr);
 
+      Draw_points(Cr);
 
       if Game_Control.IsLost or Game_Control.IsWon then
          Cairo.Set_Font_Size (Cr, Gdouble(50));
@@ -322,6 +375,16 @@ package body game is
       begin
          game_spark.submarine.DecreaceSubmarineCourseValue;
       end DecreaceSubmarineCourseValue;
+
+      procedure IncreaseSubmarineDepth is
+      begin
+         game_spark.submarine.IncreaseSubmarineDepth;
+      end IncreaseSubmarineDepth;
+
+      procedure DecreaseSubmarineDepth is
+      begin
+         game_spark.submarine.DecreaseSubmarineDepth;
+      end DecreaseSubmarineDepth;
 
    end Game_Control_t;
 

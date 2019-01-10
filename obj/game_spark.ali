@@ -18,7 +18,7 @@ RV NO_IMPLICIT_LOOPS
 RV NO_ELABORATION_CODE
 RV SPARK_05
 
-U game_spark%s		game_spark.ads		382102a6 EE OO PK IL
+U game_spark%s		game_spark.ads		cadd9b96 EE OO PK IL
 W ada%s			ada.ads			ada.ali
 Z ada.exceptions%s	a-except.adb		a-except.ali
 W ada.numerics%s	a-numeri.ads		a-numeri.ali
@@ -35,7 +35,6 @@ W system%s		system.ads		system.ali
 Z system.concat_2%s	s-conca2.adb		s-conca2.ali
 Z system.exn_llf%s	s-exnllf.adb		s-exnllf.ali
 Z system.fat_flt%s	s-fatflt.ads		s-fatflt.ali
-Z system.img_enum_new%s	s-imenne.adb		s-imenne.ali
 Z system.img_int%s	s-imgint.adb		s-imgint.ali
 Z system.img_real%s	s-imgrea.adb		s-imgrea.ali
 Z system.img_uns%s	s-imguns.adb		s-imguns.ali
@@ -79,8 +78,8 @@ D interfac.ads		20180524051736 5ab55268 interfaces%s
 D i-c.ads		20180524051736 5421119b interfaces.c%s
 D i-cstrin.ads		20180524051736 341d0ddf interfaces.c.strings%s
 D i-cstrea.ads		20180524051736 e53d8b8e interfaces.c_streams%s
-D submarine_generic.ads	20190110112942 68e7fdf9 submarine_generic%s
-D submarine_generic.adb	20190110114800 8da12543 submarine_generic%b
+D submarine_generic.ads	20190110144616 9a1b64c9 submarine_generic%s
+D submarine_generic.adb	20190110162030 e80131c5 submarine_generic%b
 D system.ads		20180524051738 32a08138 system%s
 D s-conca2.ads		20180524051736 02a0d7d0 system.concat_2%s
 D s-crtl.ads		20180524051736 0ebbdb71 system.crtl%s
@@ -91,7 +90,6 @@ D s-fatgen.ads		20180524051738 49cbaf86 system.fat_gen%s
 D s-ficobl.ads		20180524051738 078245e4 system.file_control_block%s
 D s-finmas.ads		20180524051738 7811a767 system.finalization_masters%s
 D s-finroo.ads		20180524051738 4ff27390 system.finalization_root%s
-D s-imenne.ads		20180524051736 614c06c0 system.img_enum_new%s
 D s-imgint.ads		20180524051736 02dbe0c2 system.img_int%s
 D s-imgrea.ads		20180524051736 c7a851e2 system.img_real%s
 D s-imguns.ads		20180524051736 9ff43cf7 system.img_uns%s
@@ -113,7 +111,7 @@ D s-unstyp.ads		20180524051736 34867c83 system.unsigned_types%s
 D s-valuns.ads		20180524051738 10a8ed3b system.val_uns%s
 D s-wchcon.ads		20180524051738 1b7d22d2 system.wch_con%s
 X 8 a-nudira.adb
-53V16 Random[56|83]{integer} 57|392b13[38|42[18|4]]
+53V16 Random[55|83]{integer} 56|392b13[38|44[18|4]]
 X 18 game_spark.ads
 3K9*game_spark 5l5 5e15
 4K12*submarine[38|10]
@@ -125,10 +123,10 @@ X 34 interfac.ads
 74M9*Unsigned_32
 77M9*Unsigned_64
 X 38 submarine_generic.ads
-10k9*submarine_generic 18|1w6 4r29 38|169e22
+10k9*submarine_generic 18|1w6 4r29 38|181e22
 X 40 system.ads
 67M9*Address
-X 56 s-rannum.ads
-75V13*Random{34|74M9} 57|221i21
-76V13*Random{34|77M9} 57|221i21
+X 55 s-rannum.ads
+75V13*Random{34|74M9} 56|221i21
+76V13*Random{34|77M9} 56|221i21
 

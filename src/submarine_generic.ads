@@ -31,6 +31,8 @@ package submarine_generic with SPARK_Mode is
    --STOP = 0, HALF = 1 FULL = 2, GOBACK = -1 przynajmniej na poczatek
    type Speed_t is (GOBACK, STOP, HALF, FULL);
 
+   type Depth_t is new Integer range 0..10;
+
    -- pole na mapie moze byc woda, wybrzeze lub przeszkoda
    -- to czym jest okresla typ state
    type State_t is (WATER, COAST, OBSTACLE, TARGET);
@@ -158,6 +160,12 @@ package submarine_generic with SPARK_Mode is
 
    Obstacle_number : Integer := 15;
 
+   is_brum : Boolean:= False;
+
+   Submarine_depth : Depth_t := 0;
+
+   Submarine_real_depth : Float := 0.0;
+
    procedure DecreaseSubmarineSpeed;
 
    procedure IncreaseSubmarineSpeed;
@@ -165,5 +173,9 @@ package submarine_generic with SPARK_Mode is
    procedure IncreaseSubmarineCourseValue;
 
    procedure DecreaceSubmarineCourseValue;
+
+   procedure DecreaseSubmarineDepth;
+
+   procedure IncreaseSubmarineDepth;
 
 end submarine_generic;
