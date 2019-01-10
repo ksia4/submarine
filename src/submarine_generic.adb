@@ -82,6 +82,50 @@ package body submarine_generic with SPARK_Mode is
       null;
    end SetObstacle;
 
+   procedure setTarger(target_coordinate : Table_Range_1D_t; number : Integer) is
+      target_size : Integer := 8;
+      Pixel : Pixel_t := Board(target_coordinate);
+      row : Row_t;
+      column : Column_t;
+      new_target_coordinate : Table_Range_1D_t;
+   begin
+      row := Pixel.p_Position.row;
+      column := Pixel.p_Position.column;
+      for i in -target_size .. target_size
+      loop
+         for j in -target_size .. target_size
+         loop
+
+            if row + i in Row_t'Range and column + j in Column_t'Range then
+               new_target_coordinate := PositionToLinear((row + i, column + j));
+               Board(new_target_coordinate).p_state := TARGET;
+               All_targets_list(new_target_coordinate) := number;
+            end if;
+
+         end loop;
+
+      end loop;
+
+   end setTarger;
+
+
+   procedure SetTargets is
+      target_coordinate : Table_Range_1D_t;
+      set_targets_number : Integer := 1;
+   begin
+      while set_targets_number <= All_targets_number
+      loop
+         target_coordinate := rand.Random(game_seed);
+         if Board(target_coordinate).p_state = WATER then
+            setTarger(target_coordinate, set_targets_number);
+            set_targets_number := set_targets_number + 1;
+            Put_Line(set_targets_number'Img);
+         end if;
+
+      end loop;
+   end SetTargets;
+
+
    --funkcja do obliczania realnej predkosci na podstawie skladowych pionowych i poziomych
    function CalculateRealSpeedFromVelocity return Float is
    begin
@@ -147,6 +191,23 @@ package body submarine_generic with SPARK_Mode is
       Submarine_Position := (row => new_row, column => new_column, real_row => real_new_row, real_column => real_new_column);
    end MoveSubmarine;
 
+   function FindTargetNumber(linear_submarine_position : Table_Range_1D_t) return Integer is
+   begin
+      return All_targets_list(linear_submarine_position);
+   end FindTargetNumber;
+
+
+   procedure DeleteTarget(linear_submarine_position : Table_Range_1D_t) is
+      number : Integer;
+   begin
+      number := FindTargetNumber(linear_submarine_position);
+      for i in Table_Range_1D_t'Range
+      loop
+         if All_targets_list(i) = number then
+            Board(i).p_state := WATER;
+         end if;
+      end loop;
+   end DeleteTarget;
 
    procedure DoTick is
       linear_submarine_position : Table_Range_1D_t;
@@ -163,6 +224,15 @@ package body submarine_generic with SPARK_Mode is
          is_lost := True;
          is_running := False;
          Put_Line("Przeszkoda");
+      end if;
+
+      if Board(linear_submarine_position).p_state = TARGET then
+         Submarine_achieved_targets := Submarine_achieved_targets + 1;
+         DeleteTarget(linear_submarine_position);
+         if Submarine_achieved_targets >= All_targets_number then
+            is_won := True;
+            is_running := False;
+         end if;
       end if;
 
       if Board(linear_submarine_position).p_state = COAST then
@@ -192,10 +262,16 @@ package body submarine_generic with SPARK_Mode is
 
    procedure Reset is
    begin
+      if first_reset then
+         Reset(game_seed);
+         first_reset := False;
+      end if;
+
       Put_Line("Reset");
       is_running := True;
       is_won := False;
       is_lost := False;
+      Submarine_achieved_targets := 0;
 
       --czyszczenie planszy
       for i in Board'Range
@@ -205,6 +281,7 @@ package body submarine_generic with SPARK_Mode is
       SetPixelsOnBoard;
       SetRandomCoast;
       SetObstacle;
+      SetTargets;
 
       Submarine_Course := 0;
       Submarine_Position := (Row_t'Last/2, Column_t'Last/2, Float(Row_t'Last/2), Float(Column_t'Last/2));

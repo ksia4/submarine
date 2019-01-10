@@ -33,7 +33,7 @@ package submarine_generic with SPARK_Mode is
 
    -- pole na mapie moze byc woda, wybrzeze lub przeszkoda
    -- to czym jest okresla typ state
-   type State_t is (WATER, COAST, OBSTACLE);
+   type State_t is (WATER, COAST, OBSTACLE, TARGET);
 
    --Spark nieogarnia tablic 2D wiec linearyzujemy do 1D
    -- typ reprezentujacy zakres zlinearyzowanej tablicy
@@ -150,6 +150,11 @@ package submarine_generic with SPARK_Mode is
 
    game_seed : rand.Generator;
 
+   Submarine_achieved_targets : Integer := 0;
+   All_targets_number : Integer := 8;
+   type All_targets_collection is array(Table_Range_1D_t) of Integer range 0..All_targets_number;
+   All_targets_list : All_targets_collection := (others => 0);
+   first_reset : Boolean := True;
 
    procedure DecreaseSubmarineSpeed;
 

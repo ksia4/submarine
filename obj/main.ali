@@ -109,7 +109,7 @@ D pango-language.ads	20180524063420 e96cb8f4 pango.language%s
 D pango-layout.ads	20180524063422 d240b716 pango.layout%s
 D pango-matrix.ads	20180524063420 309f74b5 pango.matrix%s
 D pango-tabs.ads	20180524063420 0c575925 pango.tabs%s
-D submarine_generic.ads	20190110075126 40e62451 submarine_generic%s
+D submarine_generic.ads	20190110103126 98856f2e submarine_generic%s
 D system.ads		20180524051738 32a08138 system%s
 D s-atacco.ads		20180524051738 4c36d12f system.address_to_access_conversions%s
 D s-exctab.ads		20180524051738 54135002 system.exception_table%s

@@ -212,6 +212,14 @@ package body game is
                Cairo.Fill (Cr);
 
             end if;
+            if board_cell.p_state = TARGET and abs(board_cell.p_Position.row - Submarine_Position.row) < sonar_range/2 and abs(board_cell.p_Position.column - Submarine_Position.column) < sonar_range/2
+            then
+               Set_Source_Rgb(Cr, 1.0, 0.8, 0.0);
+               Cairo.Rectangle (Cr => Cr, X => Gdouble(x-3), Y => Gdouble(y-3),
+                                Width => Gdouble(1), Height => Gdouble (1));
+               Cairo.Fill (Cr);
+               Set_Source_Rgb(Cr, 1.0, 1.0, 224.0/255.0);
+            end if;
 
          end loop;
       end loop;
@@ -320,6 +328,7 @@ package body game is
    task body Game_Task is
       next : Time := Clock;
    begin
+
       Reset;
 
       loop
