@@ -186,7 +186,11 @@ package body game is
       x : Integer;
       y : Integer;
       dlugosc_strzalki : Float := 30.0;
+      Linear_position : Table_Range_1D_t;
+      board_cell : Pixel_t;
+      sonar_range : Integer := 150;
    begin
+
       --czyszczenie powierzchni
       Set_Source_Rgb(Cr, 0.0, 191.0/255.0, 1.0);
       Cairo.Paint(Cr);
@@ -199,14 +203,14 @@ package body game is
          loop
             x := Integer(c);
             y := Integer(r);
-            if Board(PositionToLinear((y, x))).p_state = COAST then
+            Linear_position := PositionToLinear((y,x));
+            board_cell := Board(Linear_position);
+            if board_cell.p_state = COAST  or (board_cell.p_state = OBSTACLE and abs(board_cell.p_Position.row - Submarine_Position.row) < sonar_range and abs(board_cell.p_Position.column - Submarine_Position.column) < sonar_range) then
+
                Cairo.Rectangle (Cr => Cr, X => Gdouble(x-1), Y => Gdouble(y-1),
                                 Width => Gdouble(1), Height => Gdouble (1));
                Cairo.Fill (Cr);
-            --elsif Board(PositionToLinear((y,x))).p_state = OBSTACLE then
-            --   Cairo.Rectangle (Cr => Cr, X => Gdouble(x-1), Y => Gdouble(y-1),
-            --                    Width => Gdouble(1), Height => Gdouble (1));
-            --   Cairo.Fill (Cr);
+
             end if;
 
          end loop;
@@ -240,9 +244,9 @@ package body game is
 
       --draw submarine (and obstacles)
 
-      Cairo.Rectangle (Cr => Cr, X => Gdouble(Submarine_Position.column - 1),
-                       Y => Gdouble(Submarine_Position.row - 1), Width => Gdouble(10),
-                       Height => Gdouble(10));
+      Cairo.Rectangle (Cr => Cr, X => Gdouble(Submarine_Position.column - 2),
+                       Y => Gdouble(Submarine_Position.row - 2), Width => Gdouble(5),
+                       Height => Gdouble(5));
       Set_Source_Rgb(Cr, 1.0, 0.0, 0.0);
       Cairo.Fill(Cr);
 

@@ -61,20 +61,24 @@ package body submarine_generic with SPARK_Mode is
 
    procedure SetObstacle is
    begin
-      --for i in 1..5
-      --loop
-      --   for j in 1..5
-      --   loop
-      --      Board(PositionToLinear((50 + i, 57 + j))).p_state := OBSTACLE;
-      --      Board(PositionToLinear((198 + i, 367 + j))).p_state := OBSTACLE;
-      --      Board(PositionToLinear((469 + i, 126 + j))).p_state := OBSTACLE;
-      --      Board(PositionToLinear((559 + i, 444 + j))).p_state := OBSTACLE;
-      --      Board(PositionToLinear((701 + i, 1009 + j))).p_state := OBSTACLE;
-      --      Board(PositionToLinear((750 + i, 84 + j))).p_state := OBSTACLE;
-
-      --      Board(PositionToLinear((666 + i, 69 + j))).p_state := OBSTACLE;
-      --   end loop;
-      --end loop;
+      for i in 1..20
+      loop
+         for j in 1..20
+         loop
+            Board(PositionToLinear((50 + i, 57 + j))).p_state := OBSTACLE;
+            Board(PositionToLinear((198 + i, 367 + j))).p_state := OBSTACLE;
+            Board(PositionToLinear((469 + i, 126 + j))).p_state := OBSTACLE;
+            Board(PositionToLinear((559 + i, 444 + j))).p_state := OBSTACLE;
+            Board(PositionToLinear((701 + i, 1009 + j))).p_state := OBSTACLE;
+            Board(PositionToLinear((750 + i, 84 + j))).p_state := OBSTACLE;
+            Board(PositionToLinear((666 + i, 69 + j))).p_state := OBSTACLE;
+            Board(PositionToLinear((666 + i, 69 + j))).p_state := OBSTACLE;
+            Board(PositionToLinear((39 + i, 1150 + j))).p_state := OBSTACLE;
+            Board(PositionToLinear((70 + i, 1093 + j))).p_state := OBSTACLE;
+            Board(PositionToLinear((115 + i, 506 + j))).p_state := OBSTACLE;
+            Board(PositionToLinear((409 + i, 807 + j))).p_state := OBSTACLE;
+         end loop;
+      end loop;
       null;
    end SetObstacle;
 
@@ -146,7 +150,7 @@ package body submarine_generic with SPARK_Mode is
 
    procedure DoTick is
       linear_submarine_position : Table_Range_1D_t;
-      max_parking_speed : Float := 100.0;
+      max_parking_speed : Float := Submarine_k * 0.95;
    begin
       --jesli wygral albo gra nie dziala albo przegral to nie robimy tick
       if not is_running or is_won or is_lost then
@@ -166,9 +170,9 @@ package body submarine_generic with SPARK_Mode is
          if CalculateRealSpeedFromVelocity > max_parking_speed then
             is_lost := True;
             is_running := False;
-         --elsif Submarine_Velocity /= (0.0, 0.0) then
-            --Submarine_Velocity := (0.0, 0.0);
-            --Submarine_Speed := STOP;
+         elsif Submarine_Velocity /= (0.0, 0.0) then
+            Submarine_Velocity := (0.0, 0.0);
+            Submarine_Speed := STOP;
          end if;
       end if;
 
@@ -324,7 +328,7 @@ package body submarine_generic with SPARK_Mode is
    procedure SetSubmarineVelocity is
       --przyspieszenie w pix/tic^2
       --moznaby dorobic funkcje,zeby zalezalo od predkosci i sie na biezaco wyliczalo...
-      a                         : Float       := 1.0;
+      a                         : Float       := 0.05 * Submarine_k;
       target_velocity           : Velocity_t;
       real_course               : Course_t;
       real_speed                : Float;
@@ -396,25 +400,4 @@ package body submarine_generic with SPARK_Mode is
       SetSubmarineCourse(Submarine_Course - 1);
       Put_Line(Submarine_Course'Image);
    end DecreaceSubmarineCourseValue;
-
-  -- function Load_Pixbufs return Boolean is
-     -- Error : Glib.Error.GError;
-  -- begin
-      --Gdk_New_From_File (Background, Background_Name, Error);
-
-      --if Background = null then
-         --return False;
-      --end if;
-
-      --Back_Width  := Get_Width (Background);
-      --Back_Height := Get_Height (Background);
-
-      --for J in Images'Range loop
-       --  Gdk_New_From_File (Images (J), Image_Names (J).all, Error);
-       --  if Images (J) = null then
-       --     return False;
-      --   end if;
-    --  end loop;
-    --  return True;
-  -- end Load_Pixbufs;
 end submarine_generic;

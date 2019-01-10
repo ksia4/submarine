@@ -144,25 +144,11 @@ package submarine_generic with SPARK_Mode is
 
    --plansza
    Board : Board_t;
-   Submarine_k : Float := 10.0;
+   Submarine_k : Float := 4.0;
    Submarine_goback_zero : Boolean := False;
    Submarine_straight_zero : Boolean := False;
-   --obrazek
-   --Image_Names : constant String_Array :=
-     --(1 => new String'("Course-plansza.png"),
-     -- 2=> new String'("Course-strzalka.png"));
 
-   --Images : Pixbuf_Array (Image_Names'Range);
-
-   --function Load_Pixbufs return Boolean;
-   --  Load the images for the demo.
-   --  Return False if one of the pixmaps could not be loaded
-
-   --procedure Image_Draw
-     --(Bg_Draw : access Gtk_Widget_Record'Class;
-      --Canvas  : Image_Canvas;
-      --Surface : Cairo_Surface);
-     game_seed : rand.Generator;
+   game_seed : rand.Generator;
 
 
    procedure DecreaseSubmarineSpeed;
