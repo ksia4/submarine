@@ -51,8 +51,6 @@ package body game is
          if not submarine.is_brum then
             submarine.is_brum := True;
          end if;
-      elsif Event.Keyval = GDK_LC_r then
-         Game_Control.Reset;
 
       elsif Event.Keyval = GDK_LC_w then
          Game_Control.DecreaseSubmarineDepth;
@@ -64,6 +62,8 @@ package body game is
          if not submarine.is_brum then
             submarine.is_brum := True;
          end if;
+      elsif Event.Keyval = GDK_LC_r then
+         Game_Control.Reset;
       end if;
 
       return False;

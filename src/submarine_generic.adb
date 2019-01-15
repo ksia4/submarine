@@ -297,10 +297,6 @@ package body submarine_generic with SPARK_Mode is
       MoveSubmarine;
    end DoTick;
 
-   --procedure DoMenu is
-   --begin
-   --   null;
-   --end DoMenu;
 
    procedure Reset is
    begin

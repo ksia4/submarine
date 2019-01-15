@@ -239,7 +239,7 @@ package ada_main is
    pragma Export (C, u00100, "system__string_hashB");
    u00101 : constant Version_32 := 16#143c59ac#;
    pragma Export (C, u00101, "system__string_hashS");
-   u00102 : constant Version_32 := 16#89f1abd7#;
+   u00102 : constant Version_32 := 16#e984deb3#;
    pragma Export (C, u00102, "gameB");
    u00103 : constant Version_32 := 16#b92cb427#;
    pragma Export (C, u00103, "gameS");
