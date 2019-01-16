@@ -180,4 +180,8 @@ package submarine_generic with SPARK_Mode is
 
    procedure IncreaseSubmarineDepth;
 
+   task type TaskSetSubmarineVelocity;
+
+   task type TaskSetRealSubmarineDepth;
+
 end submarine_generic;

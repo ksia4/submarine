@@ -419,12 +419,13 @@ package body game is
          delay until next;
          if Game_Control.IsStarted then
             DoTick;
-         --elsif Game_Control.IsMenu then
-         --   DoMenu;
          else Put_Line("IsStarted sie wylaczylo");
          end if;
 
       end loop;
+      exception
+         when others=> Put_Line("Blad zadania Game_Task!");
+
    end Game_Task;
 
    function TriggerRedraw return Boolean is

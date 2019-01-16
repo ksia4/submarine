@@ -64,22 +64,27 @@ package body submarine_generic with SPARK_Mode is
       column : Column_t;
       ob : Integer := 0;
       new_random_position : Table_Range_1D_t;
+      actual_pixel : Pixel_t;
    begin
       while ob < Obstacle_number
       loop
          random_pos := rand.Random(game_seed);
          row := Board(random_pos).p_Position.row;
          column := Board(random_pos).p_Position.column;
-         if Board(random_pos).p_state = WATER then
-
+         actual_pixel := Board(random_pos);
+         if actual_pixel.p_state = WATER and
+           (actual_pixel.p_Position.row > Submarine_Position.row + 25 or actual_pixel.p_Position.row < Submarine_Position.row - 25) and
+           (actual_pixel.p_Position.column > Submarine_Position.column + 25 or actual_pixel.p_Position.column < Submarine_Position.column - 25)
+         then
             for i in 1..20
             loop
                for j in 1..20
                loop
-                  new_random_position := PositionToLinear((row+i, column+j));
-                  if row + i in Row_t'Range and column + j in Column_t'Range and Board(new_random_position).p_state = WATER then
-                     Board(new_random_position).p_state := OBSTACLE;
-
+                  if row + i in Row_t'Range and column + j in Column_t'Range then
+                     new_random_position := PositionToLinear((row+i, column+j));
+                     if Board(new_random_position).p_state = WATER then
+                        Board(new_random_position).p_state := OBSTACLE;
+                     end if;
                   end if;
                end loop;
             end loop;
@@ -122,11 +127,16 @@ package body submarine_generic with SPARK_Mode is
    procedure SetTargets is
       target_coordinate : Table_Range_1D_t;
       set_targets_number : Integer := 1;
+      actual_pixel : Pixel_t;
    begin
       while set_targets_number <= All_targets_number
       loop
          target_coordinate := rand.Random(game_seed);
-         if Board(target_coordinate).p_state = WATER then
+         actual_pixel := Board(target_coordinate);
+         if Board(target_coordinate).p_state = WATER and
+           (actual_pixel.p_Position.row > Submarine_Position.row + 20 or actual_pixel.p_Position.row < Submarine_Position.row - 20) and
+           (actual_pixel.p_Position.column > Submarine_Position.column + 20 or actual_pixel.p_Position.column > Submarine_Position.column - 20)
+         then
             setTarger(target_coordinate, set_targets_number);
             set_targets_number := set_targets_number + 1;
          end if;
@@ -162,8 +172,7 @@ package body submarine_generic with SPARK_Mode is
 
    end SetRealSubmarineDepth;
 
-
-   procedure MoveSubmarine is
+   task body TaskSetSubmarineVelocity is
       new_row         : Row_t;
       new_column      : Column_t;
       real_new_row    : Float;
@@ -172,23 +181,8 @@ package body submarine_generic with SPARK_Mode is
       warunek_row : Boolean := False;
    begin
       SetSubmarineVelocity;
-      SetRealSubmarineDepth;
       real_new_row := Submarine_Position.real_row + Submarine_Velocity.vertical_velocity;
       real_new_column := Submarine_Position.real_column + Submarine_Velocity.horizontal_velocity;
-      if Submarine_real_depth = 0.0 and Submarine_Oxygeb <= 90.0 then
-         Submarine_Oxygeb := Submarine_Oxygeb + 10.0;
-      elsif Submarine_real_depth = 0.0 and Submarine_Oxygeb < 100.0 then
-         Submarine_Oxygeb := 100.0;
-      elsif Submarine_real_depth > 0.0 and Submarine_Oxygeb >= 1.0 then
-         Submarine_Oxygeb := Submarine_Oxygeb - 0.1;
-      elsif Submarine_real_depth > 0.0 and Submarine_Oxygeb < 1.0 then
-         Submarine_Oxygeb := 0.0;
-         is_lost := True;
-         is_running := False;
-         return;
-      end if;
-
-
       if real_new_row >= Float(Row_t'Last) then
          real_new_row := Float(Row_t'Last);
          new_row := Row_t'Last;
@@ -232,8 +226,36 @@ package body submarine_generic with SPARK_Mode is
          Put_Line("real_new_row = " & real_new_row'Img);
          Put_Line("Row_t'Last = " & Row_t'Last'Img);
       end if;
-
       Submarine_Position := (row => new_row, column => new_column, real_row => real_new_row, real_column => real_new_column);
+      exception
+         when others=> Put_Line("Blad zadania TaskSetSubmarineVelocity!");
+   end TaskSetSubmarineVelocity;
+
+   task body TaskSetRealSubmarineDepth is
+   begin
+      SetRealSubmarineDepth;
+      if Submarine_real_depth = 0.0 and Submarine_Oxygeb <= 90.0 then
+         Submarine_Oxygeb := Submarine_Oxygeb + 10.0;
+      elsif Submarine_real_depth = 0.0 and Submarine_Oxygeb < 100.0 then
+         Submarine_Oxygeb := 100.0;
+      elsif Submarine_real_depth > 0.0 and Submarine_Oxygeb >= 1.0 then
+         Submarine_Oxygeb := Submarine_Oxygeb - 0.1;
+      elsif Submarine_real_depth > 0.0 and Submarine_Oxygeb < 1.0 then
+         Submarine_Oxygeb := 0.0;
+         is_lost := True;
+         is_running := False;
+         --return;
+      end if;
+      exception
+         when others=> Put_Line("Blad zadania TaskSetRealSubmarineDepth!");
+   end TaskSetRealSubmarineDepth;
+
+
+   procedure MoveSubmarine is
+      T1 : TaskSetSubmarineVelocity;
+      T2 : TaskSetRealSubmarineDepth;
+   begin
+      null;
    end MoveSubmarine;
 
    function FindTargetNumber(linear_submarine_position : Table_Range_1D_t) return Integer is
@@ -267,18 +289,16 @@ package body submarine_generic with SPARK_Mode is
       if Board(linear_submarine_position).p_state = OBSTACLE then
          is_lost := True;
          is_running := False;
-      end if;
 
-      if Board(linear_submarine_position).p_state = TARGET then
+      elsif Board(linear_submarine_position).p_state = TARGET then
          Submarine_achieved_targets := Submarine_achieved_targets + 1;
          DeleteTarget(linear_submarine_position);
          if Submarine_achieved_targets >= All_targets_number then
             is_won := True;
             is_running := False;
          end if;
-      end if;
 
-      if Board(linear_submarine_position).p_state = COAST then
+      elsif Board(linear_submarine_position).p_state = COAST then
          if CalculateRealSpeedFromVelocity > max_parking_speed then
             is_lost := True;
             is_running := False;
@@ -300,9 +320,11 @@ package body submarine_generic with SPARK_Mode is
 
    procedure Reset is
    begin
+      Put_Line("Reset start");
       if first_reset then
          Reset(game_seed);
          first_reset := False;
+         Put_Line("Pierwszy reset");
       end if;
 
       is_running := True;
@@ -312,21 +334,28 @@ package body submarine_generic with SPARK_Mode is
       is_brum := False;
       Submarine_depth := 0;
       Submarine_real_depth := 0.0;
+      Put_Line("Ustawiono parametry");
 
       --czyszczenie planszy
       for i in Board'Range
       loop
          Board(i) := (WATER, (Row_t'First, Column_t'First));
       end loop;
+      Put_Line("Plansza wyczyszczona");
       SetPixelsOnBoard;
+      Put_Line("przypisano pixele");
       SetRandomCoast;
+      Put_Line("Ustawiono wybrzeze");
       SetObstacle;
+      Put_Line("Ustawiono przeszkody");
       SetTargets;
+      Put_Line("Ustawiono cele");
 
       Submarine_Course := 0;
       Submarine_Position := (Row_t'Last/2, Column_t'Last/2, Float(Row_t'Last/2), Float(Column_t'Last/2));
       Submarine_Velocity := (0.0, 0.0);
       Submarine_Speed := STOP;
+      Put_Line("Restart sie zrobil");
 
    end Reset;
 
@@ -444,7 +473,6 @@ package body submarine_generic with SPARK_Mode is
 
    procedure SetSubmarineVelocity is
       --przyspieszenie w pix/tic^2
-      --moznaby dorobic funkcje,zeby zalezalo od predkosci i sie na biezaco wyliczalo...
       a                         : Float       := 0.05 * Submarine_k;
       target_velocity           : Velocity_t;
       real_course               : Course_t;
@@ -471,14 +499,14 @@ package body submarine_generic with SPARK_Mode is
             Submarine_Velocity.horizontal_velocity := target_velocity.horizontal_velocity;
          else
             --horizontal/abd(horizontal_ jest po to zeby dostac znak
-            Submarine_Velocity.horizontal_velocity := Submarine_Velocity.horizontal_velocity + (horizontal_delta_velocity/(abs(horizontal_delta_velocity))) * a * delta_tick;
+            Submarine_Velocity.horizontal_velocity := Submarine_Velocity.horizontal_velocity + Float'Copy_Sign(a * delta_tick, horizontal_delta_velocity);
          end if;
 
          --to samo dla vertical
          if a * delta_tick > abs(vertical_delta_velocity) then
             Submarine_Velocity.vertical_velocity := target_velocity.vertical_velocity;
          else
-            Submarine_Velocity.vertical_velocity := Submarine_Velocity.vertical_velocity + (vertical_delta_velocity/(abs(vertical_delta_velocity)) * a * delta_tick);
+            Submarine_Velocity.vertical_velocity := Submarine_Velocity.vertical_velocity + Float'Copy_Sign(a * delta_tick, vertical_delta_velocity);
          end if;
 
       end if;

@@ -10,6 +10,8 @@ RV NO_EXCEPTION_HANDLERS
 RV NO_EXCEPTIONS
 RV NO_FLOATING_POINT
 RV NO_STANDARD_STORAGE_POOLS
+RV NO_TASK_HIERARCHY
+RV NO_TASKING
 RV NO_DEFAULT_INITIALIZATION
 RV NO_DYNAMIC_SIZED_OBJECTS
 RV NO_IMPLEMENTATION_ATTRIBUTES
@@ -17,14 +19,16 @@ RV NO_IMPLEMENTATION_PRAGMAS
 RV NO_IMPLICIT_LOOPS
 RV NO_ELABORATION_CODE
 RV SPARK_05
+RV MAX_TASKS=1+
 
-U game_spark%s		game_spark.ads		ffc088a2 EE OO PK IL
+U game_spark%s		game_spark.ads		4a009ca7 EE OO PK IL
 W ada%s			ada.ads			ada.ali
 Z ada.exceptions%s	a-except.adb		a-except.ali
 W ada.numerics%s	a-numeri.ads		a-numeri.ali
 Z ada.numerics.aux%s	a-numaux.adb		a-numaux.ali
 Z ada.numerics.discrete_random%s
 Z ada.numerics.generic_elementary_functions%s
+Z ada.real_time%s	a-reatim.adb		a-reatim.ali
 Z ada.tags%s		a-tags.adb		a-tags.ali
 Z ada.text_io%s		a-textio.adb		a-textio.ali
 W gdk%s			gdk.ads			gdk.ali
@@ -38,7 +42,12 @@ Z system.fat_flt%s	s-fatflt.ads		s-fatflt.ali
 Z system.img_int%s	s-imgint.adb		s-imgint.ali
 Z system.img_real%s	s-imgrea.adb		s-imgrea.ali
 Z system.img_uns%s	s-imguns.adb		s-imguns.ali
+Z system.parameters%s	s-parame.adb		s-parame.ali
 Z system.random_numbers%s  s-rannum.adb		s-rannum.ali
+Z system.soft_links%s	s-soflin.adb		s-soflin.ali
+Z system.task_info%s	s-tasinf.adb		s-tasinf.ali
+Z system.tasking%s	s-taskin.adb		s-taskin.ali
+Z system.tasking.stages%s  s-tassta.adb		s-tassta.ali
 Z system.unsigned_types%s  s-unstyp.ads		s-unstyp.ali
 
 D ada.ads		20180524051736 76789da1 ada%s
@@ -51,6 +60,7 @@ D a-nudira.ads		20180524051736 71e55def ada.numerics.discrete_random%s
 D a-nudira.adb		20180524051736 72908cdb ada.numerics.discrete_random%b
 D a-ngelfu.ads		20180524051738 55716239 ada.numerics.generic_elementary_functions%s
 D a-ngelfu.adb		20180524051736 a9022048 ada.numerics.generic_elementary_functions%b
+D a-reatim.ads		20180524051738 0240fc73 ada.real_time%s
 D a-stream.ads		20180524051736 119b8fb3 ada.streams%s
 D a-tags.ads		20180524051738 491b781d ada.tags%s
 D a-textio.ads		20180524051738 881db35a ada.text_io%s
@@ -78,9 +88,10 @@ D interfac.ads		20180524051736 5ab55268 interfaces%s
 D i-c.ads		20180524051736 5421119b interfaces.c%s
 D i-cstrin.ads		20180524051736 341d0ddf interfaces.c.strings%s
 D i-cstrea.ads		20180524051736 e53d8b8e interfaces.c_streams%s
-D submarine_generic.ads	20190110163124 af0677fd submarine_generic%s
-D submarine_generic.adb	20190110171624 77343605 submarine_generic%b
+D submarine_generic.ads	20190116202642 1ac663f8 submarine_generic%s
+D submarine_generic.adb	20190116205310 c8e3aa97 submarine_generic%b
 D system.ads		20180524051738 32a08138 system%s
+D s-atacco.ads		20180524051738 4c36d12f system.address_to_access_conversions%s
 D s-conca2.ads		20180524051736 02a0d7d0 system.concat_2%s
 D s-crtl.ads		20180524051736 0ebbdb71 system.crtl%s
 D s-exctab.ads		20180524051738 54135002 system.exception_table%s
@@ -93,6 +104,8 @@ D s-finroo.ads		20180524051738 4ff27390 system.finalization_root%s
 D s-imgint.ads		20180524051736 02dbe0c2 system.img_int%s
 D s-imgrea.ads		20180524051736 c7a851e2 system.img_real%s
 D s-imguns.ads		20180524051736 9ff43cf7 system.img_uns%s
+D s-multip.ads		20180524051736 38ac9f73 system.multiprocessors%s
+D s-osinte.ads		20180524051738 2e5b26a9 system.os_interface%s
 D s-parame.ads		20180524051738 48ec542b system.parameters%s
 D s-pooglo.ads		20180524051736 ede33ef8 system.pool_global%s
 D s-rannum.ads		20180524051736 99ade2f2 system.random_numbers%s
@@ -101,32 +114,42 @@ D s-ransee.ads		20180524051738 01a57b33 system.random_seed%s
 D s-secsta.ads		20180524051738 20bbe636 system.secondary_stack%s
 D s-soflin.ads		20180524051736 a7318a92 system.soft_links%s
 D s-stache.ads		20180524051738 a37c21ec system.stack_checking%s
+D s-stausa.ads		20180524051736 017a0a05 system.stack_usage%s
 D s-stalib.ads		20180524051738 09bd3940 system.standard_library%s
 D s-stoele.ads		20180524051738 2dc34a04 system.storage_elements%s
 D s-stopoo.ads		20180524051736 b16154c2 system.storage_pools%s
 D s-stposu.ads		20180524051736 97a6219c system.storage_pools.subpools%s
 D s-stratt.ads		20180524051736 aedef97e system.stream_attributes%s
+D s-tasinf.ads		20180524051738 601f6b72 system.task_info%s
+D s-taspri.ads		20180524051738 6c1d93d4 system.task_primitives%s
+D s-taprop.ads		20180524051738 1dd2e1b6 system.task_primitives.operations%s
+D s-taskin.ads		20180524051738 1d8c1ccb system.tasking%s
+D s-tassta.ads		20180524051738 cca55c94 system.tasking.stages%s
 D s-traent.ads		20180524051736 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20180524051736 34867c83 system.unsigned_types%s
 D s-valuns.ads		20180524051738 10a8ed3b system.val_uns%s
 D s-wchcon.ads		20180524051738 1b7d22d2 system.wch_con%s
+D s-win32.ads		20180524051736 b7f96285 system.win32%s
 X 8 a-nudira.adb
-53V16 Random[55|83]{integer} 56|392b13[38|44[18|4]]
-X 18 game_spark.ads
+53V16 Random[59|83]{integer} 60|392b13[39|44[19|4]]
+X 19 game_spark.ads
 3K9*game_spark 5l5 5e15
-4K12*submarine[38|10]
-X 30 glib-object.ads
+4K12*submarine[39|10]
+X 31 glib-object.ads
 41P9*GObject(40R9)
-673V13*Convert{40|67M9} 28|58i21 29|49i21
-674V13*Convert{41P9} 28|59i21 29|50i21
-X 34 interfac.ads
+673V13*Convert{41|67M9} 29|58i21 30|49i21
+674V13*Convert{41P9} 29|59i21 30|50i21
+X 35 interfac.ads
 74M9*Unsigned_32
 77M9*Unsigned_64
-X 38 submarine_generic.ads
-10k9*submarine_generic 18|1w6 4r29 38|183e22
-X 40 system.ads
+X 39 submarine_generic.ads
+10k9*submarine_generic 19|1w6 4r29 39|187e22
+X 41 system.ads
 67M9*Address
-X 55 s-rannum.ads
-75V13*Random{34|74M9} 56|221i21
-76V13*Random{34|77M9} 56|221i21
+X 59 s-rannum.ads
+75V13*Random{35|74M9} 60|221i21
+76V13*Random{35|77M9} 60|221i21
+X 65 s-stausa.ads
+203U14*Initialize 204i<c,__gnat_stack_usage_initialize>22
+268U14*Output_Results 272i<c,__gnat_stack_usage_output_results>22
 

@@ -13,6 +13,7 @@ with Glib.Main; use Glib.Main;
 with game_spark;
 with main_quit;
 use Glib;
+with Ada.Text_IO; use Ada.Text_IO;
 
 procedure Main is
 
@@ -22,6 +23,7 @@ procedure Main is
    Timeout : G_Source_Id;
 
 begin
+   Put_Line(Positive'Last'Img);
    --  Initialize GtkAda.
    Gtk.Main.Init;
    --  Create a window with a size of 400x400
@@ -39,7 +41,7 @@ begin
 
    --  Add the drawing area
    Gtk.Drawing_Area.Gtk_New (game.Draw);
-   --game.Draw.Set_Size_Request (462, 286);
+
    Win.Set_Default_Size (300 + game_spark.submarine.Column_t'Range_Length, game_spark.submarine.Row_t'Range_Length);
    game.Draw.On_Draw (OnDraw'Access);
    Win.Add (game.Draw);
