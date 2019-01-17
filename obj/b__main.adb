@@ -36,15 +36,16 @@ package body ada_main is
    E173 : Short_Integer; pragma Import (Ada, E173, "system__storage_pools__subpools_E");
    E143 : Short_Integer; pragma Import (Ada, E143, "system__task_info_E");
    E374 : Short_Integer; pragma Import (Ada, E374, "ada__calendar_E");
+   E418 : Short_Integer; pragma Import (Ada, E418, "ada__calendar__delays_E");
    E122 : Short_Integer; pragma Import (Ada, E122, "ada__real_time_E");
    E103 : Short_Integer; pragma Import (Ada, E103, "ada__text_io_E");
    E169 : Short_Integer; pragma Import (Ada, E169, "system__pool_global_E");
    E372 : Short_Integer; pragma Import (Ada, E372, "system__random_seed_E");
-   E388 : Short_Integer; pragma Import (Ada, E388, "system__tasking__initialization_E");
+   E390 : Short_Integer; pragma Import (Ada, E390, "system__tasking__initialization_E");
    E378 : Short_Integer; pragma Import (Ada, E378, "system__tasking__protected_objects_E");
    E394 : Short_Integer; pragma Import (Ada, E394, "system__tasking__protected_objects__entries_E");
-   E392 : Short_Integer; pragma Import (Ada, E392, "system__tasking__queuing_E");
-   E384 : Short_Integer; pragma Import (Ada, E384, "system__tasking__stages_E");
+   E398 : Short_Integer; pragma Import (Ada, E398, "system__tasking__queuing_E");
+   E402 : Short_Integer; pragma Import (Ada, E402, "system__tasking__stages_E");
    E158 : Short_Integer; pragma Import (Ada, E158, "glib_E");
    E161 : Short_Integer; pragma Import (Ada, E161, "gtkada__types_E");
    E244 : Short_Integer; pragma Import (Ada, E244, "gdk__frame_timings_E");
@@ -693,17 +694,17 @@ package body ada_main is
          Violated =>
           (False, False, False, False, True, True, False, False, 
            True, False, False, True, True, True, True, False, 
-           False, False, False, False, True, True, False, True, 
+           False, False, True, False, True, True, False, True, 
            True, False, True, True, True, True, False, True, 
            False, False, False, True, False, False, True, False, 
-           True, False, True, True, False, False, False, True, 
-           False, False, False, True, False, False, False, False, 
+           True, False, True, True, False, True, False, True, 
+           True, False, False, True, False, False, False, False, 
            False, True, False, True, False, True, True, True, 
            False, False, True, False, True, True, True, False, 
            True, True, False, True, True, True, True, False, 
-           False, True, False, False, False, False, False, False, 
+           False, True, False, False, False, False, True, True, 
            True, False, True, False),
-         Count => (0, 0, 0, 0, 0, 0, 2, 0, 2, 0),
+         Count => (0, 0, 0, 0, 3, 3, 5, 0, 3, 0),
          Unknown => (False, False, False, False, False, False, True, False, True, False));
       Priority_Specific_Dispatching :=
         Local_Priority_Specific_Dispatching'Address;
@@ -782,6 +783,8 @@ package body ada_main is
       Ada.Calendar'Elab_Spec;
       Ada.Calendar'Elab_Body;
       E374 := E374 + 1;
+      Ada.Calendar.Delays'Elab_Body;
+      E418 := E418 + 1;
       Ada.Real_Time'Elab_Spec;
       Ada.Real_Time'Elab_Body;
       E122 := E122 + 1;
@@ -793,15 +796,15 @@ package body ada_main is
       System.Random_Seed'Elab_Body;
       E372 := E372 + 1;
       System.Tasking.Initialization'Elab_Body;
-      E388 := E388 + 1;
+      E390 := E390 + 1;
       System.Tasking.Protected_Objects'Elab_Body;
       E378 := E378 + 1;
       System.Tasking.Protected_Objects.Entries'Elab_Spec;
       E394 := E394 + 1;
       System.Tasking.Queuing'Elab_Body;
-      E392 := E392 + 1;
+      E398 := E398 + 1;
       System.Tasking.Stages'Elab_Body;
-      E384 := E384 + 1;
+      E402 := E402 + 1;
       Glib'Elab_Spec;
       Gtkada.Types'Elab_Spec;
       E158 := E158 + 1;
@@ -1055,10 +1058,10 @@ package body ada_main is
    end;
 
 --  BEGIN Object file/option list
-   --   C:\Users\DELL\Desktop\GUJA\submarine\obj\main_quit.o
    --   C:\Users\DELL\Desktop\GUJA\submarine\obj\submarine_generic.o
    --   C:\Users\DELL\Desktop\GUJA\submarine\obj\game_spark.o
    --   C:\Users\DELL\Desktop\GUJA\submarine\obj\game.o
+   --   C:\Users\DELL\Desktop\GUJA\submarine\obj\main_quit.o
    --   C:\Users\DELL\Desktop\GUJA\submarine\obj\main.o
    --   -LC:\Users\DELL\Desktop\GUJA\submarine\obj\
    --   -LC:\Users\DELL\Desktop\GUJA\submarine\obj\

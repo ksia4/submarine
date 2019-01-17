@@ -37,7 +37,7 @@ package ada_main is
    pragma Export (C, main, "main");
 
    type Version_32 is mod 2 ** 32;
-   u00001 : constant Version_32 := 16#bc91ac77#;
+   u00001 : constant Version_32 := 16#e3b94c83#;
    pragma Export (C, u00001, "mainB");
    u00002 : constant Version_32 := 16#050ff2f0#;
    pragma Export (C, u00002, "system__standard_libraryB");
@@ -263,9 +263,9 @@ package ada_main is
    pragma Export (C, u00112, "system__finalization_rootS");
    u00113 : constant Version_32 := 16#cf3f1b90#;
    pragma Export (C, u00113, "system__file_control_blockS");
-   u00114 : constant Version_32 := 16#4b9bad28#;
+   u00114 : constant Version_32 := 16#d11e9139#;
    pragma Export (C, u00114, "gameB");
-   u00115 : constant Version_32 := 16#b92cb427#;
+   u00115 : constant Version_32 := 16#1b6755b9#;
    pragma Export (C, u00115, "gameS");
    u00116 : constant Version_32 := 16#cd2959fb#;
    pragma Export (C, u00116, "ada__numericsS");
@@ -801,46 +801,46 @@ package ada_main is
    pragma Export (C, u00381, "ada__exceptions__is_null_occurrenceB");
    u00382 : constant Version_32 := 16#e1d7566f#;
    pragma Export (C, u00382, "ada__exceptions__is_null_occurrenceS");
-   u00383 : constant Version_32 := 16#7724692c#;
-   pragma Export (C, u00383, "system__tasking__stagesB");
-   u00384 : constant Version_32 := 16#fb9a8375#;
-   pragma Export (C, u00384, "system__tasking__stagesS");
+   u00383 : constant Version_32 := 16#0fc99b06#;
+   pragma Export (C, u00383, "system__tasking__rendezvousB");
+   u00384 : constant Version_32 := 16#f242aaf9#;
+   pragma Export (C, u00384, "system__tasking__rendezvousS");
    u00385 : constant Version_32 := 16#100eaf58#;
    pragma Export (C, u00385, "system__restrictionsB");
    u00386 : constant Version_32 := 16#79d25869#;
    pragma Export (C, u00386, "system__restrictionsS");
-   u00387 : constant Version_32 := 16#ff0ade79#;
-   pragma Export (C, u00387, "system__tasking__initializationB");
-   u00388 : constant Version_32 := 16#f7885a93#;
-   pragma Export (C, u00388, "system__tasking__initializationS");
-   u00389 : constant Version_32 := 16#a067942c#;
-   pragma Export (C, u00389, "system__tasking__task_attributesB");
-   u00390 : constant Version_32 := 16#4c40320c#;
-   pragma Export (C, u00390, "system__tasking__task_attributesS");
-   u00391 : constant Version_32 := 16#ec3cf692#;
-   pragma Export (C, u00391, "system__tasking__queuingB");
-   u00392 : constant Version_32 := 16#c9e0262c#;
-   pragma Export (C, u00392, "system__tasking__queuingS");
+   u00387 : constant Version_32 := 16#40317118#;
+   pragma Export (C, u00387, "system__tasking__entry_callsB");
+   u00388 : constant Version_32 := 16#c7180c67#;
+   pragma Export (C, u00388, "system__tasking__entry_callsS");
+   u00389 : constant Version_32 := 16#ff0ade79#;
+   pragma Export (C, u00389, "system__tasking__initializationB");
+   u00390 : constant Version_32 := 16#f7885a93#;
+   pragma Export (C, u00390, "system__tasking__initializationS");
+   u00391 : constant Version_32 := 16#a067942c#;
+   pragma Export (C, u00391, "system__tasking__task_attributesB");
+   u00392 : constant Version_32 := 16#4c40320c#;
+   pragma Export (C, u00392, "system__tasking__task_attributesS");
    u00393 : constant Version_32 := 16#50b90464#;
    pragma Export (C, u00393, "system__tasking__protected_objects__entriesB");
    u00394 : constant Version_32 := 16#7daf93e7#;
    pragma Export (C, u00394, "system__tasking__protected_objects__entriesS");
-   u00395 : constant Version_32 := 16#0fc99b06#;
-   pragma Export (C, u00395, "system__tasking__rendezvousB");
-   u00396 : constant Version_32 := 16#f242aaf9#;
-   pragma Export (C, u00396, "system__tasking__rendezvousS");
-   u00397 : constant Version_32 := 16#40317118#;
-   pragma Export (C, u00397, "system__tasking__entry_callsB");
-   u00398 : constant Version_32 := 16#c7180c67#;
-   pragma Export (C, u00398, "system__tasking__entry_callsS");
-   u00399 : constant Version_32 := 16#a11c264c#;
-   pragma Export (C, u00399, "system__tasking__protected_objects__operationsB");
-   u00400 : constant Version_32 := 16#ba36ad85#;
-   pragma Export (C, u00400, "system__tasking__protected_objects__operationsS");
-   u00401 : constant Version_32 := 16#70d5a0df#;
-   pragma Export (C, u00401, "system__tasking__utilitiesB");
-   u00402 : constant Version_32 := 16#332a5557#;
-   pragma Export (C, u00402, "system__tasking__utilitiesS");
+   u00395 : constant Version_32 := 16#a11c264c#;
+   pragma Export (C, u00395, "system__tasking__protected_objects__operationsB");
+   u00396 : constant Version_32 := 16#ba36ad85#;
+   pragma Export (C, u00396, "system__tasking__protected_objects__operationsS");
+   u00397 : constant Version_32 := 16#ec3cf692#;
+   pragma Export (C, u00397, "system__tasking__queuingB");
+   u00398 : constant Version_32 := 16#c9e0262c#;
+   pragma Export (C, u00398, "system__tasking__queuingS");
+   u00399 : constant Version_32 := 16#70d5a0df#;
+   pragma Export (C, u00399, "system__tasking__utilitiesB");
+   u00400 : constant Version_32 := 16#332a5557#;
+   pragma Export (C, u00400, "system__tasking__utilitiesS");
+   u00401 : constant Version_32 := 16#7724692c#;
+   pragma Export (C, u00401, "system__tasking__stagesB");
+   u00402 : constant Version_32 := 16#fb9a8375#;
+   pragma Export (C, u00402, "system__tasking__stagesS");
    u00403 : constant Version_32 := 16#4a009ca7#;
    pragma Export (C, u00403, "game_sparkS");
    u00404 : constant Version_32 := 16#0f49180c#;
@@ -867,8 +867,12 @@ package ada_main is
    pragma Export (C, u00414, "glib__mainS");
    u00415 : constant Version_32 := 16#a79e599e#;
    pragma Export (C, u00415, "gnat__os_libS");
-   u00416 : constant Version_32 := 16#b0aaf365#;
+   u00416 : constant Version_32 := 16#4cfdec1f#;
    pragma Export (C, u00416, "main_quitB");
+   u00417 : constant Version_32 := 16#357666d8#;
+   pragma Export (C, u00417, "ada__calendar__delaysB");
+   u00418 : constant Version_32 := 16#a808adf5#;
+   pragma Export (C, u00418, "ada__calendar__delaysS");
 
    --  BEGIN ELABORATION ORDER
    --  ada%s
@@ -1052,6 +1056,8 @@ package ada_main is
    --  system.tasking.debug%b
    --  ada.calendar%s
    --  ada.calendar%b
+   --  ada.calendar.delays%s
+   --  ada.calendar.delays%b
    --  ada.real_time%s
    --  ada.real_time%b
    --  ada.real_time.delays%s
@@ -1280,12 +1286,12 @@ package ada_main is
    --  gtk.drawing_area%b
    --  gtk.main%s
    --  gtk.main%b
-   --  main_quit%b
    --  submarine_generic%s
    --  submarine_generic%b
    --  game_spark%s
    --  game%s
    --  game%b
+   --  main_quit%b
    --  main%b
    --  END ELABORATION ORDER
 

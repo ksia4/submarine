@@ -23,8 +23,8 @@ package game is
    --typ do kontroli gry
    protected type Game_Control_t is
       procedure Start;
+      procedure EndGame;
       function IsStarted return Boolean;
-      --function IsMenu return Boolean;
 
       --- serialize access to out SPARK implementation
       procedure DoTick;
@@ -34,7 +34,6 @@ package game is
       function IsLost return Boolean;
 
       procedure SetSubmarineCourse (new_course : submarine.Course_t);
-
       procedure DecreaseSubmarineSpeed;
       procedure IncreaseSubmarineSpeed;
       procedure IncreaseSubmarineCourseValue;
@@ -42,20 +41,42 @@ package game is
       procedure IncreaseSubmarineDepth;
       procedure DecreaseSubmarineDepth;
    private
-      started : Boolean := False;
-      --menu : Boolean := False;
+      started : Boolean := True;
    end Game_Control_t;
 
    type Game_Control_a is access all Game_Control_t;
+
+   task type CourseTask is
+      entry IncreaseTask;
+      entry DecreaseTask;
+      entry EndTask;
+   end CourseTask;
+
+   task type SpeedTask is
+      entry IncreaseTask;
+      entry DecreaseTask;
+      entry EndTask;
+   end SpeedTask;
+
+   task type DepthTask is
+      entry IncreaseTask;
+      entry DecreaseTask;
+      entry EndTask;
+   end DepthTask;
 
    function GameControl return Game_Control_a;
 
    function TriggerRedraw return Boolean;
 
+
    Draw : Gtk_Drawing_Area;
+   Game_Control : aliased Game_Control_t;
 
 private
    Game_tasks : Game_Task;
-   Game_Control : aliased Game_Control_t;
+   CourseT : CourseTask;
+   SpeedT : SpeedTask;
+   DepthT :DepthTask;
+   --Game_Control : aliased Game_Control_t;
 
 end game;

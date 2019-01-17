@@ -6,10 +6,10 @@ C:\Users\DELL\Desktop\GUJA\submarine\submarine.gpr
 C:\GtkAda\lib\gnat\gtkada.gpr
 20190102103712
 [BOUND OBJECT FILES]
-C:\Users\DELL\Desktop\GUJA\submarine\obj\main_quit.o
 C:\Users\DELL\Desktop\GUJA\submarine\obj\submarine_generic.o
 C:\Users\DELL\Desktop\GUJA\submarine\obj\game_spark.o
 C:\Users\DELL\Desktop\GUJA\submarine\obj\game.o
+C:\Users\DELL\Desktop\GUJA\submarine\obj\main_quit.o
 C:\Users\DELL\Desktop\GUJA\submarine\obj\main.o
 [GENERATED SOURCE FILES]
 b__main.ads

@@ -142,7 +142,6 @@ package submarine_generic with SPARK_Mode is
    is_running : Boolean := False;
    is_lost    : Boolean := False;
    is_won     : Boolean := False;
-   --is_menu    : Boolean := False;
 
    --plansza
    Board : Board_t;

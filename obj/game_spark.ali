@@ -88,8 +88,8 @@ D interfac.ads		20180524051736 5ab55268 interfaces%s
 D i-c.ads		20180524051736 5421119b interfaces.c%s
 D i-cstrin.ads		20180524051736 341d0ddf interfaces.c.strings%s
 D i-cstrea.ads		20180524051736 e53d8b8e interfaces.c_streams%s
-D submarine_generic.ads	20190116202642 1ac663f8 submarine_generic%s
-D submarine_generic.adb	20190116205310 c8e3aa97 submarine_generic%b
+D submarine_generic.ads	20190117084830 1ac663f8 submarine_generic%s
+D submarine_generic.adb	20190117074824 c8e3aa97 submarine_generic%b
 D system.ads		20180524051738 32a08138 system%s
 D s-atacco.ads		20180524051738 4c36d12f system.address_to_access_conversions%s
 D s-conca2.ads		20180524051736 02a0d7d0 system.concat_2%s
@@ -143,7 +143,7 @@ X 35 interfac.ads
 74M9*Unsigned_32
 77M9*Unsigned_64
 X 39 submarine_generic.ads
-10k9*submarine_generic 19|1w6 4r29 39|187e22
+10k9*submarine_generic 19|1w6 4r29 39|186e22
 X 41 system.ads
 67M9*Address
 X 59 s-rannum.ads

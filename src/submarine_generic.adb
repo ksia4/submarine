@@ -1,5 +1,6 @@
 with Ada.Numerics.Generic_Elementary_Functions;
 with Ada.Text_IO; use Ada.Text_IO;
+
 package body submarine_generic with SPARK_Mode is
 
     package Elem_Fun_Float is new Ada.Numerics.Generic_Elementary_Functions (Float);

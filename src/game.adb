@@ -25,7 +25,8 @@ package body game is
       if Event.Keyval = GDK_KP_Down
         or else Event.Keyval = GDK_Down
       then
-         Game_Control.DecreaseSubmarineSpeed;
+         SpeedT.DecreaseTask;
+         --Game_Control.DecreaseSubmarineSpeed;
          if not submarine.is_brum then
             submarine.is_brum := True;
          end if;
@@ -33,32 +34,37 @@ package body game is
       elsif Event.Keyval = GDK_KP_Up
         or else Event.Keyval = GDK_Up
       then
-         Game_Control.IncreaseSubmarineSpeed;
+         SpeedT.IncreaseTask;
+         --Game_Control.IncreaseSubmarineSpeed;
          if not submarine.is_brum then
             submarine.is_brum := True;
          end if;
       elsif Event.Keyval = GDK_KP_Right
         or else Event.Keyval = GDK_Right
       then
-         Game_Control.IncreaseSubmarineCourseValue;
+         --Game_Control.IncreaseSubmarineCourseValue;
+         CourseT.IncreaseTask;
          if not submarine.is_brum then
             submarine.is_brum := True;
          end if;
       elsif Event.Keyval = GDK_KP_Left
         or else Event.Keyval = GDK_Left
       then
-         Game_Control.DecreaceSubmarineCourseValue;
+         --Game_Control.DecreaceSubmarineCourseValue;
+         CourseT.DecreaseTask;
          if not submarine.is_brum then
             submarine.is_brum := True;
          end if;
 
       elsif Event.Keyval = GDK_LC_w then
-         Game_Control.DecreaseSubmarineDepth;
+         --Game_Control.DecreaseSubmarineDepth;
+         DepthT.DecreaseTask;
          if not submarine.is_brum then
             submarine.is_brum := True;
          end if;
       elsif Event.Keyval = GDK_LC_s then
-         Game_Control.IncreaseSubmarineDepth;
+         --Game_Control.IncreaseSubmarineDepth;
+         DepthT.IncreaseTask;
          if not submarine.is_brum then
             submarine.is_brum := True;
          end if;
@@ -340,15 +346,15 @@ package body game is
          started := True;
       end Start;
 
+      procedure EndGame is
+      begin
+         started := False;
+      end EndGame;
+
       function IsStarted return Boolean is
       begin
          return started;
       end IsStarted;
-
-      --function IsMenu return Boolean is
-      --begin
-      --   return menu;
-      --end IsMenu;
 
       --- serialize access to out SPARK implementation
       procedure DoTick is
@@ -408,18 +414,96 @@ package body game is
 
    end Game_Control_t;
 
+   task body CourseTask is
+   begin
+      Put_Line("Poczatek CourseTask");
+      loop
+         select
+            accept IncreaseTask do
+               Game_Control.IncreaseSubmarineCourseValue;
+            end IncreaseTask;
+         or
+            accept DecreaseTask do
+              Game_Control.DecreaceSubmarineCourseValue;
+            end DecreaseTask;
+         or
+            accept EndTask;
+               exit;
+         else
+            null;
+         end select;
+
+      end loop;
+      Put_Line("Koniec CourseTask");
+      exception
+         when others=> Put_Line("Blad zadania CourseTask!");
+   end CourseTask;
+
+   task body SpeedTask is
+   begin
+      Put_Line("Poczatek SpeedTask");
+      loop
+         select
+            accept IncreaseTask do
+               Game_Control.IncreaseSubmarineSpeed;
+            end IncreaseTask;
+         or
+            accept DecreaseTask do
+              Game_Control. DecreaseSubmarineSpeed;
+            end DecreaseTask;
+         or
+            accept EndTask;
+               exit;
+         else
+            null;
+         end select;
+      end loop;
+      Put_Line("Koniec SpeedTask");
+      exception
+         when others=> Put_Line("Blad zadania SpeedTask!");
+   end SpeedTask;
+
+   task body DepthTask is
+   begin
+      Put_Line("Poczatek DepthTask");
+      loop
+         select
+            accept IncreaseTask do
+               Game_Control.IncreaseSubmarineDepth;
+            end IncreaseTask;
+         or
+            accept DecreaseTask do
+               Game_Control.DecreaseSubmarineDepth;
+               Put_Line("Decrease depth");
+            end DecreaseTask;
+         or
+            accept EndTask;
+            exit;
+
+            end select;
+
+      end loop;
+      Put_Line("Koniec DepthTask");
+      exception
+         when others=> Put_Line("Blad zadania DepthTask!");
+   end DepthTask;
+
+
    task body Game_Task is
       next : Time := Clock;
    begin
 
       Reset;
-
       loop
          next := next + Milliseconds (100);
          delay until next;
          if Game_Control.IsStarted then
             DoTick;
          else Put_Line("IsStarted sie wylaczylo");
+            CourseT.EndTask;
+            SpeedT.EndTask;
+            DepthT.EndTask;
+            exit;
          end if;
 
       end loop;
